@@ -1,7 +1,8 @@
+## ![wyy](https://github.com/TheWangYang/TheWangYang.github.io/blob/master/wyy.jpg)
 ## Welcome to My HomePage
 #### WANG YANG YANG
-#### 13803907433 丨 wyytj@stu.zzu.edu.cn Zhengzhou
-#### 2000-02 丨male 丨Henan 丨Han nationality 丨Communist probationary member
+#### 13803907433丨Zhengzhou
+#### 2000-02丨male丨Henan丨Han nationality丨Communist probationary member
 
 ## Education
 #### Zhengzhou University Software engineering. Bachelor Software College. 
