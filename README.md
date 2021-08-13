@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+## Welcome to My HomePage
+WANG YANG YANG
+13803907433 丨 wyytj@stu.zzu.edu.cn Zhengzhou
+2000-02 丨male 丨Henan 丨Han nationality 丨Communist probationary member
 
-You can use the [editor on GitHub](https://github.com/TheWangYang/TheWangYang.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Education
+Zhengzhou University.
+Software engineering. Bachelor Software College. GPA: 3.44 / 4.00 (14/184 professional 7.6%) Sep 2018   - Jul 2022 Zhengzhou
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## HONORS & AWARDS
+Chinese Finals of the 14th ICAN International Innovation and Entrepreneurship Competition Third Prize 2020.12
+The 14th ICAN International Innovation and Entrepreneurship Competition First Prize	2020.10
+2021 China University of Computer Design Competition Henan Provincial Third Prize	2021.5
+2021 American College Students Mathematics Modeling Competition Second Prize	2021.4
+2020 College Students Mathematics Modeling Competition Second Prize	2021.1
+2020 China University Computer Competition - WeChat Approval Application Development Raihua Shuangyai District Second Prize 2020.7
+2019-2020 Journal of  Zhengzhou University  First-class Scholarship	2020.12
+2019-2020 school year Zhengzhou University three good students	2020.12
 
 ```markdown
-Syntax highlighted code block
+## PROJECT EXPERIENCE
+Intelligent medical cabinet based on machine learning 
+principal Zhengzhou University Software College Mar 2021 - May 2021 Zhengzhou
 
-# Header 1
-## Header 2
-### Header 3
+As a person in charge, I organized the development of "Machine-based intelligent medical cabinet" intelligent medical project, mainly responsible for the development of the web end, APP  end  and  back-end  algorithm  modules.After reviewing the relevant literature and combines its own ability, I  decided to  divide the algorithm analysis into: collecting   data pretreatment, the old man's health indicator, a large amount of data logic regression classification, and the results visualize.When implementing the classification, I use the F  value formula to  make different Threshold minimum, and  realize personalized model training.During the development process, I will use the theory, development knowledge, and I. IoT idea to the project, greatly deepened my understanding of these knowledge.
+This project won the 2021 Chinese College Student Computer Design Competition Henan Provincial San Salancing Award.
 
-- Bulleted
-- List
+IntelligentData- smart gloves
+Core member Zhengzhou University Software College May 2020 - Dec 2020 Zhengzhou
 
-1. Numbered
-2. List
+I have participated in the research and development process of the team's "IntelligentData-Smart Glove" project and is responsible for analyzing patient rehabilitation data.The project uses mirroring therapy to help patients carry out hand rehabilitation.I divide the data analysis process into: collected data pretreatment, patient finger curvature regression, patient rehabilitation neural network classification and other steps and use Tensorflow  and other libraries to  complete     the establishment and programming of the patient's finger curvature prediction model and the like.In the process of research and development, I applied machine learning knowledge to actual and strengthened their understanding.
+This project won the third prize of the 14th ICAN International Innovation Entrepreneurship Competition.
 
-**Bold** and _Italic_ and `Code` text
+## The community and organization experience
+Essence (Hangzhou) Network Co., Ltd. Zhengzhou University North Campus Club
+principal Zhengzhou University Software College Oct 2019   - Present Zhengzhou
 
-[Link](url) and ![Image](src)
-```
+I have currently served as the head of Zhengzhou University North Campus Club, and regularly organized technical exchanges under the guidance of  Alibaba technical experts.Club membership technology has been greatly improved in   the original level.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Skills / others
 
-### Jekyll Themes
+Skills: Java (skilled), Python(understand), C ++ (understand)
+Language English (CET-4, 545), IELTS (6.5)
+Interests: Basketball (College New Student Collection Second Prize)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/TheWangYang/TheWangYang.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Contact Me
+Email:wyysuccess2020@163.com
+QQ:844817943
+Phone & WeChat:13803907433
+Address:Zhengzhou University North Campus, 97 Wenhua Road, Jinshui District, Zhengzhou City, Henan Province
