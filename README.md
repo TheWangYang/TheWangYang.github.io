@@ -1,5 +1,5 @@
 ## Welcome to My HomePage
-#### ![wyy](https://github.com/TheWangYang/TheWangYang.github.io/blob/master/wyy.jpg)
+#### ![wyy](https://raw.githubusercontent.com/TheWangYang/TheWangYang.github.io/master/wyy.jpg)
 #### WANG YANG YANG
 #### 13803907433 丨 wyytj@stu.zzu.edu.cn Zhengzhou
 #### 2000-02 丨male 丨Henan 丨Han nationality 丨Communist probationary member
