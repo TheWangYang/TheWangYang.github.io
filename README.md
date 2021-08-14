@@ -2,7 +2,7 @@
 ## Happy Chinese Valentine's Day, my beloved，WYW.
 #### ![wyy](https://raw.githubusercontent.com/TheWangYang/TheWangYang.github.io/master/wyy.jpg)
 #### WANG YANG YANG
-#### 13803907433 丨 wyytj@stu.zzu.edu.cn Zhengzhou
+#### 13803907433 丨 wyysuccess2020@163.com Zhengzhou
 #### 2000-02 丨male 丨Henan 丨Han nationality 丨Communist probationary member
 
 ## Education
