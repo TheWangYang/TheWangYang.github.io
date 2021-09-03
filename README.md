@@ -40,7 +40,7 @@ I have currently served as the head of Zhengzhou University North Campus Club, a
 ## Skills / others
 
 #### Skills: Java (skilled), Python(understand), C ++ (understand)
-#### Language English (CET-4, 545), IELTS (6.5)
+#### Language English (CET-4:545;CET-6:501;IELTS:6.5)
 #### Interests: Basketball (College New Student Collection Second Prize)
 
 ## Contact Me
