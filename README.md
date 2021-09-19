@@ -5,8 +5,9 @@
 #### My Personal Blog Address : https://blog.csdn.net/weixin_43749999
 
 ## Education
-#### Zhengzhou University Software engineering. Bachelor Software College. 
-#### GPA: 3.44 / 4.00 (14/184 professional 7.6%) Sep 2018 - Jul 2022 Zhengzhou
+#### Sep 2018 - Jul 2022,Zhengzhou University Software engineering.Bachelor Software College. 
+#### GPA: 3.44 / 4.00 (14/184 professional 7.6%)
+#### Comprehensive ranking of the first 6 semesters: 9/184 (4.89%)
 
 ## HONORS & AWARDS
 #### Chinese Finals of the 14th ICAN International Innovation and Entrepreneurship Competition Third Prize 2020.12
