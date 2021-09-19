@@ -1,7 +1,6 @@
 ## Welcome to My HomePage
 #### ![wyy](https://raw.githubusercontent.com/TheWangYang/TheWangYang.github.io/master/wyy.jpg)
 #### WANG YANG YANG
-#### 13803907433 丨 wyysuccess2020@163.com Zhengzhou
 #### 2000-02 丨male 丨Henan 丨Han nationality 丨Communist probationary member
 #### My Personal Blog Address : https://blog.csdn.net/weixin_43749999
 
@@ -45,7 +44,7 @@ I have currently served as the head of Zhengzhou University North Campus Club, a
 #### Interests: Basketball (College New Student Collection Second Prize)
 
 ## Contact Me
-#### Email:wyysuccess2020@163.com
+#### Email:wyytj@stu.zzu.edu.cn Zhengzhou
 #### QQ:844817943
 #### Phone & WeChat:13803907433
 #### Address:Zhengzhou University North Campus, 97 Wenhua Road, Jinshui District, Zhengzhou City, Henan Province
