@@ -1,13 +1,22 @@
-## Welcome to My HomePage
+## WYY'S HOMEPAGE
 #### ![wyy](https://raw.githubusercontent.com/TheWangYang/TheWangYang.github.io/master/wyy.jpg)
 #### WANG YANG YANG
 #### 2000-02 丨male 丨Zhengzhou Henan丨Han nationality 丨Communist probationary member
 #### My Personal Blog Address : https://blog.csdn.net/weixin_43749999
+#### My GitHub HomePage : https://github.com/TheWangYang
+#### My Leetcode HomePage ： https://leetcode-cn.com/u/wyypersist
 
-## Education
-#### Sep 2018 - Jul 2022,Zhengzhou University Software engineering.Bachelor Software College. 
-#### GPA: 3.44 / 4.00 (14/184 professional 7.6%)
-#### Comprehensive ranking of the first 6 semesters: 9/184 (4.89%)
+## EDUCATION
+#### Sep 2018 - Jul 2022,Zhengzhou University Software engineering.Bachelor Software College.
+GPA: 3.44 / 4.00 (14/184 professional 7.6%)
+Comprehensive ranking of the first 6 semesters: 9/184 (4.89%)
+#### In September 2022, I will go to Xi’an Jiaotong University to study for a postgraduate degree.
+
+## RESEARCH INTEREST
+#### Machine Learning
+#### Computer Vision
+#### Computational Cognition
+#### ...
 
 ## HONORS & AWARDS
 #### Chinese Finals of the 14th ICAN International Innovation and Entrepreneurship Competition Third Prize 2020.12
@@ -32,19 +41,17 @@ This project won the 2021 Chinese College Student Computer Design Competition He
 I have participated in the research and development process of the team's "IntelligentData-Smart Glove" project and is responsible for analyzing patient rehabilitation data.The project uses mirroring therapy to help patients carry out hand rehabilitation.I divide the data analysis process into: collected data pretreatment, patient finger curvature regression, patient rehabilitation neural network classification and other steps and use Tensorflow  and other libraries to  complete     the establishment and programming of the patient's finger curvature prediction model and the like.In the process of research and development, I applied machine learning knowledge to actual and strengthened their understanding.
 This project won the third prize of the 14th ICAN International Innovation Entrepreneurship Competition.
 
-## The community and organization experience
+## THE COMMUNITY AND ORGANIZATION EXPERIENCE
 #### Essence (Hangzhou) Network Co., Ltd. Zhengzhou University North Campus Club
 #### principal Zhengzhou University Software College Oct 2019   - Present Zhengzhou
-
 I have currently served as the head of Zhengzhou University North Campus Club, and regularly organized technical exchanges under the guidance of  Alibaba technical experts.Club membership technology has been greatly improved in   the original level.
 
-## Skills / others
-
-#### Skills: Java (skilled), Python(understand), C ++ (understand)
+## SKILLS / OTHERS
+#### Skills: Java (Skilled), Python(Used in data analysis), C ++ (Use in algorithmic questions)
 #### Language English (CET-4:545;CET-6:501;IELTS:6.5)
 #### Interests: Basketball (College New Student Collection Second Prize)
 
-## Contact Me
+## CONTACT ME
 #### Email:wyytj@stu.zzu.edu.cn
 #### QQ:844817943
 #### Phone & WeChat:13803907433
