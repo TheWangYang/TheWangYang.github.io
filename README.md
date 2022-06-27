@@ -52,7 +52,7 @@ I have currently served as the head of Zhengzhou University North Campus Club, a
 #### Interests: Basketball (College New Student Collection Second Prize)
 
 ## CONTACT ME
-#### Email:wyytj@stu.zzu.edu.cn
+#### Email:wyysuccess2020@163.com
 #### QQ:844817943
 #### Phone & WeChat:13803907433
 #### Address:Zhengzhou University North Campus, 97 Wenhua Road, Jinshui District, Zhengzhou City, Henan Province
