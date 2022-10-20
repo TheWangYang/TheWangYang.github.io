@@ -1,5 +1,5 @@
 ## WYY'S HOMEPAGE
-### ![wyy](https://raw.githubusercontent.com/TheWangYang/TheWangYang.github.io/master/wyy.jpg)
+### <div align=center><img src="https://raw.githubusercontent.com/TheWangYang/TheWangYang.github.io/master/wyy.jpg"/></div>
 ### WANG YANG YANG
 ### 2000-02丨male丨Pingdingshan, Henan丨Han nationality 丨Full member of the CPC
 ### My Personal Blog(CSDN) Address : https://blog.csdn.net/weixin_43749999
