@@ -30,7 +30,7 @@
 * 2020 College Students Mathematics Modeling Competition Second Prize	2021.1
 * 2020 China University Computer Competition - WeChat Approval Application Development Raihua Shuangyai District Second Prize 2020.7
 * 2019-2020 Journal of  Zhengzhou University  First-class Scholarship	2020.12
-* 2019-2020 school year Zhengzhou University three good students	2020.12
+* 2019-2020 school year Zhengzhou University three good students 2020.12
 
 ### Master Period
 * coming soon ...
