@@ -2,7 +2,8 @@
 title: About me
 date: 2023-05-23 18:51:28
 categories:
-- ME
+- about me
+comments: true
 ---
 
 ## WYY'S HOMEPAGE
