@@ -188,3 +188,32 @@ class Solution {
     }
 }
 ```
+
+## 3.无重复字符的最长子串
+
+```
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+
+        int left = 0;
+        int right = 1;
+
+        int result = 0;
+        while(left < n - 1){
+            Map<Character, Integer> map = new HashMap<>();
+            map.put(s.charAt(left), left);
+            while(right < n && !map.containsKey(s.charAt(right))){
+                map.put(s.charAt(right), right);
+                right++;
+            }
+            result = Math.max(result, right - left);
+            left = left + 1;
+            right = left + 1;
+        }
+        return result;
+    }
+}
+```
