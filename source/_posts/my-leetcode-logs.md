@@ -110,3 +110,32 @@ class Solution {
     }
 }
 ```
+
+## 11.盛最多水的容器
+
+```
+class Solution {
+    public int maxArea(int[] height) {
+        int n = height.length;
+        int left = 0;
+        int right = n - 1;
+
+        int area = 0;
+        while(left < right){
+            int h = Math.min(height[left], height[right]);
+            area = Math.max(area, h * (right - left));
+            if(height[left] < height[right]){
+                left ++;
+            }else{
+                right -- ;
+            }
+        }
+        return area;
+    }
+}
+```
+
+## 15.三数之和
+```
+
+```
