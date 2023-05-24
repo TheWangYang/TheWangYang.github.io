@@ -217,3 +217,34 @@ class Solution {
     }
 }
 ```
+
+## 438. 找到字符串中所有字母异位词
+
+```
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        int n = p.length();
+        char[] p_chars = p.toCharArray(); // 转换为字符数组
+        Arrays.sort(p_chars); // 对字符数组进行排序
+        String sorted_p = new String(p_chars); // 将字符数组转换回字符串
+        //System.out.println("sorted_p: " + sorted_p);
+
+        List<Integer> result = new ArrayList<>();
+        int left = 0;
+        int l = s.length();
+
+        while(left <= l - n){
+            String tmp = s.substring(left, left + n);
+            char[] tmp_chars = tmp.toCharArray(); // 转换为字符数组
+            Arrays.sort(tmp_chars); // 对字符数组进行排序
+            String sorted_tmp = new String(tmp_chars); // 将字符数组转换回字符串
+            //System.out.println("sorted_tmp: " + sorted_tmp);
+            if(sorted_tmp.equals(sorted_p)){
+                result.add(left);
+            }
+            left += 1;
+        }
+        return result;
+    }
+}
+```
