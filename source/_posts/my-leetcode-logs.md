@@ -136,6 +136,55 @@ class Solution {
 ```
 
 ## 15.三数之和
-```
 
+```
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        //首先先排序（升序）
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        int n = nums.length;
+
+        for(int i = 0; i < n; i++){
+            if(nums[i] > 0){
+                return result;
+            }
+
+            //判断i位置的元素是否和其前一个元素相同，相同那么进入下一次循环
+            if(i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
+
+            int left = i + 1;
+            int right = n - 1;
+
+            while(left < right){
+                if(nums[i] + nums[left] + nums[right] > 0){
+                    right--;
+                }else if(nums[i] + nums[left] + nums[right] < 0){
+                    left++;
+                }else{
+                    List<Integer> tmp = new ArrayList<>();
+                    tmp.add(nums[i]);
+                    tmp.add(nums[left]);
+                    tmp.add(nums[right]);
+                    result.add(tmp);
+
+                    while(right > left && nums[right - 1] == nums[right]){
+                        right--;
+                    }
+
+                    while(right > left && nums[left + 1] == nums[left]){
+                        left++;
+                    }
+
+                    right--;
+                    left++;
+
+                }
+            }
+        }
+        return result;
+    }
+}
 ```
