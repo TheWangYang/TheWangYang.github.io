@@ -374,3 +374,22 @@ class Solution {
 }
 
 ```
+
+## 26.删除有序数组中的重复项
+
+```
+//快慢指针
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        Map<Integer, Integer> dict = new HashMap<>();
+        int slow = 0;
+        for(int fast = 0; fast < nums.length;fast++){
+            if(!dict.containsKey(nums[fast])){
+                nums[slow++] = nums[fast];
+                dict.put(nums[fast], 0);
+            }
+        }
+        return slow;
+    }
+}
+```
