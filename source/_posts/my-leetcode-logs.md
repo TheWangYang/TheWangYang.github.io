@@ -419,5 +419,37 @@ class Solution {
 }
 ```
 
+## 844.比较含退格的字符串
 
-## 
+```
+//使用快慢指针
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        char [] s_arr = s.toCharArray();
+        char [] t_arr = t.toCharArray();
+
+        if(rebuildString(s_arr).equals(rebuildString(t_arr))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //重建字符串函数
+    String rebuildString(char[] c){
+        int slow = 0;
+        for(int fast = 0; fast < c.length; fast++){
+            if(c[fast] != '#'){
+                c[slow++] = c[fast];
+            }else{
+                if(slow > 0){
+                    slow--;
+                }
+            }
+        }
+        return new String(c).substring(0,slow);
+    }
+}
+```
+
+##
