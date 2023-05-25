@@ -95,4 +95,62 @@ class Solution {
 }
 ```
 
+## 76.最小覆盖子串
+
+```
+class Solution {
+    public String minWindow(String s, String t) {
+        int sn = s.length();
+        int tn = t.length();
+
+        int start = 0;
+        int minLen = Integer.MAX_VALUE;
+        String result = "";
+
+        Map<Character, Integer> tDict = new HashMap<>();
+        for (int i = 0; i < tn; i++) {
+            tDict.put(t.charAt(i), tDict.getOrDefault(t.charAt(i), 0) + 1);
+        }
+
+        Map<Character, Integer> windowDict = new HashMap<>();
+        int formed = 0; // 记录窗口中满足条件的字符数量
+
+        int left = 0;
+        int right = 0;
+
+        while (right < sn) {
+            char c = s.charAt(right);
+            windowDict.put(c, windowDict.getOrDefault(c, 0) + 1);
+
+            if (tDict.containsKey(c) && windowDict.get(c).intValue() == tDict.get(c).intValue()) {
+                formed++;
+            }
+
+            while (left <= right && formed == tDict.size()) {
+                // 更新最小窗口长度和结果
+                int curLen = right - left + 1;
+                if (curLen < minLen) {
+                    minLen = curLen;
+                    result = s.substring(left, right + 1);
+                }
+
+                // 缩小窗口左边界
+                char leftChar = s.charAt(left);
+                windowDict.put(leftChar, windowDict.get(leftChar) - 1);
+                if (tDict.containsKey(leftChar) && windowDict.get(leftChar).intValue() < tDict.get(leftChar).intValue()) {
+                    formed--;
+                }
+
+                left++;
+            }
+
+            right++;
+        }
+
+        return result;
+    }
+
+}
+```
+
 ##
