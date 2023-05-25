@@ -393,3 +393,31 @@ class Solution {
     }
 }
 ```
+
+## 283.移动零
+
+```
+//使用快慢指针
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int n = nums.length;
+        if(n == 1){
+            return;
+        }
+
+        int slow = 0;
+        for(int fast = 0; fast < nums.length; fast++){
+            if(nums[fast] != 0){
+                nums[slow ++] = nums[fast];
+            }
+        }
+
+        for(; slow < n; slow ++){
+            nums[slow] = 0;
+        }
+    }
+}
+```
+
+
+## 
