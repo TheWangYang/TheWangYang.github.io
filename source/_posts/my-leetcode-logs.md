@@ -452,4 +452,23 @@ class Solution {
 }
 ```
 
+## 977.有序数组的平方
+
+```
+//使用前后双指针
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int start = 0;
+       int end = nums.length;
+       int[] new_nums = new int[end];
+       int i = end - 1;
+       end --;
+        while(i >= 0){
+            new_nums[i--] = nums[start] * nums[start] > nums[end] * nums[end] ? nums[start]*nums[start++] : nums[end]*nums[end--];
+        }
+        return new_nums;
+    }
+}
+```
+
 ##
