@@ -305,4 +305,36 @@ class Solution {
 }
 ```
 
+## 35.搜索插入位置
+
+```
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        if(target < nums[0]){
+            return 0;
+        }
+
+        if(target > nums[nums.length - 1]){
+            return nums.length;
+        }
+
+        int left = 0;
+        int right = nums.length - 1;
+        int mid = -1;
+
+        while(left <= right){
+            mid = (left + right) / 2;
+            if(nums[mid] == target){
+                return mid;
+            }else if(nums[mid] < target){
+                left = mid + 1;
+            }else if(nums[mid] > target){
+                right = mid - 1;
+            }
+        }
+        return right + 1;
+    }
+}
+```
+
 ##
