@@ -338,4 +338,39 @@ class Solution {
 }
 ```
 
-##
+## 27.移除元素
+
+```
+//暴力解法
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int n = nums.length;
+        for(int i = 0; i < n; i ++){
+            if(nums[i] == val){
+                for(int j = i + 1; j < n; j++){
+                    nums[j - 1] = nums[j];
+                }
+                i--;
+                n--;
+            }
+        }
+        return n;
+    }
+}
+
+
+//快慢指针法
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int n = nums.length;
+        int slow = 0;
+        for(int fast = 0; fast < n; fast ++){
+            if(nums[fast] != val){
+                nums[slow++] = nums[fast];
+            } 
+        }
+        return slow;
+    }
+}
+
+```
