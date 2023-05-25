@@ -31,4 +31,68 @@ class Solution {
 }
 ```
 
+## 904.水果成篮
+
+```
+//超时写法
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int n = fruits.length;
+        int start = 0;
+        int max_num = -1;
+        for(int i = 0; i < n;i++){
+            while(isAboveTwo(fruits, start, i) && start < i){
+                start ++;
+            }
+            max_num = max_num < (i - start) + 1 ? (i - start) + 1 : max_num;
+        }
+        return max_num;
+    }
+
+    //判断从start到i之间是否有超过两种不同类型的水果
+    boolean isAboveTwo(int[] array, int left, int right){
+        Map<Integer, Integer> dict = new HashMap<>();
+        for(int i = left; i <= right;i++){
+            if(!dict.containsKey(array[i]) && dict.size() < 2){
+                dict.put(array[i], 0);
+            }else if(!dict.containsKey(array[i]) && dict.size() == 2){
+                return true;
+            }else if(dict.containsKey(array[i])){
+                continue;
+            }
+        }
+        return false;
+    }
+}
+
+//滑动窗口写法
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int n = fruits.length;
+        int start = 0;
+        int max_num = -1;
+        Map<Integer, Integer> dict = new HashMap<>();
+        for(int i = 0; i < n;i++){
+            //获得原来存在map中的对应的水果种类的水果树数量
+            dict.put(fruits[i], dict.getOrDefault(fruits[i], 0) + 1);
+            //然后判断当前窗口中是否存在超过两种水果
+            while(dict.size() > 2){
+                //设置start对应的位置水果种类对应的树木数量 - 1
+                dict.put(fruits[start], dict.get(fruits[start]) - 1);
+                //如果在当前滑动窗口中不存在对应的种类的树木（即树木数量为0）
+                if(dict.get(fruits[start]) == 0){
+                    //那么直接删除dict字典中对应的key
+                    dict.remove(fruits[start]);
+                }
+                //然后滑动窗口左边start向左移动一位
+                start ++;
+            }
+            //然后，更新最大值
+            max_num = max_num < (i - start) + 1 ? (i - start) + 1 : max_num;
+        }
+        return max_num;
+    }
+}
+```
+
 ##
