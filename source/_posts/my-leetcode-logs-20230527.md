@@ -132,5 +132,78 @@ class Solution {
 }
 ```
 
+## 剑指offer29.顺时针打印矩阵
 
-## 
+```
+class Solution {
+    public int[] spiralOrder(int[][] matrix) {
+        int m = matrix.length;
+        if(m == 0){
+            return new int[0];
+        }else if(m == 1){
+            return matrix[0];
+        }
+
+        int n = matrix[0].length;
+        int[] result = new int[m*n];
+
+        int index = 0;  
+        int offset = 1;
+        int startX = 0;
+        int startY = 0;
+        int i = 0;
+        int j = 0;
+        int loop = Math.min(m, n) / 2;
+
+        while(loop > 0){
+            i = startX;
+            j = startY;
+
+            for(j = startY; j < n - offset; j ++){
+                result[index++] = matrix[i][j];
+            }
+
+            for(i = startX; i < m - offset; i ++){
+                result[index++] = matrix[i][j];
+            }
+
+            for(; j > startY; j--){
+                result[index++] = matrix[i][j];
+            }
+
+            for(; i > startX; i--){
+                result[index++] = matrix[i][j];
+            }
+
+            startX++;
+            startY++;
+            offset++;
+            loop--;
+        }
+
+        if(index == m*n){
+            System.out.println("here");
+            return result;
+        }
+
+        if(m > n){
+            for(i = startX; i < m - offset; i++){
+                result[index++] = matrix[i][startY];
+            }
+            result[index++] = matrix[m - offset][startY];
+        }else if(m < n){
+            for(j = startY; j < n - offset; j++){
+                result[index++] = matrix[startX][j];
+            }
+            result[index++] = matrix[startX][n - offset];
+        }else if(m == n && m % 2 == 1){
+            result[index++] = matrix[m / 2][m / 2];
+        }
+
+        return result;
+
+    }
+}
+```
+
+## 实现了
