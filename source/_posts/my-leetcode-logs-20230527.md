@@ -63,4 +63,74 @@ class Solution {
 }
 ```
 
-##
+## 54.螺旋矩阵
+
+```
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        List<Integer> result = new ArrayList<>();
+        int count = 1;
+        int offset = 1;
+        int startX = 0;
+        int startY = 0;
+        int loop = Math.min(m, n) / 2;
+        int i = 0;
+        int j = 0;
+
+        while(loop > 0){
+            i = startX;
+            j = startY;
+
+            for(j = startY; j < n - offset;j++){
+                result.add(matrix[i][j]);
+            }
+
+            for(i = startX; i < m - offset;i++){
+                result.add(matrix[i][j]);
+            }
+
+            for(;j > startY; j--){
+                result.add(matrix[i][j]);
+            }
+
+            for(;i > startX;i--){
+                result.add(matrix[i][j]);
+            }
+
+            startX++;
+            startY++;
+            offset++;
+
+            loop --;
+        }
+
+        if(result.size() == n * m){
+            return result;
+        }
+        
+        //添加
+        if(m > n){
+            for(i = startX; i < m - offset;i++){
+                result.add(matrix[i][startY]);
+            }
+            result.add(matrix[i][startY]);
+        }else if(m < n){
+            for(j = startY; j < n - offset; j++){
+                result.add(matrix[startX][j]);
+            }
+            result.add(matrix[startX][j]);        
+        }else if(n % 2 == 1 && n == m){
+            result.add(matrix[n/2][n/2]);
+        }
+
+        return result;
+
+    }
+}
+```
+
+
+## 
