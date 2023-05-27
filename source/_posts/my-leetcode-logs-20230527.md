@@ -1,0 +1,66 @@
+---
+title: my-leetcode-logs-20230527
+date: 2023-05-27 15:28:54
+tags:
+---
+
+
+## 59.螺旋矩阵II
+
+```
+class Solution {
+    public int[][] generateMatrix(int n) {
+        //定义一个动态增加的list，最后转换为int即可
+        int[][] matrixResult = new int[n][n];
+
+        //设置给每个格子赋值的值
+        int count = 1;//初始值设置为1
+        int offset = 1;//设置的每圈应该在右开的时候减少的偏移量
+        int startX = 0;
+        int startY = 0;
+        int loop = n / 2;
+        int mid = n / 2;
+        int i = 0;
+        int j = 0;
+
+        while(loop > 0){
+            i = startX;
+            j = startY;
+
+            //上行：从左到右进行填充
+            for(j = startY;j < n - offset;j++){
+                matrixResult[startX][j] = count++;
+            }
+
+            //右列：从上到下及逆行填充
+            for(i = startX; i < n - offset; i++){
+                matrixResult[i][j] = count++;
+            }
+
+            for(; j > startY;j--){
+                matrixResult[i][j] = count++;
+            }
+
+            for(; i > startX;i--){
+                matrixResult[i][j] = count++;
+            }
+
+            //将对应的startX和startY进行更新
+            startX++;
+            startY++;
+
+            offset++;
+            loop--;
+        }
+
+        //最后判断是否需要填充中心位置的元素
+        //也就是n为奇数时需要填充
+        if(n % 2 != 0){
+            matrixResult[mid][mid] = count;
+        }
+        return matrixResult;
+    }
+}
+```
+
+##
