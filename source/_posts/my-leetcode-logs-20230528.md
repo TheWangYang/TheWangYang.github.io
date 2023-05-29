@@ -173,4 +173,39 @@ class Solution {
 }
 ```
 
-##
+## 24.两两交换链表中的结点
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        ListNode xuniHead = new ListNode(0);
+        xuniHead.next = head;
+        ListNode curr = xuniHead;
+
+        while(curr.next != null && curr.next.next != null){
+            ListNode tmp = curr.next;
+            ListNode tmp1 = curr.next.next.next;
+
+            curr.next = curr.next.next;
+            curr.next.next = tmp;
+            curr.next.next.next = tmp1;
+
+            curr = curr.next.next;
+        }
+        return xuniHead.next;
+    }
+}
+```
+
+
+## 
