@@ -244,3 +244,74 @@ class Solution {
     }
 }
 ```
+
+## 面试题02.07.链表相交
+
+```
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode currA = headA;
+        ListNode currB = headB;
+        int lenA = 0;
+        int lenB = 0;
+
+        while(currA != null){
+            currA = currA.next;
+            lenA++;
+        }
+
+        while(currB != null){
+            currB = currB.next;
+            lenB++;
+        }
+
+        currA = headA;
+        currB = headB;
+
+        //使得currA指向较长链表的那个
+        if(lenA < lenB){
+            int tmpL = lenA;
+            lenA = lenB;
+            lenB = tmpL;
+            
+            ListNode tmpNode = currA;
+            currA = currB;
+            currB = tmpNode;
+        }
+
+        //求两者的长度差
+        int gap = lenA - lenB;
+
+        //然后使得较长的指针移动到较短的链表的尾部位置
+        while(gap-- > 0){
+            currA = currA.next;
+        }
+
+        //同时移动两个链表的指针
+        while(currA != null){
+            if(currA == currB){
+                return currA;
+            }
+
+            currA = currA.next;
+            currB = currB.next;
+        }
+
+        return null;
+    }
+}
+```
+
+
+## 
