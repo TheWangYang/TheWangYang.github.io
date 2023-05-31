@@ -98,3 +98,40 @@ class Solution {
     }
 }
 ```
+
+## 349.两个数组的交集
+```
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        //数组作为map
+        int[] record = new int[1001];
+        for(int i = 0; i < nums1.length;i++){
+            //map只记录是否有，并不需要记录每个key值对应的values数量
+            record[nums1[i]] = 2;
+        }
+
+        for(int i = 0; i < nums2.length;i++){
+            if(record[nums2[i]] == 2){
+                record[nums2[i]] = 3;
+            }
+        }
+
+        List<Integer> tmpList = new ArrayList<>(); 
+        for(int i = 0;i < record.length;i++){
+            if(record[i] == 3){
+                tmpList.add(i);
+            }
+        }
+
+        int[] result = new int[tmpList.size()];
+        int index = 0;
+        for(int num: tmpList){
+            result[index] = tmpList.get(index);
+            index++;
+        }
+        return result;
+    }
+}
+```
+
+## 
