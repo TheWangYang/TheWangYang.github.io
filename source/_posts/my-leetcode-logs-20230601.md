@@ -106,7 +106,65 @@ class Solution {
 }
 ```
 
-## 
+## 15.三数之和
 ```
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        //首先对nums进行排序
+        Arrays.sort(nums);
+        //判断第一个nums是否为大于0，如果是直接返回空的list
+        if(nums[0] > 0) return result;
+        int n = nums.length;
 
+        //然后使用双指针循环
+        for(int i = 0; i < n;i++){
+            if(nums[0] > 0){
+                return result;
+            }
+
+            //从i=1开始，判断当前元素和前一个元素是否相同，相同直接跳过
+            if(i > 0 && nums[i] == nums[i - 1]){
+                continue;
+            }
+
+            //然后使用双指针
+            int left = i + 1;
+            int right = n - 1;
+
+            //当left<right时进入循环
+            while(left < right){
+                //判断三者之和与0的大小关系
+                //当三者之和大于0时，right--
+                if(nums[i] + nums[left] + nums[right] > 0){
+                    right--;
+                }else if(nums[i] + nums[left] + nums[right] < 0){
+                    left++;
+                }else{
+                    //三者之和等于0，那么作为一个结果添加到result中
+                    List<Integer> tmp = new ArrayList<>();
+                    tmp.add(nums[i]);
+                    tmp.add(nums[left]);
+                    tmp.add(nums[right]);
+                    result.add(tmp);//将当前的结果list添加到result中
+
+                    //然后去除和left/right重复的元素
+                    while(left < right && nums[right] == nums[right - 1]){
+                        right--;
+                    }
+
+                    while(left < right && nums[left] == nums[left + 1]){
+                        left++;
+                    }
+
+                    left++;//左指针向右++
+                    right--;//右指针向左--
+                    
+                }
+            }
+
+        }
+        return result;
+    }
+}
 ```
