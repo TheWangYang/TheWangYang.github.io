@@ -385,3 +385,39 @@ class Solution {
     }
 }
 ```
+
+## 28.找出字符串中第一个匹配项的下标
+```
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if(haystack.length() < needle.length()) return -1;
+        int i = 0;
+        int j = 0;
+        int result = -1;
+        while(i < haystack.length()){
+            //每次设置j从0开始
+            j = 0;
+            result = i;
+            //判断是否成功，成功直接返回true，否则返回false
+            if(haystack.charAt(i) == needle.charAt(j)){
+                while(j < needle.length() && i < haystack.length()){
+                    if(haystack.charAt(i) == needle.charAt(j)){
+                        i++;
+                        j++;
+                        continue;
+                    }else{
+                        break;
+                    }
+                }
+                if(j == needle.length()){
+                    return result;
+                }
+            }
+            i = result + 1;
+        }
+        return -1;
+    }
+}
+```
+
+## 
