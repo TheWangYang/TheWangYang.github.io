@@ -303,3 +303,65 @@ class Solution {
     }
 }
 ```
+
+## 151.反转字符串中的单词
+```
+class Solution {
+
+    void reverseString(StringBuilder sb, int begin, int end){
+        //然后反转字符串
+        while(begin < end){
+            char tmp = sb.charAt(begin);
+            sb.setCharAt(begin, sb.charAt(end));
+            sb.setCharAt(end, tmp);
+            begin++;
+            end--;
+        }
+    }
+
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        //先删除字符串中前边或后边的空格
+        int left = 0;
+        int right = s.length() - 1;
+
+        while(s.charAt(left) == ' '){
+            left++;
+        }
+
+        while(s.charAt(right) == ' '){
+            right--;
+        }
+
+        //去除字符串中间多余的空格
+        while(left <= right){
+            if(s.charAt(left) != ' ' || sb.charAt(sb.length() - 1) != ' '){
+                sb.append(s.charAt(left));
+            }
+            left++;
+        }
+
+        int begin = 0;
+        int end = sb.length() - 1;
+        reverseString(sb, begin, end);
+
+        //反转字符串之后，反转字符串中每个单词
+        int start = 0;
+        int inner_end = 1;
+        int n = sb.length();
+        while(start < n){
+            while(inner_end < n && sb.charAt(inner_end) != ' '){
+                inner_end++;
+            }
+            //反转从start到end的字符串
+            reverseString(sb, start, inner_end - 1);
+            //然后进入下一个单词
+            start = inner_end + 1;
+            inner_end = start + 1;
+        }
+        return sb.toString();
+    }
+}
+```
+
+## 
