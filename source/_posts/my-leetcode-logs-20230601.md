@@ -364,4 +364,24 @@ class Solution {
 }
 ```
 
-## 
+## 剑指Offer58-II.左旋转字符串
+```
+class Solution {
+    public String reverseLeftWords(String s, int n) {
+        int l = s.length();
+        //得到实际左旋转的格数
+        int k = n % l;
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = k;i < l;i++){
+            sb.append(s.charAt(i));
+        }
+
+        for(int i = 0;i < k;i++){
+            sb.append(s.charAt(i));
+        }
+
+        return sb.toString();
+    }
+}
+```
