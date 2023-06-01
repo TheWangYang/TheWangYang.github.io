@@ -252,3 +252,33 @@ class Solution {
     }
 }
 ```
+
+## 541.反转字符串 II
+```
+class Solution {
+    void reverse(char[] s_char, int begin, int end){
+        while(begin < end){
+            char tmp = s_char[end];
+            s_char[end] = s_char[begin];
+            s_char[begin] = tmp;
+            begin++;
+            end--;
+        }
+    }
+
+    public String reverseStr(String s, int k) {
+        //将String字符串转换为char数组
+        char[] s_char = s.toCharArray();
+        int n = s.length();
+        int i = 0;
+
+        for(;i < n;i = i + 2*k){
+            int start = i;
+            int end = Math.min(n - 1, start + k - 1);
+            reverse(s_char, start, end);
+        }
+        
+        return new String(s_char);
+    }
+}
+```
