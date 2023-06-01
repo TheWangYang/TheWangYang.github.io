@@ -50,4 +50,35 @@ class Solution {
 }
 ```
 
-## 
+## 202.快乐数
+```
+class Solution {
+    //得到数字n的每个位置上的数字平方和
+    int getSum(int n){
+        int sum = 0;
+        while(n != 0){
+            sum += (n % 10) * (n % 10);
+            n = n / 10;
+        }
+        return sum;
+    }
+
+    public boolean isHappy(int n) {
+        Map<Integer, Integer> dict = new HashMap<>();
+
+        while(true){
+            int currSum = getSum(n);
+            if(currSum == 1){
+                return true;
+            }
+
+            if(dict.containsKey(currSum) && dict.get(currSum) != 0){
+                return false;
+            }else{
+                dict.put(currSum, 1);
+            }
+            n = currSum;
+        }
+    }
+}
+```
