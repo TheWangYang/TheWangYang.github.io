@@ -33,7 +33,6 @@ class Solution {
         if(s.length() == 0){
             return false;
         }
-
         //构造长度为s.length()的next数组
         int[] next = new int[s.length()];
         getNext(next, s);
