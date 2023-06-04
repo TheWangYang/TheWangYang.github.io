@@ -166,3 +166,29 @@ class Solution {
     }
 }
 ```
+
+## 1047.删除字符串中的所有相邻重复项
+```
+class Solution {
+    public String removeDuplicates(String s) {
+        //初始化定义栈
+        Stack<Character> stack = new Stack<Character>();
+
+        for(Character ch : s.toCharArray()){
+            //判断栈顶元素是否和当前元素相同，相同同时都删除
+            if(!stack.isEmpty() && stack.peek() == ch){
+                stack.pop();
+            }else{
+                stack.push(ch);
+            }
+        }
+
+        //最终得到stack中的字符串
+        String result = "";
+        while(!stack.isEmpty()){
+            result = stack.pop() + result;
+        }
+        return result; 
+    }
+}
+```
