@@ -136,3 +136,31 @@ class MyStack {
  * boolean param_4 = obj.empty();
  */
 ```
+
+## 20.有效的括号
+```
+class Solution {
+    public boolean isValid(String s) {
+        //初始化栈
+        Stack<Character> stack = new Stack<>();
+        int index = 0;
+        //定义dict用于表示匹配关系
+        Map<Character, Character> dict = new HashMap<>();
+        dict.put('(', ')');
+        dict.put('{', '}');
+        dict.put('[',']');
+        
+        for (char ch : s.toCharArray()) {
+            if (dict.containsKey(ch)) {
+                stack.push(ch);
+            } else {
+                if (stack.isEmpty() || dict.get(stack.pop()) != ch) {
+                    return false;
+                }
+            }
+        }
+
+        return stack.isEmpty();
+    }
+}
+```
