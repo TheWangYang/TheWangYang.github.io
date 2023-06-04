@@ -216,3 +216,39 @@ class Solution {
 }
 
 ```
+
+## 150.逆波兰表达式求值
+```
+class Solution {
+    public int evalRPN(String[] tokens) {
+        //定义保存符号的Stack
+        Stack<String> stack = new Stack<>();
+        Map<String, Integer> dict = new HashMap<>();
+        dict.put("+", 1);
+        dict.put("-", 2);
+        dict.put("*", 3);
+        dict.put("/", 4);
+
+        for(String str : tokens){
+            if(dict.containsKey(str)){
+                int second = Integer.parseInt(stack.pop());
+                int first = Integer.parseInt(stack.pop());
+                int result = 0;
+                if(dict.get(str) == 1){
+                    result = first + second;
+                }else if(dict.get(str) == 2){
+                    result = first - second;
+                }else if(dict.get(str) == 3){
+                    result = first * second;
+                }else{
+                    result = first / second;
+                }
+                stack.push(String.valueOf(result));
+            }else{
+                stack.push(str);
+            }
+        }
+        return Integer.parseInt(stack.pop());
+    }
+}
+```
