@@ -88,3 +88,51 @@ class MyQueue {
  * boolean param_4 = obj.empty();
  */
 ```
+
+## 225.用队列实现栈
+```
+class MyStack {
+
+    Queue<Integer> q1;
+    Queue<Integer> q2;
+
+    public MyStack() {
+        q1 = new LinkedList<>();
+        q2 = new LinkedList<>();
+    }
+    
+    public void push(int x) {
+        //先放在q2辅助队列中，为了保证最后进入的元素最先出来
+        q2.offer(x);
+        //将q1队列中的其他元素加入到q2中
+        while(!q1.isEmpty()){
+            q2.offer(q1.poll());
+        }
+        //最后将q2和q1进行交换
+        Queue<Integer> qTemp = q1;
+        q1 = q2;
+        q2 = qTemp;
+    }
+
+    public int pop() {
+        return q1.poll();
+    }
+    
+    public int top() {
+        return q1.peek();
+    }
+    
+    public boolean empty() {
+        return q1.isEmpty();
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
+```
