@@ -154,6 +154,8 @@ class Solution {
             if (dict.containsKey(ch)) {
                 stack.push(ch);
             } else {
+                //如果此时栈为空，那么表示此时符号进栈之后不可能再找到与之匹配的符号，直接返回false；
+                //或者栈不为空，但是此时即将入栈的符号和栈顶的符号不匹配，也直接返回false即可；
                 if (stack.isEmpty() || dict.get(stack.pop()) != ch) {
                     return false;
                 }
