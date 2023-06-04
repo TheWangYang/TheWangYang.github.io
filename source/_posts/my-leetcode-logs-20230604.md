@@ -275,3 +275,68 @@ class Solution {
     }
 }
 ```
+
+
+## 239.滑动窗口最大值
+```
+//定义自己实现的一个基于双端队列的单调队列类
+class MyQueue{
+    Deque<Integer> dequeue = new LinkedList<>();
+    //设置poll方法
+    void poll(int val){
+        //移除的时候判断当前移除的元素是否和队列的头部相同，相同则弹出
+        if(!dequeue.isEmpty() && dequeue.peek() == val){
+            dequeue.poll();
+        }
+    }
+    
+    //设置的add方法
+    //add的时候需要判断和当前队列中的元素的大小关系，需要维持递减的顺序
+    void add(int val){
+        while(!dequeue.isEmpty() && dequeue.getLast() < val){
+            dequeue.removeLast();//移除最后的元素
+        }
+        //增加到队列中
+        dequeue.add(val);
+    }
+
+    //获得队列头部元素值
+    int peek(){
+        return dequeue.peek();
+    }
+}
+
+
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums.length == 1){
+            return nums;
+        }
+
+        int len = nums.length -k + 1;//定义最后结果数组的长度
+        int[] result = new int[len];
+        int index = 0;//设置的结果数组对应的index索引值
+
+        MyQueue myqueue = new MyQueue();
+
+        //先将前k个元素放入队列中
+        for(int i = 0;i < k;i++){
+            myqueue.add(nums[i]);
+        }
+
+        //得到第一个前k个元素中最大值
+        result[index++] = myqueue.peek();
+
+        //循环遍历后边的长度
+        for(int i = k;i < nums.length;i++){
+            //滑动窗口往后移动一格，首先判断队列中的第一个元素是否需要弹出
+            myqueue.poll(nums[i - k]);
+            //然后判断，增加的元素是否需要到达队顶
+            myqueue.add(nums[i]);
+            //记录最大值
+            result[index++] = myqueue.peek();
+        }
+        return result;
+    }
+}
+```
