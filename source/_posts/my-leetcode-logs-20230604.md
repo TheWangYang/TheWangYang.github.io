@@ -341,3 +341,27 @@ class Solution {
     }
 }
 ```
+
+## 347.前 K 个高频元素
+```
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        //key为元素，value为元素出现的频率
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i: nums){
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        //按照map的value进行排序
+        List<Map.Entry<Integer, Integer>> sortedList = new ArrayList<>(map.entrySet());
+        // 使用 Comparator 和流式操作按照 value 进行降序排序
+        sortedList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        int[] result = new int[k];
+        for(int i = 0;i < k;i ++){
+            result[i] = sortedList.get(i).getKey();    
+        }
+
+        return result;
+    }
+}
+```
