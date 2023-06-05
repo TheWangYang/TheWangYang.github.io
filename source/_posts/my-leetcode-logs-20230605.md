@@ -46,3 +46,40 @@ class Solution {
     }
 }
 ```
+
+
+## 145.二叉树的后序遍历
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //定义后续遍历递归函数
+    void treePostOrderTraversal(TreeNode root, List<Integer> result){
+        if(root == null){
+            return;
+        }
+        treePostOrderTraversal(root.left, result);
+        treePostOrderTraversal(root.right, result);
+        result.add(root.val);
+    }
+
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        treePostOrderTraversal(root, result);
+        return result;
+    }
+}
+```
