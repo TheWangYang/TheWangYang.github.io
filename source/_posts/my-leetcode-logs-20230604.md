@@ -362,4 +362,44 @@ class Solution {
         return result;
     }
 }
+
+
+//使用小顶堆实现
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        //保存key-value对应的字典
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int num: nums){
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        //创建优先级队列
+        //后边设置插入的顺序为构建小顶堆
+        PriorityQueue<int[]> pq = new PriorityQueue<>((pair1, pair2)->pair1[1]-pair2[1]);
+        
+        //遍历map，开始插入
+        for(Map.Entry<Integer, Integer> entry: map.entrySet()){
+            //首先，判断小顶堆中元素个数，如果小于k，直接插入即可
+            if(pq.size() < k){
+                pq.add(new int[]{entry.getKey(), entry.getValue()});
+            }else{
+                //判断当前准备插入的元素对是否大于当前顶点，如果是，删除顶点，然后直接插入当前节点
+                if(entry.getValue() > pq.peek()[1]){
+                    //先弹出顶点元素
+                    pq.poll();
+                    //然后插入
+                    pq.add(new int[]{entry.getKey(), entry.getValue()});
+                }
+            }
+        }
+
+        //创建返回数组结果
+        int[] result = new int[k];
+        //循环pq队列
+        for(int i = 0;i < k;i++){
+            result[i] = pq.poll()[0];
+        }
+        return result;
+    }
+}
 ```
