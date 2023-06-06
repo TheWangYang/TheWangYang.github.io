@@ -169,4 +169,45 @@ class Solution {
 }
 ```
 
-## 
+## 94.二叉树的中序遍历（迭代法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        //使用迭代法得到二叉树的中序遍历节点值
+        List<Integer> result = new ArrayList<>();
+        if(root == null){
+            return result;
+        }
+        Stack<TreeNode> st = new Stack<>();
+        TreeNode curr = root;
+
+        while(curr != null || !st.isEmpty()){
+            if(curr != null){
+                st.push(curr);
+                curr = curr.left;//得到左节点
+            }else{
+                //表示左子树到底了，需要开始向result中添加节点值
+                curr = st.pop();//弹出节点
+                result.add(curr.val);//将弹出的节点加入到result数组中
+                curr = curr.right;
+            }
+        }
+        return result;
+    }
+}
+```
