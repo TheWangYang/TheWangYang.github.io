@@ -253,3 +253,55 @@ class Solution {
     }
 }
 ```
+
+## 144.二叉树的前序遍历（统一迭代法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        //统一模板进行二叉树遍历
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
+        if(root == null){
+            return result;
+        }
+        st.push(root);
+        while(!st.isEmpty()){
+            TreeNode node = st.peek();
+            if(node != null){
+                st.pop();
+                //判断右节点是否为空，不为空加入到stack中
+                if(node.right != null){
+                    st.push(node.right);
+                }
+                if(node.left != null){
+                    st.push(node.left);
+                }
+                st.push(node);
+                st.push(null);
+            }else{
+                //如果遇到节点为null，首先弹出null节点
+                st.pop();
+                node = st.peek();//弹出不是null的节点（标记的结点）
+                st.pop();
+                result.add(node.val);
+           }
+        }
+        return result;
+    }
+}
+```
