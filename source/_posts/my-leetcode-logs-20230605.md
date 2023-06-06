@@ -359,3 +359,56 @@ class Solution {
     }
 }
 ```
+
+## 145.二叉树的后序遍历（统一迭代法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
+        if(root == null){
+            return result;
+        }
+        st.push(root);
+        while(!st.isEmpty()){
+            TreeNode node = st.peek();
+            if(node != null){
+                st.pop();
+                //先将中间节点放进st中
+                st.push(node);
+                st.push(null);
+                //再将右节点放入stack中
+                if(node.right != null){
+                    st.push(node.right);
+                }
+                //左节点放入stack中
+                if(node.left != null){
+                    st.push(node.left);
+                }
+            }else{
+                //弹出null结点
+                st.pop();
+                node = st.peek();
+                st.pop();
+                result.add(node.val);
+            }
+        }
+        return result;
+    }
+}
+```
