@@ -305,3 +305,57 @@ class Solution {
     }
 }
 ```
+
+## 94.二叉树的中序遍历（统一迭代法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> st = new Stack<>();
+        
+        if(root == null){
+            return result;
+        }
+        st.push(root);
+        while(!st.isEmpty()){
+            TreeNode node = st.peek();
+            if(node != null){
+                st.pop();
+                //将右节点添加到st中
+                if(node.right != null){
+                    st.push(node.right);
+                }
+
+                st.push(node);
+                st.push(null);
+
+                if(node.left != null){
+                    st.push(node.left);
+                }
+            }else{
+                //弹出空节点
+                st.pop();
+                node = st.peek();
+                st.pop();//弹出被标记节点
+                result.add(node.val);
+            }
+        }
+        return result;
+    }
+}
+```
