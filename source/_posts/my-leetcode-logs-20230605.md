@@ -119,3 +119,54 @@ class Solution {
     }
 }
 ```
+
+## 144.二叉树的前序遍历（迭代方式）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        //非递归方式遍历二叉树
+        //定义一个保存节点值的栈
+        Stack<TreeNode> st = new Stack<>();
+        //定义返回的结果数组
+        List<Integer> result = new ArrayList<>();
+
+        if(root == null){
+            return result;
+        }
+        
+        st.add(root);
+        //while循环Stack栈，将其中的val添加到result数组中
+        while(!st.isEmpty()){
+            TreeNode tmpNode = st.pop();
+            //将当前节点加入到result中
+            result.add(tmpNode.val);
+            //然后将tmpNode节点的右节点现加入到st中
+            if(tmpNode.right != null){
+                st.push(tmpNode.right);
+            }
+
+            if(tmpNode.left != null){
+                st.push(tmpNode.left);
+            }
+        }
+        return result;
+    }
+}
+```
+
+## 
