@@ -150,3 +150,57 @@ class Solution {
     }
 }
 ```
+
+## 226.翻转二叉树（统一迭代法，前序遍历实现）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        //使用统一迭代法
+        if(root == null){
+            return root;
+        }
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        while(!st.isEmpty()){
+            TreeNode curr = st.peek();
+            if(curr != null){
+                st.pop();//弹出结点
+                //按照右中左进栈（前序遍历）
+                if(curr.right != null){
+                    st.push(curr.right);
+                }
+                //中结点入栈
+                st.push(curr);
+                st.push(null);
+                if(curr.left != null){
+                    st.push(curr.left);
+                }
+            }else{
+                st.pop();//先弹出null结点
+                curr = st.peek();
+                st.pop();
+                //交换结点
+                TreeNode tmp = curr.left;
+                curr.left = curr.right;
+                curr.right = tmp;
+            }
+        }
+        return root;
+    }
+}
+```
