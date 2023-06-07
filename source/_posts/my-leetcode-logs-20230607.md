@@ -204,3 +204,53 @@ class Solution {
     }
 }
 ```
+
+## 101.对称二叉树（递归写法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //设置递归函数，传入参数分别为root的左右结点
+    private boolean compare(TreeNode left, TreeNode right){
+        //确定终止条件
+        if(left != null && right == null){
+            return false;
+        }else if(left == null && right != null){
+            return false;
+        }else if(left == null && right == null){
+            return true;
+        }else if(left.val != right.val){
+            return false;
+        }
+
+        //确定递归的内容
+        //传入为左节点的左子树和右节点的右子树
+        boolean outside = compare(left.left, right.right);
+        //传入为左节点的右子树和右节点的左子树
+        boolean inside = compare(left.right, right.left);
+        boolean eq = outside && inside;
+        return eq;
+    } 
+
+    public boolean isSymmetric(TreeNode root) {
+        //使用递归实现
+        if(root == null){
+            return true;
+        }
+        return compare(root.left, root.right);
+    }
+}
+```
