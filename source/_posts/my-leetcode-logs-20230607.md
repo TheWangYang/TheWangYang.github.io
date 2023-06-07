@@ -254,3 +254,71 @@ class Solution {
     }
 }
 ```
+
+## 101.对称二叉树（迭代写法，使用队列实现）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+
+        //使用迭代法进行遍历
+        //使用队列每次保存左右子树的同外侧结点和同内侧结点
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root.left);
+        que.offer(root.right);
+
+        //while循环遍历que进行比较
+        while(!que.isEmpty()){
+            //得到que中的两个节点判断是否相同
+            TreeNode leftNode = que.peek();
+            que.poll();
+            TreeNode rightNode = que.peek();
+            que.poll();
+
+            //进行判断的逻辑
+            if(leftNode == null && rightNode == null){
+                continue;//表示两个结点都是空的，那么continue
+            }
+
+            //判断两个结点是否相同
+            // if(leftNode != null && rightNode == null){
+            //     return false;
+            // }else if(leftNode == null && rightNode != null){
+            //     return false;
+            // }else if(leftNode.val != rightNode.val){
+            //     return false;
+            // }
+
+            if((leftNode == null || rightNode == null || (leftNode.val != rightNode.val))){
+                return false;
+            }
+
+            //然后将leftNode的左子树和rightNode的右子树加入到que中
+            que.offer(leftNode.left);
+            que.offer(rightNode.right);
+
+            //将leftNode的右子树和rightNode的左子树加入到que中
+            que.offer(leftNode.right);
+            que.offer(rightNode.left);
+        }
+        return true;
+    }
+}
+```
