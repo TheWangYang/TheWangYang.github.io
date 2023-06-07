@@ -361,3 +361,50 @@ class Solution {
     }
 }
 ```
+
+## 104.二叉树的最大深度（使用迭代法，队列实现层次遍历）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int maxDepth(TreeNode root) {
+        //迭代法求二叉树深度
+        if(root == null){
+            return 0;
+        }
+        int maxResult = 0;
+        //设置队列存储结点
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        while(!que.isEmpty()){
+            //深度加1
+            maxResult++;
+            int size = que.size();
+            for(int i = 0;i < size;i++){
+                TreeNode node = que.peek();
+                que.poll();
+                if(node.left != null){
+                    que.offer(node.left);
+                }
+                if(node.right != null){
+                    que.offer(node.right);
+                }
+            }
+        }
+        return maxResult;
+    }
+}
+```
