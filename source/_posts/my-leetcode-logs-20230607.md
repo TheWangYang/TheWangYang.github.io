@@ -408,3 +408,53 @@ class Solution {
     }
 }
 ```
+
+## 559.N 叉树的最大深度
+```
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+    public int maxDepth(Node root) {
+        //使用迭代法+队列实现层次遍历
+        if(root == null){
+            return 0;
+        }
+        int result = 0;
+        //定义队列
+        Queue<Node> que = new LinkedList<>();
+        que.offer(root);
+        while(!que.isEmpty()){
+            result++;
+            int len = que.size();
+            for(int i = 0;i < len;i++){
+                Node node = que.peek();
+                que.poll();
+
+                for(int j = 0;j < node.children.size();j++){
+                    if(node.children.get(j) != null){
+                        que.offer(node.children.get(j));
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
+```
