@@ -502,3 +502,53 @@ class Solution {
     }
 }
 ```
+
+## 111.二叉树的最小深度（使用迭代法+队列实现层次遍历）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int minDepth(TreeNode root) {
+        //迭代法得到最小深度，使用队列实现
+        if(root == null){
+            return 0;
+        }
+        Queue<TreeNode> que = new LinkedList<>();
+        que.offer(root);
+        int result = 0;
+        while(!que.isEmpty()){
+            int len = que.size();
+            result++;
+            for(int i = 0;i < len;i++){
+                TreeNode node = que.peek();
+                que.poll();
+                if(node.left == null && node.right == null){
+                    return result;
+                }
+
+                if(node.left != null){
+                    que.offer(node.left);
+                }
+
+                if(node.right != null){
+                    que.offer(node.right);
+                }
+            }
+        }
+        return result;
+    }
+}
+```
