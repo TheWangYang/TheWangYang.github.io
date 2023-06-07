@@ -722,3 +722,72 @@ class Solution {
     }
 }
 ```
+
+## 110.平衡二叉树（递归得到树的最大高度+遍历当前结点判断该结点的左右子树高度差是否大于1）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int getHeight(TreeNode root){
+        if(root == null){
+            return 0;
+        }
+        int leftHeight = getHeight(root.left);
+        int rightHeight = getHeight(root.right);
+        int maxDepth = 1 + Math.max(leftHeight, rightHeight);
+        return maxDepth;
+    }
+    
+    public boolean isBalanced(TreeNode root) {
+        //遍历的时候求当前左右节点的最大高度，然后求之间的差的绝对值，将该值和1比较
+        //外层使用二叉树的统一迭代遍历
+        if(root == null){
+            return true;
+        }
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        while(!st.isEmpty()){
+            TreeNode node = st.peek();
+            if(node != null){
+                st.pop();
+                //按照后序遍历方法
+                st.push(node);//中
+                st.push(null);
+                //添加进去之前需要判断是否为平衡树
+                int leftHeight = getHeight(node.left);
+                int rightHeight = getHeight(node.right);
+                if(Math.abs(leftHeight - rightHeight) > 1){
+                    return false;
+                }
+                //右子树
+                if(node.right != null){
+                    st.push(node.right);
+                }
+                //左子树
+                if(node.left != null){
+                    st.push(node.left);
+                }
+            }else{
+                //首先弹出标记用的空结点
+                st.pop();
+                node = st.peek();
+                st.pop();
+            }
+        }
+        return true;
+    }
+}
+```
