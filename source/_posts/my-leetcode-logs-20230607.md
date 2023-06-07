@@ -458,3 +458,47 @@ class Solution {
     }
 }
 ```
+
+## 111.二叉树的最小深度（使用递归法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int getDepth(TreeNode root, int minDepth){
+        if(root == null){
+            return 0;
+        }
+
+        int leftDepth = getDepth(root.left, minDepth);
+        int rightDepth = getDepth(root.right, minDepth);
+
+        if(root.left == null || root.right == null){
+            minDepth = 1 + Math.max(leftDepth, rightDepth);
+        }else{
+            minDepth = 1 + Math.min(leftDepth, rightDepth);
+        }
+        return minDepth;
+    }
+
+    public int minDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        int result = 0;
+        return getDepth(root, result);
+    }
+}
+```
