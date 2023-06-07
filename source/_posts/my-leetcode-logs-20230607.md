@@ -322,3 +322,42 @@ class Solution {
     }
 }
 ```
+
+## 104.二叉树的最大深度（递归方法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //递归方法
+    public int getDepth(TreeNode root){
+        if(root == null){
+            return 0;
+        }
+
+        int leftDepth = getDepth(root.left);
+        int rightDepth = getDepth(root.right);
+        int maxDepth = 1 + Math.max(leftDepth, rightDepth);
+        return maxDepth;
+    }
+
+    public int maxDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        return getDepth(root);
+    }
+}
+```
