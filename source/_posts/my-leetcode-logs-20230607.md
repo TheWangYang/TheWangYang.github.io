@@ -70,7 +70,7 @@ class Solution {
 }
 ```
 
-## 226.翻转二叉树
+## 226.翻转二叉树（递归法）
 ```
 /**
  * Definition for a binary tree node.
@@ -99,6 +99,53 @@ class Solution {
         root.right = tmpNode;
         invertTree(root.left);
         invertTree(root.right);
+        return root;
+    }
+}
+```
+
+## 226.翻转二叉树（前序遍历迭代法）
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+        //使用迭代法
+        if(root == null){
+            return root;
+        }
+
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        
+        while(!st.isEmpty()){
+            //弹出栈顶结点
+            TreeNode node = st.peek();
+            st.pop();
+            //交换左右结点
+            TreeNode tmp = node.left;
+            node.left = node.right;
+            node.right = tmp;
+            if(node.left != null){
+                st.push(node.left);
+            }
+            if(node.right != null){
+                st.push(node.right);
+            }
+        }
         return root;
     }
 }
