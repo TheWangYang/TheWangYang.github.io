@@ -922,3 +922,70 @@ class Solution {
     }
 }
 ```
+
+## 257.二叉树的所有路径（使用迭代方法实现）
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        //使用前序迭代法
+        List<String> result = new ArrayList<>();
+        if(root == null){
+            return result;
+        }
+        //保存当前对应的tmp path
+        Stack<String> path = new Stack<>();
+        //保存前序遍历时的树结点
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        path.push(String.valueOf(root.val));
+        while(!st.isEmpty()){
+            TreeNode node = st.peek();
+            st.pop();//弹出栈顶结点
+
+            //去除该节点对应的path
+            String str = path.peek();
+            path.pop();
+
+            //入栈之前先判断当前是否为叶子结点
+            if(node.left == null && node.right == null){
+                //将path放入到result数组中
+                result.add(str);
+            }
+
+            //右左中顺序入栈
+            if(node.right != null){
+                st.push(node.right);
+                StringBuilder sb = new StringBuilder(str);
+                sb.append("->");
+                sb.append(String.valueOf(node.right.val));
+                path.push(sb.toString());
+            }
+            
+            if(node.left != null){
+                st.push(node.left);
+                StringBuilder sb = new StringBuilder(str);
+                sb.append("->");
+                sb.append(String.valueOf(node.left.val));
+                path.push(sb.toString());
+            }
+        }
+        return result;
+    }
+}
+```
