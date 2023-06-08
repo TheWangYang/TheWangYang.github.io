@@ -989,3 +989,58 @@ class Solution {
     }
 }
 ```
+
+## 404.左叶子之和（使用迭代法）
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+        //二叉树迭代遍历得到左右左叶子之和
+        if(root == null){
+            return 0;
+        }
+        int result = 0;
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        while(!st.isEmpty()){
+            TreeNode node = st.peek();
+            if(node != null){
+                st.pop();
+                //判断条件需要重新理解
+                if(node.left != null && node.left.left == null && node.left.right == null){
+                    result += node.left.val;
+                }
+                //按照右左中的顺序加入栈中
+                if(node.right != null){
+                    st.push(node.right);
+                }
+                if(node.left != null){
+                    st.push(node.left);
+                }
+                st.push(node);
+                st.push(null);
+            }else{
+                st.pop();
+                node = st.peek();
+                st.pop();
+            }
+        }
+        return result;
+    }
+}
+```
