@@ -864,4 +864,61 @@ class Solution {
         return result;
     }
 }
+
+
+//使用StringBuilder进行字符串的构造，效率提升很大
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //使用递归调用实现
+    //参数分别为传入的结点，本次的单条路径，所有路径结果数组
+    public void travelTreeAllPath(TreeNode root, List<Integer> path, List<String> result){
+        //将中结点加入到path中，这样才算遍历到了叶子结点
+        path.add(root.val);
+        //递归条件，到叶子节点结束递归
+        if(root.left == null && root.right == null){
+            //结束递归的时候将path中对应的结果添加到result list中
+            StringBuilder sb = new StringBuilder();
+            for(int i = 0;i < path.size() - 1;i++){
+                sb.append(String.valueOf(path.get(i)));
+                sb.append("->");
+            }
+            sb.append(path.get(path.size() - 1));
+            //将当前结果加入到result list中
+            result.add(sb.toString());
+            return;
+        }
+
+        //每次递归需要执行的代码
+        //不是空结点才进行递归
+        if(root.left != null){
+            travelTreeAllPath(root.left, path, result);
+            path.remove(path.size() - 1);//回溯
+        }
+
+        if(root.right != null){
+            travelTreeAllPath(root.right, path, result);
+            path.remove(path.size() - 1);//回溯
+        }
+    }
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        travelTreeAllPath(root, path, result);
+        return result;
+    }
+}
 ```
