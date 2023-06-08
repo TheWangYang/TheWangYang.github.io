@@ -11,6 +11,7 @@ categories:
 ---
 
 ## 102.二叉树的层序遍历
+
 ```
 /**
  * Definition for a binary tree node.
@@ -71,6 +72,7 @@ class Solution {
 ```
 
 ## 226.翻转二叉树（递归法）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -105,6 +107,7 @@ class Solution {
 ```
 
 ## 226.翻转二叉树（前序遍历迭代法）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -152,6 +155,7 @@ class Solution {
 ```
 
 ## 226.翻转二叉树（统一迭代法，前序遍历实现）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -206,6 +210,7 @@ class Solution {
 ```
 
 ## 101.对称二叉树（递归写法）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -256,6 +261,7 @@ class Solution {
 ```
 
 ## 101.对称二叉树（迭代写法，使用队列实现）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -324,6 +330,7 @@ class Solution {
 ```
 
 ## 104.二叉树的最大深度（递归方法）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -363,6 +370,7 @@ class Solution {
 ```
 
 ## 104.二叉树的最大深度（使用迭代法，队列实现层次遍历）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -410,6 +418,7 @@ class Solution {
 ```
 
 ## 559.N 叉树的最大深度
+
 ```
 /*
 // Definition for a Node.
@@ -460,6 +469,7 @@ class Solution {
 ```
 
 ## 111.二叉树的最小深度（使用递归法）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -504,6 +514,7 @@ class Solution {
 ```
 
 ## 111.二叉树的最小深度（使用迭代法+队列实现层次遍历）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -554,6 +565,7 @@ class Solution {
 ```
 
 ## 222.完全二叉树的节点个数（使用层次遍历实现）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -600,6 +612,7 @@ class Solution {
 ```
 
 ## 110.平衡二叉树（递归方法）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -641,6 +654,7 @@ class Solution {
 ```
 
 ## 110.平衡二叉树（迭代法遍历得到以当前结点为根结点的最大高度，然后求每个结点的左右子树的高度差）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -724,6 +738,7 @@ class Solution {
 ```
 
 ## 110.平衡二叉树（递归得到树的最大高度+遍历当前结点判断该结点的左右子树高度差是否大于1）
+
 ```
 /**
  * Definition for a binary tree node.
@@ -788,6 +803,65 @@ class Solution {
             }
         }
         return true;
+    }
+}
+```
+
+## 257.二叉树的所有路径
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //使用递归调用实现
+    //参数分别为传入的结点，本次的单条路径，所有路径结果数组
+    public void travelTreeAllPath(TreeNode root, List<Integer> path, List<String> result){
+        //将中结点加入到path中，这样才算遍历到了叶子结点
+        path.add(root.val);
+        //递归条件，到叶子节点结束递归
+        if(root.left == null && root.right == null){
+            //结束递归的时候将path中对应的结果添加到result list中
+            String path_str = "";
+            for(int i = 0;i < path.size() - 1;i++){
+                path_str += String.valueOf(path.get(i));
+                path_str += "->";
+            }
+            path_str += path.get(path.size() - 1);
+            //将当前结果加入到result list中
+            result.add(path_str);
+            return;
+        }
+
+        //每次递归需要执行的代码
+        //不是空结点才进行递归
+        if(root.left != null){
+            travelTreeAllPath(root.left, path, result);
+            path.remove(path.size() - 1);//回溯
+        }
+
+        if(root.right != null){
+            travelTreeAllPath(root.right, path, result);
+            path.remove(path.size() - 1);//回溯
+        }
+    }
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        travelTreeAllPath(root, path, result);
+        return result;
     }
 }
 ```
