@@ -168,4 +168,66 @@ class Solution {
 }
 ```
 
+## 112.路径总和（迭代法）
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+ //自定义类
+public class MyNode{
+     TreeNode treeNode;
+     int currSum = 0;
+     MyNode(TreeNode root, int currSum){
+         this.treeNode = root;
+         this.currSum = currSum;
+     }
+}
+
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if(root == null){
+            return false;
+        }
+        //使用非递归方法做
+        Stack<MyNode> st = new Stack<>();
+        MyNode rootNode = new MyNode(root, root.val);
+        st.push(rootNode);
+
+        while(!st.isEmpty()){
+            MyNode node = st.peek();
+            st.pop();
+
+            if(targetSum == node.currSum && node.treeNode.left == null && node.treeNode.right == null){
+                return true;
+            }
+
+            //压入右结点栈中
+            if(node.treeNode.right != null){
+                st.push(new MyNode(node.treeNode.right, node.currSum + node.treeNode.right.val));
+            }
+
+            //将左结点压入栈中
+            if(node.treeNode.left != null){
+                st.push(new MyNode(node.treeNode.left, node.currSum + node.treeNode.left.val));
+            }
+        }
+        return false;
+    }
+}
+```
+
 ## 
