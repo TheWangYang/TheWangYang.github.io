@@ -230,4 +230,46 @@ class Solution {
 }
 ```
 
-## 
+## 113.路经总和2（回溯法）
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //使用回溯方法做
+    public void huisu(TreeNode root, int targetSum, List<List<Integer>> result, List<Integer> path){
+        if(root == null){
+            return;
+        }
+        path.add(root.val);
+        if(root.left == null && root.right == null && targetSum == root.val){
+            result.add(new ArrayList(path));
+        }
+
+        huisu(root.left, targetSum - root.val, result, path);
+        huisu(root.right, targetSum - root.val, result, path);
+
+        path.remove(path.size() - 1);
+    }
+
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> path = new ArrayList<>();
+        huisu(root, targetSum, result, path);
+        return result;
+    }
+}
+```
