@@ -111,3 +111,61 @@ class Solution {
     }
 }
 ```
+
+## 112.路经总和（递归法）
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //设置的回溯算法
+    public boolean huisu(TreeNode root, int currSum){
+        //判断是否为targetSum
+        //遇到叶子结点且currSum==0，这表示找到了满足题意的结果
+        if(root.left == null && root.right == null && currSum == 0){
+            return true;
+        }
+
+        //遇到叶子节点直接返回false
+        if(root.left == null && root.right == null){
+            return false;
+        }
+
+        if(root.left != null){
+            currSum -= root.left.val;
+            if(huisu(root.left, currSum)) return true;
+            currSum += root.left.val;
+        }
+
+        if(root.right != null){
+            currSum -= root.right.val;
+            if(huisu(root.right, currSum)) return true;
+            currSum += root.right.val;
+        }
+
+        return false;
+    }
+    
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        if(root == null){
+            return false;
+        }
+        return huisu(root, targetSum - root.val);
+    }
+}
+```
+
+## 
