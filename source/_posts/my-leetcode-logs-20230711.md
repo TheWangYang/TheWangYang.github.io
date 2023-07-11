@@ -10,7 +10,7 @@ categories:
 - LeetCode Logs
 ---
 
-## 700. 二叉搜索树中的搜索
+## 700. 二叉搜索树中的搜索（层序遍历法）
 
 ```
 /**
@@ -56,5 +56,41 @@ class Solution {
 }
 ```
 
+## 700. 二叉搜索树中的搜索（递归法）
 
-## 
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode huisu(TreeNode root, int val){
+        if (root == null || root.val == val) {
+            return root;
+        }
+
+        //表示在root的左子树中
+        if(val < root.val){
+            return huisu(root.left, val);
+        }else{
+            return huisu(root.right, val);
+        }
+
+    }
+
+    public TreeNode searchBST(TreeNode root, int val) {
+        return huisu(root, val);
+    }
+}
+```
