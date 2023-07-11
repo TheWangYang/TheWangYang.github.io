@@ -465,7 +465,7 @@ class Solution {
 }
 ```
 
-## 617. 合并二叉树
+## 617. 合并二叉树（递归实现）
 
 ```
 /**
@@ -506,4 +506,74 @@ class Solution {
 }
 ```
 
-## 
+## 617. 合并二叉树（迭代实现）
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        //使用层序遍历迭代法
+        if(root1 == null){
+            return root2;
+        }
+
+        if(root2 == null){
+            return root1;
+        }
+
+        //使用层序遍历
+        Queue<TreeNode> que = new LinkedList<>();
+        //加入root1
+        que.offer(root1);
+        //加入root2
+        que.offer(root2);
+        
+        while(!que.isEmpty()){
+            //得到两个队列中的结点
+            TreeNode node1 = que.poll();
+            TreeNode node2 = que.poll();
+
+            //将两个结点的val相加
+            node1.val += node2.val;
+
+            //将树的左结点加入到队列中
+            if(node1.left != null && node2.left != null){
+                que.offer(node1.left);
+                que.offer(node2.left);
+            }
+
+            //将树的右结点加入到队列中
+            if(node1.right != null && node2.right != null){
+                que.offer(node1.right);
+                que.offer(node2.right);
+            }
+
+            //如果node1的左节点为空直接将node2的左结点赋值给node1
+            if(node1.left == null && node2.left != null){
+                node1.left = node2.left;
+            }
+
+            //如果node1的右节点为空，将node2的有结点赋值给node1
+            if(node1.right == null && node2.right != null){
+                node1.right = node2.right;
+            }
+        }
+
+        return root1;
+    }
+}
+```
