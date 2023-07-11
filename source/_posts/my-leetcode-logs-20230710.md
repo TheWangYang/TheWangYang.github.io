@@ -362,4 +362,55 @@ class Solution {
 }
 ```
 
+## 105. 从前序与中序遍历序列构造二叉树
 
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        int pre_length = preorder.length;
+        int in_length = inorder.length;
+        if(pre_length == 0 || in_length == 0){
+            return null;
+        }
+
+        int root_val = preorder[0];
+        TreeNode root = new TreeNode(root_val);
+        
+        //得到左子树对应的前序和中序序列
+        int k = 0;
+        for(int i = 0;i < in_length;i++){
+            if(root_val == inorder[i]){
+                k = i;
+                break;
+            }
+        }
+
+        //构造左子树
+        int[] left_pre = Arrays.copyOfRange(preorder, 1, k + 1);
+        int[] left_in = Arrays.copyOfRange(inorder, 0, k);
+        root.left = buildTree(left_pre, left_in);
+
+        //构造右子树
+        int[] right_pre = Arrays.copyOfRange(preorder, k + 1, pre_length);
+        int[] right_in = Arrays.copyOfRange(inorder, k + 1, in_length);
+        root.right = buildTree(right_pre, right_in);
+
+        return root;
+    }
+}
+```
