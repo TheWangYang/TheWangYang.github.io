@@ -302,3 +302,64 @@ class Solution {
     }
 }
 ```
+
+## 106. 从中序与后序遍历序列构造二叉树
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //参数：中序遍历数组和后续遍历数组
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        //获得分割结点
+        int in_length = inorder.length;
+        int post_length = postorder.length;
+
+        //判断是否为空结点
+        if(in_length == 0 || post_length == 0){
+            return null;
+        }
+
+        //通过后续序列找到切割结点
+        int root_val = postorder[post_length - 1];
+        //构造根结点
+        TreeNode root = new TreeNode(root_val);
+        int k = 0;
+        //遍历中序序列，找到切割结点在其中的位置
+        for(int i = 0; i < in_length;i++){
+            if(root_val == inorder[i]){
+                k = i;
+                break;
+            }
+        }
+
+        //按照分割结点将中序序列和后续序列进行分割
+        int[] left_in = Arrays.copyOfRange(inorder, 0, k);
+        int[] left_post = Arrays.copyOfRange(postorder, 0, k);
+        //递归调用函数
+        root.left = buildTree(left_in, left_post);
+
+        //按照分割结点构造右子树
+        int[] right_in = Arrays.copyOfRange(inorder, k + 1, in_length);
+        int[] right_post = Arrays.copyOfRange(postorder, k, post_length - 1);
+        root.right = buildTree(right_in, right_post);
+
+        return root;
+    }
+}
+```
+
+
