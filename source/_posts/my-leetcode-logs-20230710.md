@@ -414,3 +414,53 @@ class Solution {
     }
 }
 ```
+
+## 654. 最大二叉树
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode constructMaximumBinaryTree(int[] nums) {
+        int n_length = nums.length;
+        if(n_length == 0){
+            return null;
+        }
+
+        int max_value = -1;
+        int k = 0;
+        //首先找到最大值和最大值对应的index
+        for(int i = 0;i < nums.length;i++){
+            if(max_value < nums[i]){
+                max_value = nums[i];
+                k = i;
+            }
+        }
+
+        //创建根结点
+        TreeNode root = new TreeNode(max_value);
+        
+        //从根结点左边构造左子树
+        int[] left_nums = Arrays.copyOfRange(nums, 0, k);
+        int[] right_nums = Arrays.copyOfRange(nums, k + 1, n_length);
+        root.left = constructMaximumBinaryTree(left_nums);
+        root.right = constructMaximumBinaryTree(right_nums);
+
+        return root;
+
+    }
+}
+```
