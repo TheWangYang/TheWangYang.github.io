@@ -323,3 +323,48 @@ public:
     }
 };
 ```
+
+## 235. 二叉搜索树的最近公共祖先（递归法，C++实现，充分利用二叉搜索树的特征）
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+class Solution {
+public:
+
+    TreeNode* BSTdigui(TreeNode* root, TreeNode* p, TreeNode* q){
+        if(root == NULL){
+            return root;
+        }
+
+        if(root->val > p->val && root->val > q->val){
+            TreeNode* left = BSTdigui(root->left, p, q);
+            if(left != NULL){
+                return left;
+            }
+        }
+
+
+        if(root->val < p->val && root->val < q->val){
+            TreeNode* right = BSTdigui(root->right, p, q);
+            if(right != NULL){
+                return right;
+            }
+        }
+        return root;
+    } 
+
+
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        return BSTdigui(root, p, q);
+    }
+};
+```
