@@ -140,5 +140,94 @@ class Solution {
 }
 ```
 
+## 98. 验证二叉搜索树（迭代法实现）
 
-## 
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        //使用迭代法实现
+        Stack<TreeNode> stack = new Stack<>();
+        if(root != null){
+            stack.push(root);
+        }
+        TreeNode pre = null;
+
+        //循环迭代
+        while(!stack.isEmpty()){
+            //得到栈顶结点
+            TreeNode curr = stack.peek();
+            //判断curr是否为null
+            //按照右中左的顺序加入到栈中
+            if(curr != null){
+                stack.pop();//弹出栈顶结点
+                if(curr.right != null){//判断当前结点的右结点是否为null，不为null
+                    stack.push(curr.right);
+                }
+                stack.push(curr);
+                stack.push(null);
+                if(curr.left != null){
+                    stack.push(curr.left);
+                }
+            }else{//弹出栈顶null（占位）结点
+                stack.pop();
+                //对结点进行操作
+                TreeNode tmp = stack.pop();
+                if(pre != null && pre.val >= tmp.val){
+                    return false;
+                }
+                pre = tmp;
+            }
+        }
+        return true;
+    }
+}
+```
+
+## 验证二叉搜索树（递归，C++）
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    long long max_value = LONG_MIN;
+    bool isValidBST(TreeNode* root) {
+        if(root == NULL){
+            return true;
+        }
+
+        bool left = isValidBST(root->left);
+        if(max_value < root->val){
+            max_value = root->val;
+        }else{
+            return false;
+        }
+        bool right = isValidBST(root->right);
+        return left && right;
+    }
+};
+```
