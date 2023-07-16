@@ -9,7 +9,7 @@ categories:
 - LeetCode Logs
 ---
 
-## 验证二叉搜索树（迭代，C++）
+## 98.验证二叉搜索树（迭代，C++）
 
 ```
 /**
@@ -51,6 +51,48 @@ public:
             }
         }
         return true;
+    }
+};
+```
+
+## 530. 二叉搜索树的最小绝对差（迭代，C++）
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    //设置最小插值默认为最大
+    long long result = LONG_MAX;
+    int getMinimumDifference(TreeNode* root) {
+        stack<TreeNode*> st;
+        TreeNode* pre = NULL;
+        TreeNode* curr = root;
+
+        while(curr != NULL || !st.empty()){
+            if(curr != NULL){
+                st.push(curr);
+                curr = curr -> left;//左中右
+            }else{
+                curr = st.top();
+                st.pop();
+                if(pre != NULL && abs(pre->val - curr->val) < result){
+                    result = abs(pre->val - curr->val);
+                }
+                pre = curr;
+                curr = curr -> right;
+            }
+        }
+        return result;
     }
 };
 ```
