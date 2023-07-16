@@ -223,3 +223,66 @@ public:
     }
 };
 ```
+
+## 501.二叉搜索树中的众数（迭代法，C++实现）
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        //使用迭代遍历法实现
+        TreeNode* pre = NULL;
+        TreeNode* curr = root;
+        stack<TreeNode*> st;
+        int max_count = 0;
+        int count = 0;
+        vector<int> result;
+
+        while(curr != NULL || !st.empty()){
+            if(curr != NULL){
+                st.push(curr);
+                curr = curr -> left;//左
+            }else{
+                curr = st.top();
+                st.pop();
+                //开始和递归法一样
+                if(pre == NULL){//首个结点
+                    count = 1;
+                }else if(pre->val == curr->val){
+                    count++;
+                }else{//和前一个结点不一样
+                    count = 1;
+                }
+
+                //更新前一个结点
+                pre = curr;
+
+                if(count == max_count){
+                    result.push_back(curr->val);
+                }
+
+                if(count > max_count){
+                    max_count = count;
+                    result.clear();
+                    result.push_back(curr->val);
+                }
+
+                curr = curr -> right;//右结点
+            }
+        }
+
+        return result;
+    }
+};
+```
