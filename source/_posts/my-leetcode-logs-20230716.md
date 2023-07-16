@@ -96,3 +96,63 @@ public:
     }
 };
 ```
+
+## 501.二叉搜索树中的众数（迭代，C++）
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> findMode(TreeNode* root) {
+        stack<TreeNode*> st;
+        TreeNode* pre = NULL;
+        TreeNode* curr = root;
+        //创建Map以保存每个树结点对应的次数
+        map<int, int> dict;
+
+        while(curr != NULL || !st.empty()){
+            if(curr != NULL){
+                st.push(curr);
+                curr = curr -> left;//左
+            }else{
+                //中
+                curr = st.top();
+                st.pop();
+                dict[curr->val]++;
+
+                //右边
+                curr = curr -> right;
+            }
+        }
+
+        // 找到最大的出现次数
+        int maxCount = 0;
+        vector<int> result;
+        for (const auto& entry : dict) {
+            if (entry.second > maxCount) {
+                maxCount = entry.second;
+            }
+        }
+        
+        // 找到出现次数等于最大值的数字
+        for (const auto& entry : dict) {
+            if (entry.second == maxCount) {
+                result.push_back(entry.first);
+            }
+        }
+        
+        return result;
+
+    }
+};
+```
