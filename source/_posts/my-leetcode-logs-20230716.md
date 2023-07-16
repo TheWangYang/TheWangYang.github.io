@@ -156,3 +156,70 @@ public:
     }
 };
 ```
+
+## 501.二叉搜索树中的众数（递归，C++）
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int max_count = 0;//最大出现次数
+    int count = 0;//当前count
+    TreeNode* pre = NULL;
+    vector<int> result;
+
+    void BSTdigui(TreeNode* root){
+        if(root == NULL){
+            return;
+        }
+
+        //按照左中右的顺序遍历
+        //遍历左子树
+        BSTdigui(root->left);
+
+        //处理本次遍历内部逻辑
+        if(pre == NULL){//第一个结点，因为之前的结点都是1
+            count = 1;
+        }else if(pre != NULL && pre->val == root->val){//判断pre和curr的值是否相等
+            count++;
+        }else{//与前一个结点数值不相同
+            count = 1;
+        }
+
+        //更新pre
+        pre = root;
+
+        //判断count和max_count的大小，相等，直接将root->val放入到返回的结果数组中
+        if(count == max_count){
+            result.push_back(root->val);
+        }
+
+        //判断是否为最大值
+        if(count > max_count){
+            max_count = count;
+            //result中结果都失效了
+            result.clear();
+            result.push_back(root->val);
+        }
+
+        //遍历右子树
+        BSTdigui(root->right);
+        return ;
+    }
+
+    vector<int> findMode(TreeNode* root) {
+        BSTdigui(root);
+        return result;
+    }
+};
+```
