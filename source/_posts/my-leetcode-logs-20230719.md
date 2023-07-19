@@ -49,3 +49,59 @@ public:
     }
 };
 ```
+
+## 669. 修剪二叉搜索树（迭代法实现，C++）
+
+```
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* trimBST(TreeNode* root, int low, int high) {
+        if(root == NULL){
+            return NULL;
+        }
+
+        //处理根结点，将新树的root结点调节到low,hight之间
+        while(root != NULL && (root->val < low || root->val > high)){
+            if(root->val < low){
+                root = root->right;
+            }else{
+                root = root->left;
+            }
+        }
+
+        //继续处理
+        TreeNode* curr = root;
+        while(curr != NULL){//处理左子树小于low的情况
+            //循环找到左边界
+            while(curr->left != NULL && curr->left->val < low){
+                curr->left = curr->left->right;
+            }
+            //处理curr结点的
+            curr = curr->left;
+        }
+
+        //处理root结点的右边，将大于high的结点删除掉
+        curr = root;
+
+        while(curr != NULL){
+            while(curr->right != NULL && curr->right->val > high){
+                curr->right = curr->right->left;
+            }
+            curr = curr->right;
+        }
+
+        return root;
+    }
+};
+```
