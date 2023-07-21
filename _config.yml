@@ -100,8 +100,6 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-ocean
 
-# hexo-theme-ocean
-
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
