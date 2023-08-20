@@ -16,15 +16,15 @@
   <meta name="author" content="wyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="（复习）40. 组合总和 II（C++回溯算法实现）1234567891011121314151617181920212223242526272829303132333435363738394041class Solution &amp;#123;public:    &#x2F;&#x2F;定义两个数组    vector&lt;vector&lt;int&gt;&gt; result;    vector&lt;int&amp;">
+    <meta name="description" content="131. 分割回文串（C++回溯法实现）1234567891011121314151617181920212223242526272829303132333435363738394041424344class Solution &amp;#123;public:    vector&lt;string&gt; path;    vector&lt;vector&lt;string&gt;&gt; resu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="my-leetcode-logs-20230817">
-<meta property="og:url" content="https://thewangyang.github.io/2023/08/17/my-leetcode-logs-20230817/index.html">
+<meta property="og:title" content="my-leetcode-logs-20230820">
+<meta property="og:url" content="https://thewangyang.github.io/2023/08/20/my-leetcode-logs-20230820/index.html">
 <meta property="og:site_name" content="wyy&#39;s homepage">
-<meta property="og:description" content="（复习）40. 组合总和 II（C++回溯算法实现）1234567891011121314151617181920212223242526272829303132333435363738394041class Solution &amp;#123;public:    &#x2F;&#x2F;定义两个数组    vector&lt;vector&lt;int&gt;&gt; result;    vector&lt;int&amp;">
+<meta property="og:description" content="131. 分割回文串（C++回溯法实现）1234567891011121314151617181920212223242526272829303132333435363738394041424344class Solution &amp;#123;public:    vector&lt;string&gt; path;    vector&lt;vector&lt;string&gt;&gt; resu">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-17T07:26:11.000Z">
-<meta property="article:modified_time" content="2023-08-17T08:02:25.134Z">
+<meta property="article:published_time" content="2023-08-20T10:05:18.000Z">
+<meta property="article:modified_time" content="2023-08-20T10:06:17.087Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="LeetCode">
 <meta property="article:tag" content="C++">
@@ -36,7 +36,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>my-leetcode-logs-20230817 - wyy&#39;s homepage</title>
+  <title>my-leetcode-logs-20230820 - wyy&#39;s homepage</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +229,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="my-leetcode-logs-20230817"></span>
+            <span id="subtitle" data-typed-text="my-leetcode-logs-20230820"></span>
           
         </div>
 
@@ -240,8 +240,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-17 15:26" pubdate>
-          August 17, 2023 pm
+        <time datetime="2023-08-20 18:05" pubdate>
+          August 20, 2023 pm
         </time>
       </span>
     
@@ -252,7 +252,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k words
+          882 words
         
       </span>
     
@@ -263,7 +263,7 @@
         
         
         
-          9 mins
+          8 mins
         
       </span>
     
@@ -321,12 +321,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">my-leetcode-logs-20230817</h1>
+            <h1 id="seo-header">my-leetcode-logs-20230820</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on August 17, 2023 pm
+                    Last updated on August 20, 2023 pm
                   
                 
               </p>
@@ -334,10 +334,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="（复习）40-组合总和-II（C-回溯算法实现）"><a href="#（复习）40-组合总和-II（C-回溯算法实现）" class="headerlink" title="（复习）40. 组合总和 II（C++回溯算法实现）"></a>（复习）40. 组合总和 II（C++回溯算法实现）</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//定义两个数组</span><br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; result;<br>    vector&lt;<span class="hljs-type">int</span>&gt; path;<br><br>    <span class="hljs-comment">//定义回溯函数</span><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracing</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> sum, <span class="hljs-type">int</span> startIndex,vector&lt;<span class="hljs-type">bool</span>&gt;&amp; used)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(sum ==target)&#123;<br>            result.<span class="hljs-built_in">push_back</span>(path);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//单层循环逻辑</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = startIndex;i &lt; candidates.<span class="hljs-built_in">size</span>() &amp;&amp; sum + candidates[i] &lt;= target;i++)&#123;<br>            <br>            <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; candidates[i] == candidates[i<span class="hljs-number">-1</span>] &amp;&amp; used[i - <span class="hljs-number">1</span>]==<span class="hljs-literal">false</span>)&#123;<br>                <span class="hljs-keyword">continue</span>;<span class="hljs-comment">//表示树的同层中的上一个一样的元素使用过了</span><br>            &#125;<br><br>            sum += candidates[i];<br>            path.<span class="hljs-built_in">push_back</span>(candidates[i]);<br>            used[i] = <span class="hljs-literal">true</span>;<br>            <span class="hljs-built_in">backtracing</span>(candidates, target, sum, i + <span class="hljs-number">1</span>, used);<br>            used[i] = <span class="hljs-literal">false</span>;<br>            sum -= candidates[i];<br>            path.<span class="hljs-built_in">pop_back</span>();<br>        &#125;<br>    &#125;<br><br><br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">combinationSum2</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; candidates, <span class="hljs-type">int</span> target) &#123;<br>        <span class="hljs-comment">//实现了函数中间</span><br>        result.<span class="hljs-built_in">clear</span>();<br>        path.<span class="hljs-built_in">clear</span>();<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">used</span><span class="hljs-params">(candidates.size(), <span class="hljs-literal">false</span>)</span></span>;<br>        <span class="hljs-built_in">sort</span>(candidates.<span class="hljs-built_in">begin</span>(), candidates.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-built_in">backtracing</span>(candidates, target, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, used);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+                <h2 id="131-分割回文串（C-回溯法实现）"><a href="#131-分割回文串（C-回溯法实现）" class="headerlink" title="131. 分割回文串（C++回溯法实现）"></a>131. 分割回文串（C++回溯法实现）</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;string&gt; path;<br>    vector&lt;vector&lt;string&gt;&gt; result;<br><br>    <span class="hljs-comment">//判断字符串是否为回文串的函数</span><br>    <span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">isHuiWen</span><span class="hljs-params">(<span class="hljs-type">const</span> string&amp; s, <span class="hljs-type">int</span> start, <span class="hljs-type">int</span> end)</span></span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = start, j = end; i &lt; j;i++,j--)&#123;<br>            <span class="hljs-keyword">if</span>(s[i] != s[j])&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">backtracing</span><span class="hljs-params">(<span class="hljs-type">const</span> string&amp; s, <span class="hljs-type">int</span> startIndex)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(startIndex &gt;= s.<span class="hljs-built_in">size</span>())&#123;<br>            result.<span class="hljs-built_in">push_back</span>(path);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//单层回溯逻辑</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = startIndex; i &lt; s.<span class="hljs-built_in">size</span>();i++)&#123;<br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">isHuiWen</span>(s, startIndex, i))&#123;<br>                <span class="hljs-comment">//截取字符串</span><br>                string tmp = s.<span class="hljs-built_in">substr</span>(startIndex, i - startIndex + <span class="hljs-number">1</span>);<br>                path.<span class="hljs-built_in">push_back</span>(tmp);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">//如果不是回文数</span><br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-comment">//递归调用</span><br>            <span class="hljs-built_in">backtracing</span>(s, i + <span class="hljs-number">1</span>);<br>            path.<span class="hljs-built_in">pop_back</span>();<span class="hljs-comment">//回溯过程，返回已经添加的子串</span><br>        &#125;<br>    &#125;<br><br>    vector&lt;vector&lt;string&gt;&gt; <span class="hljs-built_in">partition</span>(string s) &#123;<br>        result.<span class="hljs-built_in">clear</span>();<br>        path.<span class="hljs-built_in">clear</span>();<br>        <span class="hljs-built_in">backtracing</span>(s, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
-<h2 id="（复习）131-分割回文串（C-回溯实现）"><a href="#（复习）131-分割回文串（C-回溯实现）" class="headerlink" title="（复习）131. 分割回文串（C++回溯实现）"></a>（复习）131. 分割回文串（C++回溯实现）</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
 
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
                 
               </div>
             
@@ -367,8 +367,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>my-leetcode-logs-20230817</div>
-      <div>https://thewangyang.github.io/2023/08/17/my-leetcode-logs-20230817/</div>
+      <div>my-leetcode-logs-20230820</div>
+      <div>https://thewangyang.github.io/2023/08/20/my-leetcode-logs-20230820/</div>
     </div>
     <div class="license-meta">
       
@@ -380,13 +380,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 17, 2023</div>
+          <div>August 20, 2023</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>August 17, 2023</div>
+          <div>August 20, 2023</div>
         </div>
       
       
@@ -417,18 +417,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/20/my-leetcode-logs-20230820/" title="my-leetcode-logs-20230820">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">my-leetcode-logs-20230820</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/02/my-leetcode-logs-20230802/" title="my-leetcode-logs-20230802">
-                        <span class="hidden-mobile">my-leetcode-logs-20230802</span>
+                      <a href="/2023/08/17/my-leetcode-logs-20230817/" title="my-leetcode-logs-20230817">
+                        <span class="hidden-mobile">my-leetcode-logs-20230817</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
