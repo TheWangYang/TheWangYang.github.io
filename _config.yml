@@ -103,4 +103,7 @@ theme: fluid
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/TheWangYang/TheWangYang.github.io
+  branch: gh-pages
+  token: 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

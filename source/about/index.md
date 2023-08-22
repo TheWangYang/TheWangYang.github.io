@@ -1,9 +1,6 @@
 ---
-title: About me
-date: 2023-05-23 18:51:28
-categories:
-- about me
-comments: true
+title: About ME
+date: 2023-07-21 19:33:00
 ---
 
 ## WYY'S HOMEPAGE
@@ -20,7 +17,7 @@ comments: true
 
 ***My Gitee Homepage : <https://gitee.com/SCKDKT>***
 
-## Education
+## EDUCATION
 
 ***September 2022 - June 2025, Master Degree, Xi'an Jiaotong University, Institute of Artificial Intelligence and Robotics(IAIR), Electronic Information (Artificial Intelligence)***
 
@@ -32,7 +29,7 @@ comments: true
 
 *Comprehensive ranking of the first 6 semesters: 9/184 (4.89%)*
 
-## Research Interest
+## RESEARCH INTEREST
 
 ***Machine Learning***
 
@@ -48,17 +45,9 @@ comments: true
 
 ...
 
-## Intern Experience
+###
 
-***Nanjing Youkuo Electric Technology Co., Ltd., Computer Vision Algorithm Engineer(intern)***
-
-* As the person in charge, the algorithm deployed on the NVIDIA graphics card was ported to the Cambrian MLU card.
-* Mainly use the official docker image provided by Cambrian to load the deployment verification environment. First, quantize the pth weight, and then save it as a .cambricon model (offline model provided by Cambrian). Then, use the Cambrian CNRT runtime library to deploy and load the offline model to obtain the .so dynamic link library, which is called by the business-side python script to complete batch image reasoning.
-* Familiar with data annotation, model training, get onnx weight model or tensorRT model, and use C++/Python to write deployment reasoning api, etc., a complete set of deep learning model reasoning deployment process.
-
-***Coming Soon...***
-
-## Honors and Awards
+## HONORS & AWARDS
 
 #### *Master Period*
 
@@ -94,7 +83,7 @@ comments: true
 
 * 2019-2020 school year Zhengzhou University **Three good students** 2020.12
 
-## Project Experience
+## PROJECT EXPERIENCE
 
 #### *Master Period*
 
@@ -124,7 +113,7 @@ comments: true
 * **Project Achievements**:
 * ***This project won the third prize of the 14th ICAN International Innovation Entrepreneurship Competition.***
 
-## Community and Organizational Experiences
+## THE COMMUNITY AND ORGANIZATION EXPERIENCE
 
 #### *Master Period*
 
@@ -140,7 +129,7 @@ comments: true
 * **About**: Principal, Zhengzhou University Software College, Oct 2019 - Oct 2020, Zhengzhou
 * **Main Work**: I have currently served as the head of Zhengzhou University North Campus Club, and regularly organized technical exchanges under the guidance of  Alibaba technical experts.Club membership technology has been greatly improved in   the original level.
 
-## Skills / Others
+## SKILLS / OTHERS
 
 **Skills: Java(Skilled), Python(Used in projects), C ++(Use in algorithmic questions)**
 
@@ -148,7 +137,7 @@ comments: true
 
 **Hobbies: Basketball (College New Student Collection Second Prize), Films, Music, ...**
 
-## Contact Me
+## CONTACT ME
 
 **Email:<wyysuccess2020@163.com>**
 
@@ -160,4 +149,4 @@ comments: true
 
 **Postal Code: 710100**
 
-*This page was last updated on August 22, 2023.*
+*This page was last updated on July 30, 2023.*
