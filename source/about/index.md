@@ -17,19 +17,19 @@ date: 2023-07-21 19:33:00
 
 ***My Gitee Homepage : <https://gitee.com/SCKDKT>***
 
-## EDUCATION
+## Education
 
-***September 2022 - June 2025, Master Degree, Xi'an Jiaotong University, Institute of Artificial Intelligence and Robotics(IAIR), Electronic Information (Artificial Intelligence)***
+***Master Degree, Xi'an Jiaotong University, Institute of Artificial Intelligence and Robotics(IAIR), Electronic Information (Artificial Intelligence), September 2022 - June 2025***
 
 *coming soon ...*
 
-***September 2018 - June 2022, Bachelor Degree, Zhengzhou University, School of Cyberspace Security, Software Engineering***
+***Bachelor Degree, Zhengzhou University, School of Cyberspace Security, Software Engineering, September 2018 - June 2022***
 
 *GPA: 3.44 / 4.00 (14/184 professional 7.6%)*
 
 *Comprehensive ranking of the first 6 semesters: 9/184 (4.89%)*
 
-## RESEARCH INTEREST
+## Research Interest
 
 ***Machine Learning***
 
@@ -45,9 +45,19 @@ date: 2023-07-21 19:33:00
 
 ...
 
-###
+## Intern Experience
 
-## HONORS & AWARDS
+***Computer Vision Algorithm Engineer(intern)***
+***Nanjing Youkuo Electric Technology Co., Ltd.***
+***March 2022 - June 2022***
+
+* As the person in charge, the algorithm deployed on the NVIDIA graphics card was ported to the Cambrian MLU card.
+* Mainly use the official docker image provided by Cambrian to load the deployment verification environment. First, quantize the pth weight, and then save it as a .cambricon model (offline model provided by Cambrian). Then, use the Cambrian CNRT runtime library to deploy and load the offline model to obtain the .so dynamic link library, which is called by the business-side python script to complete batch image reasoning.
+* Familiar with data annotation, model training, get onnx weight model or tensorRT model, and use C++/Python to write deployment reasoning api, etc., a complete set of deep learning model reasoning deployment process.
+
+***Coming Soon...***
+
+## Honors and Awards
 
 #### *Master Period*
 
@@ -83,7 +93,7 @@ date: 2023-07-21 19:33:00
 
 * 2019-2020 school year Zhengzhou University **Three good students** 2020.12
 
-## PROJECT EXPERIENCE
+## Project Experience
 
 #### *Master Period*
 
@@ -113,7 +123,7 @@ date: 2023-07-21 19:33:00
 * **Project Achievements**:
 * ***This project won the third prize of the 14th ICAN International Innovation Entrepreneurship Competition.***
 
-## THE COMMUNITY AND ORGANIZATION EXPERIENCE
+## Community and Organizational Experiences
 
 #### *Master Period*
 
@@ -129,7 +139,7 @@ date: 2023-07-21 19:33:00
 * **About**: Principal, Zhengzhou University Software College, Oct 2019 - Oct 2020, Zhengzhou
 * **Main Work**: I have currently served as the head of Zhengzhou University North Campus Club, and regularly organized technical exchanges under the guidance of  Alibaba technical experts.Club membership technology has been greatly improved in   the original level.
 
-## SKILLS / OTHERS
+## Skills / Others
 
 **Skills: Java(Skilled), Python(Used in projects), C ++(Use in algorithmic questions)**
 
@@ -137,7 +147,7 @@ date: 2023-07-21 19:33:00
 
 **Hobbies: Basketball (College New Student Collection Second Prize), Films, Music, ...**
 
-## CONTACT ME
+## Contact Me
 
 **Email:<wyysuccess2020@163.com>**
 
@@ -149,4 +159,4 @@ date: 2023-07-21 19:33:00
 
 **Postal Code: 710100**
 
-*This page was last updated on July 30, 2023.*
+*This page was last updated on August 22, 2023.*
