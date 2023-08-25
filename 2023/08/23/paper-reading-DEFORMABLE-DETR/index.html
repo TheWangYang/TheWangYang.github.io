@@ -23,14 +23,16 @@
 <meta property="og:site_name" content="wyy&#39;s homepage">
 <meta property="og:description" content="DEFORMABLE DETRDEFORMABLE DETR: DEFORMABLE TRANSFORMERS FOR END-TO-END OBJECT DETECTION 参考：AI-杂货铺-Transformer跨界CV又一佳作！Deformable DETR：超强的小目标检测算法！ 摘要摘要部分，作者主要说明了如下几点：  为了解决DETR中使用Transformer架构在处理图像特征图时">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/Deformable-DETR-structure.jpg">
 <meta property="article:published_time" content="2023-08-23T11:41:54.726Z">
-<meta property="article:modified_time" content="2023-08-25T11:34:50.934Z">
+<meta property="article:modified_time" content="2023-08-25T11:49:25.689Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
 <meta property="article:tag" content="Paper Reading">
 <meta property="article:tag" content="DEFORMABLE DETR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thewangyang.github.io/images/Deformable-DETR/Deformable-DETR-structure.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -252,7 +254,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k words
+          1.6k words
         
       </span>
     
@@ -349,9 +351,11 @@
 <p>可变形卷积是一种处理稀疏空间位置的强大而有效的机制，这种机制可以很好地解决上述问题，但是可变形卷积缺少元素之间的关系建模机制，而关系建模（全局建模能力）是DETR成功的关键所在。</p>
 <p><strong>Deformable DETR中，可变形卷积思想的作用就是将原来的注意力机制中，每个像素点和周围的像素点进行相似度计算转为，每个像素点注意力进行偏移（使得每个像素点注意力在一些重要的地方），但是这样带来一个问题就是可变性卷积无法关注注意力集中的地方相似的特征，即点与点之间的关系建模等（为什么可变形卷积关注的是重要特征，希望模型去学习重要特征之间有什么关系），这就需要结合DETR的全局建模能力来解决这一问题。</strong></p>
 <p><em><strong>Deformable DETR</strong></em></p>
+<p><img src="/../images/Deformable-DETR/Deformable-DETR-structure.jpg" srcset="/img/loading.gif" lazyload alt="Deformable DETR"></p>
 <p>Deformable DETR结合了可变形卷积的稀疏建模能力，同时又结合了DETR的关系建模能力。作者提出了<strong>可变形注意力模块</strong>，关注一小部分采样位置，作为所有特征图像素中突出关键元素的预滤波器。同时，该模块可以很轻松地扩展以聚合多尺度特征，而不需要FPN。</p>
 <p><strong>可变形注意力模块</strong></p>
-<p>针对某个像素点周边的像素进行采样，同时该模块还具有聚合多尺度特征的能力（在聚合多尺度特征的时候如果考虑细致的话需要进行特征对齐，如果考虑的不细致的话就是简单的拼接）。在该篇文章中，作者就做了对齐的操作。</p>
+<p>针对某个像素点周边的像素进行采样，同时该模块还具有聚合多尺度特征的能力（<strong>在聚合多尺度特征的时候如果考虑细致的话需要进行特征对齐，如果考虑的不细致的话就是简单的拼接</strong>）。在该篇文章中，作者就做了对齐的操作。（<strong>延伸：使用FPN网络，例如类似于UNet一样，进行多尺度操作，这样的特征融合之后是没有对齐的，只是简单做了拼接操作</strong>）</p>
+<p>作者提出的可变形注意力模块替代了传统的Transformer架构中的attention模块。</p>
 <h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><h3 id="文章主体部分"><a href="#文章主体部分" class="headerlink" title="文章主体部分"></a>文章主体部分</h3><h3 id="文章实验部分"><a href="#文章实验部分" class="headerlink" title="文章实验部分"></a>文章实验部分</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
                 
               </div>
