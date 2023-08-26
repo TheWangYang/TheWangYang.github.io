@@ -23,18 +23,19 @@
 <meta property="og:site_name" content="wyy&#39;s homepage">
 <meta property="og:description" content="DEFORMABLE DETRDEFORMABLE DETR: DEFORMABLE TRANSFORMERS FOR END-TO-END OBJECT DETECTION 参考：AI-杂货铺-Transformer跨界CV又一佳作！Deformable DETR：超强的小目标检测算法！ 摘要摘要部分，作者主要说明了如下几点：  为了解决DETR中使用Transformer架构在处理图像特征图时">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://thewangyang.github.io/2023/08/23/images/Deformable-DETR/Deformable-DETR-structure.jpg">
-<meta property="og:image" content="https://thewangyang.github.io/2023/08/23/images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A.jpg">
-<meta property="og:image" content="https://thewangyang.github.io/2023/08/23/images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A-%E4%BB%A5%E5%8F%8A%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%82%B9%E6%B2%A1%E6%9C%89%E7%B4%A2%E5%BC%95%E6%97%B6%E9%87%87%E5%8F%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/Deformable-DETR-structure.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/Deformable-attention-module.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A-%E4%BB%A5%E5%8F%8A%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%82%B9%E6%B2%A1%E6%9C%89%E7%B4%A2%E5%BC%95%E6%97%B6%E9%87%87%E5%8F%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.jpg">
 <meta property="article:published_time" content="2023-08-23T11:41:54.726Z">
-<meta property="article:modified_time" content="2023-08-26T07:19:43.062Z">
+<meta property="article:modified_time" content="2023-08-26T07:53:32.914Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
 <meta property="article:tag" content="Paper Reading">
 <meta property="article:tag" content="DEFORMABLE DETR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://thewangyang.github.io/2023/08/23/images/Deformable-DETR/Deformable-DETR-structure.jpg">
+<meta name="twitter:image" content="https://thewangyang.github.io/images/Deformable-DETR/Deformable-DETR-structure.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -256,7 +257,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k words
+          3.2k words
         
       </span>
     
@@ -267,7 +268,7 @@
         
         
         
-          25 mins
+          27 mins
         
       </span>
     
@@ -353,36 +354,29 @@
 <p>可变形卷积是一种处理稀疏空间位置的强大而有效的机制，这种机制可以很好地解决上述问题，但是可变形卷积缺少元素之间的关系建模机制，而关系建模（全局建模能力）是DETR成功的关键所在。</p>
 <p><strong>Deformable DETR中，可变形卷积思想的作用就是将原来的注意力机制中，每个像素点和周围的像素点进行相似度计算转为，每个像素点注意力进行偏移（使得每个像素点注意力在一些重要的地方），但是这样带来一个问题就是可变性卷积无法关注注意力集中的地方相似的特征，即点与点之间的关系建模等（为什么可变形卷积关注的是重要特征，希望模型去学习重要特征之间有什么关系），这就需要结合DETR的全局建模能力来解决这一问题。</strong></p>
 <p><em><strong>Deformable DETR</strong></em></p>
-<p align="center">
-  <img src="../images/Deformable-DETR/Deformable-DETR-structure.jpg" srcset="/img/loading.gif" lazyload alt="Deformable DETR">
-</p>
-
-<p>Deformable DETR</p>
+<p><img src="/../images/Deformable-DETR/Deformable-DETR-structure.jpg" srcset="/img/loading.gif" lazyload alt="Deformable DETR"></p>
 <p>Deformable DETR结合了可变形卷积的稀疏建模能力，同时又结合了DETR的关系建模能力。作者提出了<strong>可变形注意力模块</strong>，关注一小部分采样位置，作为所有特征图像素中突出关键元素的预滤波器。同时，该模块可以很轻松地扩展以聚合多尺度特征，而不需要FPN。</p>
 <p><strong>可变形注意力模块</strong></p>
 <p>针对某个像素点周边的像素进行采样，同时该模块还具有聚合多尺度特征的能力（<strong>在聚合多尺度特征的时候如果考虑细致的话需要进行特征对齐，如果考虑的不细致的话就是简单的拼接</strong>）。在该篇文章中，作者就做了对齐的操作。（<strong>延伸：使用FPN网络，例如类似于UNet一样，进行多尺度操作，这样的特征融合之后是没有对齐的，只是简单做了拼接操作</strong>）</p>
 <p>作者提出的可变形注意力模块替代了传统的Transformer架构中的attention模块。</p>
 <h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><p>相关工作对Transformer和DETR介绍较多，可以直接去读两者相关的论文。</p>
 <h3 id="文章主体部分（第四章-Methods）"><a href="#文章主体部分（第四章-Methods）" class="headerlink" title="文章主体部分（第四章-Methods）"></a>文章主体部分（第四章-Methods）</h3><p><em><strong>Deformable Attention模块</strong></em></p>
+<p><img src="/../images/Deformable-DETR/Deformable-attention-module.jpg" srcset="/img/loading.gif" lazyload alt="Deformable Attention模块（来自原始论文）"></p>
 <p>文中指出，传统的Transformer中的注意力机制存在遍历所有可能的空间位置。（<strong>论文中“the deformable attention module only attends to a small set of key sampling points around a reference point, regardless of the spatial size of the feature maps,”，这句话中的reference point可以理解为：图片特征map中的一些坐标点（特征Map中的一些初始化位置点）。在论文对应的源码中，在每个坐标点周围只设置了K&#x3D;4个采样点</strong>）</p>
 <p><em><strong>Deformable Attention公式理解</strong></em></p>
 <p>$DeformAttn(z_q, p_q, x)&#x3D;\sum_{m&#x3D;1}^M W_m[\sum_{k&#x3D;1}^K A_{mqk}\cdot W’<em>m x(p_q + \Delta p</em>{mqk})]$</p>
 <p>其中，$x$文中说明为图片的特征Map，但是实际上更可以理解为输入到Encoder中的序列，然后该序列的宽为W，高为H。其中每个点对应的channel通道数为C。文中设定$q$索引一个叫做$z_q$的内容query。（这里的内容query就是每个点对应的通道数为channel的特征向量）然后，$p_q$表示特征图Map中的某个q索引位置上的点。m表示多头注意力机制中的头的数量（源码当中设置为M&#x3D;8）。k表示采样点数量，也就是从当前点开始与索引值在k这个范围内的所有点之间计算交互（源码中的K&#x3D;4）。</p>
 <p>公式中，$\Delta p_{mqk}$表示采样偏移量，是需要通过训练得到的。$A_{mqk}$表示在第m个注意力头中的第q个参考点周围的共k个采样点中每个采样点分配的注意力权重（也就是说K个采样点权重相加应当为1），也是需要训练得到的。</p>
-<p align="center">
-  <img src="../images/Deformable-DETR/可变形DETR中delta偏移的解释.jpg" srcset="/img/loading.gif" lazyload alt="可变形DETR中delta偏移的解释">
-</p>
-
-<p>图片-可变形注意力机制中偏移量的解释（来自：AI-杂货铺-<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1He4y18711/?spm_id_from=333.337.search-card.all.click&vd_source=4f4d3466cdc2c5a2539504632c862ce7">Transformer跨界CV又一佳作！Deformable DETR：超强的小目标检测算法！</a>）</p>
+<p><img src="/../images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A.jpg" srcset="/img/loading.gif" lazyload alt="图片-可变形注意力机制中偏移量的解释（来自：AI-杂货铺-[Transformer跨界CV又一佳作！Deformable DETR：超强的小目标检测算法！](https://www.bilibili.com/video/BV1He4y18711/?spm_id_from=333.337.search-card.all.click&amp;vd_source=4f4d3466cdc2c5a2539504632c862ce7)）"></p>
 <p>其中，蓝色点表示当前点（reference point），然后按照K&#x3D;4的采样点数量，蓝色点周围的红色点是需要进行计算交互的，但是，由于红色点左上角的绿色点才是蓝色点真正地需要关注的，那么这个时候偏移量就是绿色点针对于蓝色点左边的红色点的偏移。</p>
-<p align="center">
-  <img src="../images/Deformable-DETR/可变形DETR中delta偏移的解释-以及注意力点没有索引时采取的解决方法.jpg" srcset="/img/loading.gif" lazyload alt="可变形DETR中delta偏移的解释-以及注意力点没有索引时采取的解决方法">
-</p>
-
-<p>图片-可变形DETR中delta偏移的解释-以及注意力点没有索引时采取的解决方法（来自：AI-杂货铺-<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1He4y18711/?spm_id_from=333.337.search-card.all.click&vd_source=4f4d3466cdc2c5a2539504632c862ce7">Transformer跨界CV又一佳作！Deformable DETR：超强的小目标检测算法！</a></p>
+<p><img src="/../images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A-%E4%BB%A5%E5%8F%8A%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%82%B9%E6%B2%A1%E6%9C%89%E7%B4%A2%E5%BC%95%E6%97%B6%E9%87%87%E5%8F%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.jpg" srcset="/img/loading.gif" lazyload alt="图片-可变形DETR中delta偏移的解释-以及注意力点没有索引时采取的解决方法（来自：AI-杂货铺-[Transformer跨界CV又一佳作！Deformable DETR：超强的小目标检测算法！](https://www.bilibili.com/video/BV1He4y18711/?spm_id_from=333.337.search-card.all.click&amp;vd_source=4f4d3466cdc2c5a2539504632c862ce7)"></p>
 <p>同时，还存在一个问题，如果上图中蓝色点关注右上角的黑色点的时候，注意力没有正好落在黑点上，那么这个时候，关注的点的权重是由其周围四个点根据距离加权之后得到的。</p>
 <p><strong>偏移量是由$z_q$得到的，可变形机制就是说的偏移量可变。</strong></p>
 <p>公式中，$W$和$W’$都是全连接层，也是需要训练来决定其中的权重的。偏移量是通过将feature map中每个点对应的特征$z_q$输入到一个FC（包含W和b）中，在反向传播过程中去更新FC中的W和b即可。</p>
+<p>原始论文中有语句：Both $\Delta p_{mqk}$ and $A_{mqk}$ are obtained via linear projection over the query feature $z_q$.<br>其中，$\Delta p_{mqk}$和$A_{mqk}$是由$z_q$输入到FC层中得到的。然后在实现的时候，作者说明：In implementation, the query feature $z_q$ is fed to a linear projection operator of 3MK channels, where the first 2MK channels encode the sampling offsets $\Delta p_{mqk}$, and the remaining MK channels are fed to a softmax operator to obtain the attention weights $A_{mqk}$.</p>
+<p>其中，</p>
+<p><em><strong>Multi-scale Deformable Attention 模块理解（本篇论文的核心）</strong></em></p>
+<p>实现了</p>
 <h3 id="文章实验部分"><a href="#文章实验部分" class="headerlink" title="文章实验部分"></a>文章实验部分</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
                 
               </div>
