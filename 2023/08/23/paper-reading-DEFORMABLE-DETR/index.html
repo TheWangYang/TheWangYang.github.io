@@ -27,8 +27,10 @@
 <meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/Deformable-attention-module.jpg">
 <meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A.jpg">
 <meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/%E5%8F%AF%E5%8F%98%E5%BD%A2DETR%E4%B8%ADdelta%E5%81%8F%E7%A7%BB%E7%9A%84%E8%A7%A3%E9%87%8A-%E4%BB%A5%E5%8F%8A%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%82%B9%E6%B2%A1%E6%9C%89%E7%B4%A2%E5%BC%95%E6%97%B6%E9%87%87%E5%8F%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/MSDeformableAttention.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Deformable-DETR/MSDeformableAttention-DETR.jpg">
 <meta property="article:published_time" content="2023-08-23T11:41:54.726Z">
-<meta property="article:modified_time" content="2023-08-26T07:53:32.914Z">
+<meta property="article:modified_time" content="2023-08-26T11:33:15.260Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
@@ -257,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k words
+          3.7k words
         
       </span>
     
@@ -268,7 +270,7 @@
         
         
         
-          27 mins
+          31 mins
         
       </span>
     
@@ -374,10 +376,15 @@
 <p><strong>偏移量是由$z_q$得到的，可变形机制就是说的偏移量可变。</strong></p>
 <p>公式中，$W$和$W’$都是全连接层，也是需要训练来决定其中的权重的。偏移量是通过将feature map中每个点对应的特征$z_q$输入到一个FC（包含W和b）中，在反向传播过程中去更新FC中的W和b即可。</p>
 <p>原始论文中有语句：Both $\Delta p_{mqk}$ and $A_{mqk}$ are obtained via linear projection over the query feature $z_q$.<br>其中，$\Delta p_{mqk}$和$A_{mqk}$是由$z_q$输入到FC层中得到的。然后在实现的时候，作者说明：In implementation, the query feature $z_q$ is fed to a linear projection operator of 3MK channels, where the first 2MK channels encode the sampling offsets $\Delta p_{mqk}$, and the remaining MK channels are fed to a softmax operator to obtain the attention weights $A_{mqk}$.</p>
-<p>其中，</p>
 <p><em><strong>Multi-scale Deformable Attention 模块理解（本篇论文的核心）</strong></em></p>
-<p>实现了</p>
-<h3 id="文章实验部分"><a href="#文章实验部分" class="headerlink" title="文章实验部分"></a>文章实验部分</h3><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>
+<p>作者首先强调，多尺度在很多任务当中都很work，然后又说Deformable Attention Module模块也可以扩展到多尺度。</p>
+<p><img src="/../images/Deformable-DETR/MSDeformableAttention.jpg" srcset="/img/loading.gif" lazyload alt="MSDeformableAttention Module(多尺度可变形模块)"></p>
+<p>上式中，$\hat{p}_q \in [0, 1]^2$表示对q索引对应的query element中的参考点的归一化坐标（相当于多尺度对齐）。</p>
+<p>多尺度可变形注意力模块中，计算方式基本上和单尺度的一样，只是从原来的对单个feature map进行操作改为对L层多尺度feature map进行操作。这里需要注意的是，其中的$\phi_l (\hat{p}_q)$表示将归一化之后的坐标针对l层特征的大小，进行缩放，从而找到对应l层特征的参考点的实际位置，然后在该层特征下计算可变形注意力。</p>
+<p><img src="/../images/Deformable-DETR/MSDeformableAttention-DETR.jpg" srcset="/img/loading.gif" lazyload alt="可变形DETR检测器总览"></p>
+<p>上图中是对上述公式的一个详细的形象化概括。其中，对于不同level的特征，其位置编码（positional encoding）除了该层级对应的位置编码之外，还需要加上一个层级的位置编码（主要是用来区分归一化坐标相同的点在不同层级feature map上具有实际不同的位置编码）。此外，这篇文章中的位置编码也是可学习的。</p>
+<p><em><strong>注意：上图中的Object Queries数量由传统的DETR的N&#x3D;100，增加到了N&#x3D;300</strong></em></p>
+
                 
               </div>
             
