@@ -16,27 +16,30 @@
   <meta name="author" content="wyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Conditional DETRConditional DETR for Fast Training Convergence">
+    <meta name="description" content="Transformer(Attention Is All You Need)Attention Is All You Need 参考：跟李沐学AI-Transformer论文逐段精读【论文精读】 摘要（Abstract）首先摘要说明：目前，主流的序列转录（序列转录：给一个序列，转录为另外一个新的序列）模型都是基于RNN和CNN，且一般都是一个encoder和decoder的架构。在这些encode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="paper-reading-Conditional-DETR">
-<meta property="og:url" content="https://thewangyang.github.io/2023/08/26/paper-reading-Conditional-DETR/index.html">
+<meta property="og:title" content="paper-reading-Transformer">
+<meta property="og:url" content="https://thewangyang.github.io/2023/08/27/paper-reading-Transformer/index.html">
 <meta property="og:site_name" content="wyy&#39;s homepage">
-<meta property="og:description" content="Conditional DETRConditional DETR for Fast Training Convergence">
+<meta property="og:description" content="Transformer(Attention Is All You Need)Attention Is All You Need 参考：跟李沐学AI-Transformer论文逐段精读【论文精读】 摘要（Abstract）首先摘要说明：目前，主流的序列转录（序列转录：给一个序列，转录为另外一个新的序列）模型都是基于RNN和CNN，且一般都是一个encoder和decoder的架构。在这些encode">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-08-26T11:45:45.248Z">
-<meta property="article:modified_time" content="2023-08-27T04:18:42.586Z">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Transformer-architecture.png">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/layer-norm-reason.jpg">
+<meta property="article:published_time" content="2023-08-27T04:16:27.217Z">
+<meta property="article:modified_time" content="2023-08-27T09:22:55.395Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
 <meta property="article:tag" content="Paper Reading">
-<meta property="article:tag" content="Conditional DETR">
+<meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thewangyang.github.io/images/Transformer/Transformer-architecture.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>paper-reading-Conditional-DETR - wyy&#39;s homepage</title>
+  <title>paper-reading-Transformer - wyy&#39;s homepage</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -229,7 +232,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="paper-reading-Conditional-DETR"></span>
+            <span id="subtitle" data-typed-text="paper-reading-Transformer"></span>
           
         </div>
 
@@ -240,8 +243,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-26 19:45" pubdate>
-          August 26, 2023 pm
+        <time datetime="2023-08-27 12:16" pubdate>
+          August 27, 2023 pm
         </time>
       </span>
     
@@ -252,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          56 words
+          2.4k words
         
       </span>
     
@@ -263,7 +266,7 @@
         
         
         
-          1 mins
+          21 mins
         
       </span>
     
@@ -321,7 +324,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">paper-reading-Conditional-DETR</h1>
+            <h1 id="seo-header">paper-reading-Transformer</h1>
             
               <p class="note note-info">
                 
@@ -334,8 +337,25 @@
             
               <div class="markdown-body">
                 
-                <h2 id="Conditional-DETR"><a href="#Conditional-DETR" class="headerlink" title="Conditional DETR"></a>Conditional DETR</h2><p><a target="_blank" rel="noopener" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Meng_Conditional_DETR_for_Fast_Training_Convergence_ICCV_2021_paper.pdf">Conditional DETR for Fast Training Convergence</a></p>
-
+                <h2 id="Transformer-Attention-Is-All-You-Need"><a href="#Transformer-Attention-Is-All-You-Need" class="headerlink" title="Transformer(Attention Is All You Need)"></a>Transformer(Attention Is All You Need)</h2><p><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf">Attention Is All You Need</a></p>
+<p>参考：跟李沐学AI-<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pu411o7BE/?vd_source=4f4d3466cdc2c5a2539504632c862ce7">Transformer论文逐段精读【论文精读】</a></p>
+<h3 id="摘要（Abstract）"><a href="#摘要（Abstract）" class="headerlink" title="摘要（Abstract）"></a>摘要（Abstract）</h3><p>首先摘要说明：目前，主流的序列转录（序列转录：给一个序列，转录为另外一个新的序列）模型都是基于RNN和CNN，且一般都是一个encoder和decoder的架构。在这些encoder和decoder中通常会使用注意力机制。然后，作者接着说，这篇文章提出了一个<strong>简单</strong>的只使用了注意力机制的模型架构-Transformer，而没有使用RNN或CNN等卷积操作。接着，作者将该架构在两个机器翻译任务上进行实验，可以实现更好的性能和更少的训练时间。</p>
+<h3 id="导言（Introduction）"><a href="#导言（Introduction）" class="headerlink" title="导言（Introduction）"></a>导言（Introduction）</h3><p>首先作者介绍了RNN、GRN等主流的sequence models，然后作者指出，这里面有两个比较主流的模型，一个叫做语言模型，海有一个是当输出结构化信息比较多的时候的encoder和decoder架构的模型。</p>
+<p>然后，作者讲了RNN的特点和缺点，在RNN中给一个序列，其做法是对序列从左往右一步一步往前做的。当前第t个词的状态$h_t$是由前一个词的状态$h_{t-1}$和当前词本身决定的。这样的话RNN就可以把前边学到的历史信息通过$h_{t-1}$放到当下，然后和当前词做一些计算，然后输出。RNN存在的问题比较难以并行。</p>
+<p>在第三段，作者指出，Attention机制已经在RNN中使用，主要是用在解决，如何将encoder的信息传递给decoder中。</p>
+<p>在导言的最后一段中，作者指出，本篇文章提出了一个叫做Transformer的模型，不再使用之前的RNN layers，而是纯注意力机制。</p>
+<h3 id="相关工作（Background）"><a href="#相关工作（Background）" class="headerlink" title="相关工作（Background）"></a>相关工作（Background）</h3><p>首先，作者指出如何使用卷积神经网络来替换掉RNN layers来减少时序计算。同时，又指出，使用CNN无法对比较长的序列进行建模。但是，如果使用Transformer的话，每次都能看到所有的像素。但是，CNN比较好的地方是可以做多个输出的channels，一个channel可以认为CNN去识别不一样的模式。为了实现和CNN一样的能够输出多个channel的功能，文中提出了一个叫做Multi-Head Attention机制（多头注意力机制）。</p>
+<p>接下来，作者提出了Self-Attention（自注意力机制）。然后最后，作者指出，Transformer是第一个只依赖于自注意力机制的encoder和decoder架构模型。</p>
+<h3 id="模型架构（Model-Architecture）"><a href="#模型架构（Model-Architecture）" class="headerlink" title="模型架构（Model Architecture）"></a>模型架构（Model Architecture）</h3><p>首先，作者说明大多数的序列转录模型中都具有encoder和decoder架构。然后，解释encoder是将一个序列表示为中间的向量表示形式，然后decoder是将中间的向量表示形式，表示为最后的输出。这里的输入和输出不一定具有同样的长度（例如：英文转为中文的话，长度不一定是一样的）。但是需要注意的是，在decoder解码的时候，结果输出是一个一个生成的，文中指出这种解码机制叫做自回归（auto-regressive模型，在这个模型中输入又是输出，即：过去时刻的输出又是当前时刻的输入）。</p>
+<p>Transformer模型架构是将self-attention、point-wise和FCN（全连接层）堆叠在一起的。整个Transformer模型架构如下图所示。</p>
+<p><img src="/../image/../images/Transformer/Transformer-architecture.png" srcset="/img/loading.gif" lazyload alt="Transformer模型架构"></p>
+<p>上图中，左边部分为Transformer的encoder架构，右边部分为decoder架构。其中，encoder的输入是序列（可以是图片序列、语句序列等），decoder的输入是上一个decoder的输出。</p>
+<p>首先，作者介绍了encoder：使用6个完全一样的上图中的encoder组成。作者将6个encoder中的每一个叫做layer，其中每个layer中有两个sub layer。第一个sub layer叫做“Multi-Head self-attention”机制，第二个sub layer叫做point wise FFN（其实就是一个MLP前向传播网络）。对每个子层使用一个残差连接。最后使用一个layer normalization（层级正则化）。其中，$LayerNorm(x+Sublayer(x))$表示，针对每个encoder层来说，输入x首先经过sublayer层然后和x进行相加，之后再通过一个Norm层。文中说，将每个encoder层的输出向量维度设置为512。（这里和CNN不一样，在基于CNN架构的模型中对向量的维度是长度方向上减少，而channel方向上增加，这里只是使用一个固定维度为512的向量，所以Transformer相对来说架构比较简单）</p>
+<p><em><strong>解释LayerNorm（以及为什么在Transformer的架构中不使用BatchNorm）</strong></em></p>
+<p><img src="/../images/Transformer/layer-norm-reason.jpg" srcset="/img/loading.gif" lazyload alt="为什么使用Layer Norm而不是Mini Batch Norm"></p>
+<p>上图中，解释了为什么Transformer中不使用Batch Norm而是使用Layer Norm。</p>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><h3 id="结论（Conclusion）"><a href="#结论（Conclusion）" class="headerlink" title="结论（Conclusion）"></a>结论（Conclusion）</h3><p>结论中首先说明，本文使用Transformer模型应用在机器翻译任务中，同时取代了之前使用较多的RNN layers，转而使用multi-headed slef-attention机制（这个也是Transformer模型的核心所在）。同时，结论又指出，在机器翻译任务上，Transformer相较于RNN或CNN架构的模型，具有更好性能和更快的训练收敛速度。然后，作者又说，对于Transformer这种纯注意力机制的模型感到激动（这在后边的爆发的基于Transformer的各种任务模型架构上得到了印证）。将Transformer模型架构用在输入形式不单纯为文本形式的其他形式，例如图片、视频等也是作者未来研究的方向。同时，使得生成不那么有序列也是未来的研究目标（个人举例：DETR中对N&#x3D;100个预测框的生成就是一次性得到的）。</p>
+<h3 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h3>
                 
               </div>
             
@@ -374,7 +394,7 @@
       
         <a href="/tags/Paper-Reading/" class="print-no-link">#Paper Reading</a>
       
-        <a href="/tags/Conditional-DETR/" class="print-no-link">#Conditional DETR</a>
+        <a href="/tags/Transformer/" class="print-no-link">#Transformer</a>
       
     </div>
   
@@ -386,8 +406,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>paper-reading-Conditional-DETR</div>
-      <div>https://thewangyang.github.io/2023/08/26/paper-reading-Conditional-DETR/</div>
+      <div>paper-reading-Transformer</div>
+      <div>https://thewangyang.github.io/2023/08/27/paper-reading-Transformer/</div>
     </div>
     <div class="license-meta">
       
@@ -399,7 +419,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 26, 2023</div>
+          <div>August 27, 2023</div>
         </div>
       
       
@@ -436,18 +456,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/27/paper-reading-Transformer/" title="paper-reading-Transformer">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">paper-reading-Transformer</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/23/paper-reading-DEFORMABLE-DETR/" title="paper-reading-DEFORMABLE-DETR">
-                        <span class="hidden-mobile">paper-reading-DEFORMABLE-DETR</span>
+                      <a href="/2023/08/26/paper-reading-Conditional-DETR/" title="paper-reading-Conditional-DETR">
+                        <span class="hidden-mobile">paper-reading-Conditional-DETR</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
