@@ -25,8 +25,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Transformer-architecture.png">
 <meta property="og:image" content="https://thewangyang.github.io/images/Transformer/layer-norm-reason.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/query-key-number-comparision.jpg">
 <meta property="article:published_time" content="2023-08-27T04:16:27.217Z">
-<meta property="article:modified_time" content="2023-08-27T09:22:55.395Z">
+<meta property="article:modified_time" content="2023-08-27T11:24:16.776Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="Deep Learning">
 <meta property="article:tag" content="Object Detection">
@@ -255,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k words
+          3.8k words
         
       </span>
     
@@ -266,7 +267,7 @@
         
         
         
-          21 mins
+          32 mins
         
       </span>
     
@@ -350,10 +351,23 @@
 <p>Transformer模型架构是将self-attention、point-wise和FCN（全连接层）堆叠在一起的。整个Transformer模型架构如下图所示。</p>
 <p><img src="/../image/../images/Transformer/Transformer-architecture.png" srcset="/img/loading.gif" lazyload alt="Transformer模型架构"></p>
 <p>上图中，左边部分为Transformer的encoder架构，右边部分为decoder架构。其中，encoder的输入是序列（可以是图片序列、语句序列等），decoder的输入是上一个decoder的输出。</p>
+<p><em><strong>编码器encoder</strong></em></p>
 <p>首先，作者介绍了encoder：使用6个完全一样的上图中的encoder组成。作者将6个encoder中的每一个叫做layer，其中每个layer中有两个sub layer。第一个sub layer叫做“Multi-Head self-attention”机制，第二个sub layer叫做point wise FFN（其实就是一个MLP前向传播网络）。对每个子层使用一个残差连接。最后使用一个layer normalization（层级正则化）。其中，$LayerNorm(x+Sublayer(x))$表示，针对每个encoder层来说，输入x首先经过sublayer层然后和x进行相加，之后再通过一个Norm层。文中说，将每个encoder层的输出向量维度设置为512。（这里和CNN不一样，在基于CNN架构的模型中对向量的维度是长度方向上减少，而channel方向上增加，这里只是使用一个固定维度为512的向量，所以Transformer相对来说架构比较简单）</p>
 <p><em><strong>解释LayerNorm（以及为什么在Transformer的架构中不使用BatchNorm）</strong></em></p>
 <p><img src="/../images/Transformer/layer-norm-reason.jpg" srcset="/img/loading.gif" lazyload alt="为什么使用Layer Norm而不是Mini Batch Norm"></p>
 <p>上图中，解释了为什么Transformer中不使用Batch Norm而是使用Layer Norm。</p>
+<p><em><strong>解码器decoder</strong></em></p>
+<p>Transformer中decoder和encoder的架构很相似，数量也是N&#x3D;6个进行堆叠。不一样的地方在于decoder中加入了第三个sub layer，这个第三子层同样是一个多头注意力机制，其作用为防止decoder在做预测的时候，不能看到当前t时刻之后的输入（因为Transformer中使用了注意力机制，同一时刻理论上所有的输入都是可以看到的，但是这样在解码的时候不合理，所以使用了这个Masked Multi-Head Attention Encoder，即使用一个掩码机制来限制decoder去接受当前时刻t之后的输入，从而保证训练和预测的时候行为是一致的。）</p>
+<p><em><strong>注意力Attention</strong></em></p>
+<p>首先作者介绍了Attention Function的含义：attention function是一个将一个query和一系列key-value对映射为输出（output）的函数。这里的query、keys、values、output都是一些向量。output是values的加权和，所以output的维度和values的维度是一样的。对于每个value对应的权重是该value对应的key与query计算相似度之后得到的。（这里计算相似度的函数不一样就会导致不一样的注意力机制）</p>
+<p><em><strong>Scaled Dot-Product Attention</strong></em></p>
+<p>文中提出的注意力机制中，query和key是等长的，都等于$d_k$，values为$d_v$。作者指出，将query和key做点积，结果作为相似度（如果两个等长向量的内积越大，即余弦值越大，那么两个向量的相似度越大）。将得到的结果除以$\sqrt{d_k}$，即向量的长度。query会和每一个key做内积，然后将得到的结果输入到softmax当中，得到N个非负的且加起来和等于1的权重。然后，将这些权重作用在N个key对应的N个value上面，这样就得到了最后的输出。</p>
+<p><em><strong>实际运算过程中对上述相似度计算过程的处理</strong></em></p>
+<p><img src="/../images/Transformer/query-key-number-comparision.jpg" srcset="/img/loading.gif" lazyload alt="query key-value矩阵形式对比"></p>
+<p>query可以写成一个矩阵$Q$（因为不止一个query），且需要注意的是上图中展示的Q（多个query组合得到的矩阵）中的query数量可以和key的数量不一致，但是每个query与key的长度一定是一致的，这样才能做内积。上图中的两个矩阵相乘之后，就可以得到一个$N\times M$的矩阵。然后，将该矩阵除以$\sqrt{d_k}$，之后对结果的每一行做softmax即可（行与行之间是独立的）。然后，将结果乘以values即可。最后就可以得到$N\times d_v$的矩阵。</p>
+<p>然后，作者指出了上述提出的注意力机制和传统的注意力机制的区别。一般来说有两种注意力机制：加型注意力（可以处理query和key不等长的情况）。另外一个叫做点积的注意力机制。本文提出的注意力机制基本上和点积注意力机制一样，只是本文的注意力机制中除了$\sqrt{d_k}$。</p>
+<p><em><strong>为什么本文提出的注意力机制需要除以一个$\sqrt{d_k}$</strong></em></p>
+<p>作者解释：当$d_k$不是那么大的时候，其实除与不除基本没有区别。但是对于较长的key和query来说，两者点积之后得到的矩阵，在通过softmax之后，会更加向1和0（两端）靠拢。这样的话，最后计算梯度的时候，梯度会比较小，那么在训练的时候就会出现模型跑不动（训练不起来）情况。</p>
 <h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><h3 id="结论（Conclusion）"><a href="#结论（Conclusion）" class="headerlink" title="结论（Conclusion）"></a>结论（Conclusion）</h3><p>结论中首先说明，本文使用Transformer模型应用在机器翻译任务中，同时取代了之前使用较多的RNN layers，转而使用multi-headed slef-attention机制（这个也是Transformer模型的核心所在）。同时，结论又指出，在机器翻译任务上，Transformer相较于RNN或CNN架构的模型，具有更好性能和更快的训练收敛速度。然后，作者又说，对于Transformer这种纯注意力机制的模型感到激动（这在后边的爆发的基于Transformer的各种任务模型架构上得到了印证）。将Transformer模型架构用在输入形式不单纯为文本形式的其他形式，例如图片、视频等也是作者未来研究的方向。同时，使得生成不那么有序列也是未来的研究目标（个人举例：DETR中对N&#x3D;100个预测框的生成就是一次性得到的）。</p>
 <h3 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h3>
                 
