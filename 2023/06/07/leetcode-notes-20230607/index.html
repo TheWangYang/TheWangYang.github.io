@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/page_icon.jpg">
+  <link rel="icon" href="/img/page_icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wyy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="102.二叉树的层序遍历1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556&#x2F;** * Definition for a binary tree node. * public class TreeNode &amp;#123; *     int val">
+<meta property="og:type" content="article">
+<meta property="og:title" content="my-leetcode-logs-20230607">
+<meta property="og:url" content="https://thewangyang.github.io/2023/06/07/leetcode-notes-20230607/index.html">
+<meta property="og:site_name" content="wyy&#39;s homepage">
+<meta property="og:description" content="102.二叉树的层序遍历1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556&#x2F;** * Definition for a binary tree node. * public class TreeNode &amp;#123; *     int val">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-07T03:57:24.000Z">
+<meta property="article:modified_time" content="2023-06-10T09:16:53.251Z">
+<meta property="article:author" content="wyy">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="alibaba">
+<meta property="article:tag" content="二叉树">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>my-leetcode-logs-20230607 - wyy&#39;s homepage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thewangyang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wyy&#39;s homepage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/ocean.gif') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="my-leetcode-logs-20230607"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-07 11:57" pubdate>
+          June 7, 2023 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          165 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">my-leetcode-logs-20230607</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on June 10, 2023 pm
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="102-二叉树的层序遍历"><a href="#102-二叉树的层序遍历" class="headerlink" title="102.二叉树的层序遍历"></a>102.二叉树的层序遍历</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br>class Solution &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">Integer</span>&gt;&gt; levelOrder(TreeNode root) &#123;<br>        <span class="hljs-comment">//二叉树层序遍历</span><br>        <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">Integer</span>&gt;&gt; result = <span class="hljs-literal">new</span> ArrayList&lt;&gt;();<br><br>        <span class="hljs-comment">//BFS搜索</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-built_in">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> result;<br>        &#125;<br><br>        <span class="hljs-comment">//借助队列实现</span><br>        <span class="hljs-built_in">Queue</span>&lt;TreeNode&gt; <span class="hljs-built_in">queue</span> = <span class="hljs-literal">new</span> LinkedList&lt;&gt;();<br>        <span class="hljs-comment">//将第一个节点加入队列中</span><br>        <span class="hljs-built_in">queue</span>.offer(root);<br><br>        <span class="hljs-comment">//循环进行遍历</span><br>        <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">queue</span>.isEmpty())&#123;<br>            <span class="hljs-comment">//设置内部的保存结点的list数组</span><br>            <span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">Integer</span>&gt; tmp = <span class="hljs-literal">new</span> ArrayList&lt;&gt;();<br>            int size = <span class="hljs-built_in">queue</span>.size();<span class="hljs-comment">//获得tmp list的长度</span><br><br>            <span class="hljs-comment">//遍历当前所有的节点</span><br>            for(int i = <span class="hljs-number">0</span>;i &lt; size;i++)&#123;<br>                <span class="hljs-comment">//弹出队列首结点</span><br>                TreeNode node = <span class="hljs-built_in">queue</span>.poll();<br>                <span class="hljs-comment">//向tmp list中添加弹出结点的val</span><br>                tmp.add(node.val);<br>                <span class="hljs-comment">//将左右结点加入到queue中</span><br>                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-built_in">null</span>)&#123;<br>                    <span class="hljs-built_in">queue</span>.offer(node.left);<br>                &#125;<br>                <span class="hljs-keyword">if</span>(node.right != <span class="hljs-built_in">null</span>)&#123;<br>                    <span class="hljs-built_in">queue</span>.offer(node.right);<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">//将本次得到的结点list加入到最后的结果list中</span><br>            result.add(tmp);<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="226-翻转二叉树（递归法）"><a href="#226-翻转二叉树（递归法）" class="headerlink" title="226.翻转二叉树（递归法）"></a>226.翻转二叉树（递归法）</h2><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs coq">/**<br> * <span class="hljs-keyword">Definition</span> <span class="hljs-keyword">for</span> a binary tree node.<br> * public class TreeNode &#123;<br> *     int val;<br> *     TreeNode <span class="hljs-built_in">left</span>;<br> *     TreeNode <span class="hljs-built_in">right</span>;<br> *     TreeNode() &#123;&#125;<br> *     TreeNode(int val) &#123; this.val = val; &#125;<br> *     TreeNode(int val, TreeNode <span class="hljs-built_in">left</span>, TreeNode <span class="hljs-built_in">right</span>) &#123;<br> *         this.val = val;<br> *         this.<span class="hljs-built_in">left</span> = <span class="hljs-built_in">left</span>;<br> *         this.<span class="hljs-built_in">right</span> = <span class="hljs-built_in">right</span>;<br> *     &#125;<br> * &#125;<br> */<br>class Solution &#123;<br>    public TreeNode invertTree(TreeNode root) &#123;<br>        //使用递归<br>        <span class="hljs-keyword">if</span>(root == null)&#123;<br>            <span class="hljs-keyword">return</span> root;<br>        &#125;<br>        //交换root的左右结点<br>        TreeNode tmpNode = root.<span class="hljs-built_in">left</span>;<br>        root.<span class="hljs-built_in">left</span> = root.<span class="hljs-built_in">right</span>;<br>        root.<span class="hljs-built_in">right</span> = tmpNode;<br>        invertTree(root.<span class="hljs-built_in">left</span>);<br>        invertTree(root.<span class="hljs-built_in">right</span>);<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="226-翻转二叉树（前序遍历迭代法）"><a href="#226-翻转二叉树（前序遍历迭代法）" class="headerlink" title="226.翻转二叉树（前序遍历迭代法）"></a>226.翻转二叉树（前序遍历迭代法）</h2><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs fsharp"><span class="hljs-operator">/**</span><br> <span class="hljs-operator">*</span> Definition <span class="hljs-keyword">for</span> a binary tree node.<br> <span class="hljs-operator">*</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> TreeNode &#123;<br> <span class="hljs-operator">*</span>     int <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>     TreeNode left;<br> <span class="hljs-operator">*</span>     TreeNode right;<br> <span class="hljs-operator">*</span>     TreeNode() &#123;&#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>) &#123; this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>; &#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>, TreeNode left, TreeNode right) &#123;<br> <span class="hljs-operator">*</span>         this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>         this.left <span class="hljs-operator">=</span> left;<br> <span class="hljs-operator">*</span>         this.right <span class="hljs-operator">=</span> right;<br> <span class="hljs-operator">*</span>     &#125;<br> <span class="hljs-operator">*</span> &#125;<br> <span class="hljs-operator">*/</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> TreeNode invertTree(TreeNode root) &#123;<br>        <span class="hljs-comment">//使用迭代法</span><br>        <span class="hljs-keyword">if</span>(root <span class="hljs-operator">==</span> <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> root;<br>        &#125;<br><br>        Stack<span class="hljs-operator">&lt;</span>TreeNode<span class="hljs-operator">&gt;</span> st <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> Stack<span class="hljs-operator">&lt;&gt;</span>();<br>        st.push(root);<br>        <br>        <span class="hljs-keyword">while</span>(<span class="hljs-operator">!</span>st.isEmpty())&#123;<br>            <span class="hljs-comment">//弹出栈顶结点</span><br>            TreeNode node <span class="hljs-operator">=</span> st.peek();<br>            st.pop();<br>            <span class="hljs-comment">//交换左右结点</span><br>            TreeNode tmp <span class="hljs-operator">=</span> node.left;<br>            node.left <span class="hljs-operator">=</span> node.right;<br>            node.right <span class="hljs-operator">=</span> tmp;<br>            <span class="hljs-keyword">if</span>(node.left <span class="hljs-operator">!=</span> <span class="hljs-literal">null</span>)&#123;<br>                st.push(node.left);<br>            &#125;<br>            <span class="hljs-keyword">if</span>(node.right <span class="hljs-operator">!=</span> <span class="hljs-literal">null</span>)&#123;<br>                st.push(node.right);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="226-翻转二叉树（统一迭代法，前序遍历实现）"><a href="#226-翻转二叉树（统一迭代法，前序遍历实现）" class="headerlink" title="226.翻转二叉树（统一迭代法，前序遍历实现）"></a>226.翻转二叉树（统一迭代法，前序遍历实现）</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> TreeNode invertTree(TreeNode root) &#123;<br>        <span class="hljs-comment">//使用统一迭代法</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> root;<br>        &#125;<br>        Stack&lt;TreeNode&gt; st = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        st.<span class="hljs-keyword">push</span>(root);<br>        <span class="hljs-keyword">while</span>(!st.isEmpty())&#123;<br>            TreeNode curr = st.peek();<br>            <span class="hljs-keyword">if</span>(curr != <span class="hljs-keyword">null</span>)&#123;<br>                st.<span class="hljs-keyword">pop</span>();<span class="hljs-comment">//弹出结点</span><br>                <span class="hljs-comment">//按照右中左进栈（前序遍历）</span><br>                <span class="hljs-keyword">if</span>(curr.right != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(curr.right);<br>                &#125;<br>                <span class="hljs-comment">//中结点入栈</span><br>                st.<span class="hljs-keyword">push</span>(curr);<br>                st.<span class="hljs-keyword">push</span>(<span class="hljs-keyword">null</span>);<br>                <span class="hljs-keyword">if</span>(curr.left != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(curr.left);<br>                &#125;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                st.<span class="hljs-keyword">pop</span>();<span class="hljs-comment">//先弹出null结点</span><br>                curr = st.peek();<br>                st.<span class="hljs-keyword">pop</span>();<br>                <span class="hljs-comment">//交换结点</span><br>                TreeNode tmp = curr.left;<br>                curr.left = curr.right;<br>                curr.right = tmp;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="101-对称二叉树（递归写法）"><a href="#101-对称二叉树（递归写法）" class="headerlink" title="101.对称二叉树（递归写法）"></a>101.对称二叉树（递归写法）</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs aspectj"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-comment">//设置递归函数，传入参数分别为root的左右结点</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">compare</span><span class="hljs-params">(TreeNode left, TreeNode right)</span></span>&#123;<br>        <span class="hljs-comment">//确定终止条件</span><br>        <span class="hljs-keyword">if</span>(left != <span class="hljs-keyword">null</span> &amp;&amp; right == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span><span class="hljs-params">(left == <span class="hljs-keyword">null</span> &amp;&amp; right != <span class="hljs-keyword">null</span>)</span></span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span><span class="hljs-params">(left == <span class="hljs-keyword">null</span> &amp;&amp; right == <span class="hljs-keyword">null</span>)</span></span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span><span class="hljs-params">(left.val != right.val)</span></span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//确定递归的内容</span><br>        <span class="hljs-comment">//传入为左节点的左子树和右节点的右子树</span><br>        <span class="hljs-keyword">boolean</span> outside = compare(left.left, right.right);<br>        <span class="hljs-comment">//传入为左节点的右子树和右节点的左子树</span><br>        <span class="hljs-keyword">boolean</span> inside = compare(left.right, right.left);<br>        <span class="hljs-keyword">boolean</span> eq = outside &amp;&amp; inside;<br>        <span class="hljs-keyword">return</span> eq;<br>    &#125; <br><br>    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isSymmetric</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>        <span class="hljs-comment">//使用递归实现</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-title">compare</span><span class="hljs-params">(root.left, root.right)</span></span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="101-对称二叉树（迭代写法，使用队列实现）"><a href="#101-对称二叉树（迭代写法，使用队列实现）" class="headerlink" title="101.对称二叉树（迭代写法，使用队列实现）"></a>101.对称二叉树（迭代写法，使用队列实现）</h2><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs fsharp"><span class="hljs-operator">/**</span><br> <span class="hljs-operator">*</span> Definition <span class="hljs-keyword">for</span> a binary tree node.<br> <span class="hljs-operator">*</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> TreeNode &#123;<br> <span class="hljs-operator">*</span>     int <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>     TreeNode left;<br> <span class="hljs-operator">*</span>     TreeNode right;<br> <span class="hljs-operator">*</span>     TreeNode() &#123;&#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>) &#123; this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>; &#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>, TreeNode left, TreeNode right) &#123;<br> <span class="hljs-operator">*</span>         this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>         this.left <span class="hljs-operator">=</span> left;<br> <span class="hljs-operator">*</span>         this.right <span class="hljs-operator">=</span> right;<br> <span class="hljs-operator">*</span>     &#125;<br> <span class="hljs-operator">*</span> &#125;<br> <span class="hljs-operator">*/</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> boolean isSymmetric(TreeNode root) &#123;<br>        <span class="hljs-keyword">if</span>(root <span class="hljs-operator">==</span> <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br><br>        <span class="hljs-comment">//使用迭代法进行遍历</span><br>        <span class="hljs-comment">//使用队列每次保存左右子树的同外侧结点和同内侧结点</span><br>        Queue<span class="hljs-operator">&lt;</span>TreeNode<span class="hljs-operator">&gt;</span> que <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> LinkedList<span class="hljs-operator">&lt;&gt;</span>();<br>        que.offer(root.left);<br>        que.offer(root.right);<br><br>        <span class="hljs-comment">//while循环遍历que进行比较</span><br>        <span class="hljs-keyword">while</span>(<span class="hljs-operator">!</span>que.isEmpty())&#123;<br>            <span class="hljs-comment">//得到que中的两个节点判断是否相同</span><br>            TreeNode leftNode <span class="hljs-operator">=</span> que.peek();<br>            que.poll();<br>            TreeNode rightNode <span class="hljs-operator">=</span> que.peek();<br>            que.poll();<br><br>            <span class="hljs-comment">//进行判断的逻辑</span><br>            <span class="hljs-keyword">if</span>(leftNode <span class="hljs-operator">==</span> <span class="hljs-literal">null</span> <span class="hljs-operator">&amp;&amp;</span> rightNode <span class="hljs-operator">==</span> <span class="hljs-literal">null</span>)&#123;<br>                continue;<span class="hljs-comment">//表示两个结点都是空的，那么continue</span><br>            &#125;<br><br>            <span class="hljs-comment">//判断两个结点是否相同</span><br>            <span class="hljs-comment">// if(leftNode != null &amp;&amp; rightNode == null)&#123;</span><br>            <span class="hljs-comment">//     return false;</span><br>            <span class="hljs-comment">// &#125;else if(leftNode == null &amp;&amp; rightNode != null)&#123;</span><br>            <span class="hljs-comment">//     return false;</span><br>            <span class="hljs-comment">// &#125;else if(leftNode.val != rightNode.val)&#123;</span><br>            <span class="hljs-comment">//     return false;</span><br>            <span class="hljs-comment">// &#125;</span><br><br>            <span class="hljs-keyword">if</span>((leftNode <span class="hljs-operator">==</span> <span class="hljs-literal">null</span> <span class="hljs-operator">||</span> rightNode <span class="hljs-operator">==</span> <span class="hljs-literal">null</span> <span class="hljs-operator">||</span> (leftNode.<span class="hljs-keyword">val</span> <span class="hljs-operator">!=</span> rightNode.<span class="hljs-keyword">val</span>)))&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br><br>            <span class="hljs-comment">//然后将leftNode的左子树和rightNode的右子树加入到que中</span><br>            que.offer(leftNode.left);<br>            que.offer(rightNode.right);<br><br>            <span class="hljs-comment">//将leftNode的右子树和rightNode的左子树加入到que中</span><br>            que.offer(leftNode.right);<br>            que.offer(rightNode.left);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="104-二叉树的最大深度（递归方法）"><a href="#104-二叉树的最大深度（递归方法）" class="headerlink" title="104.二叉树的最大深度（递归方法）"></a>104.二叉树的最大深度（递归方法）</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-comment">//递归方法</span><br>    public <span class="hljs-built_in">int</span> get<span class="hljs-constructor">Depth(TreeNode <span class="hljs-params">root</span>)</span>&#123;<br>        <span class="hljs-keyword">if</span>(root<span class="hljs-operator"> == </span>null)&#123;<br>            return <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-built_in">int</span> leftDepth = get<span class="hljs-constructor">Depth(<span class="hljs-params">root</span>.<span class="hljs-params">left</span>)</span>;<br>        <span class="hljs-built_in">int</span> rightDepth = get<span class="hljs-constructor">Depth(<span class="hljs-params">root</span>.<span class="hljs-params">right</span>)</span>;<br>        <span class="hljs-built_in">int</span> maxDepth = <span class="hljs-number">1</span> + <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>max(leftDepth, rightDepth);<br>        return maxDepth;<br>    &#125;<br><br>    public <span class="hljs-built_in">int</span> max<span class="hljs-constructor">Depth(TreeNode <span class="hljs-params">root</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(root<span class="hljs-operator"> == </span>null)&#123;<br>            return <span class="hljs-number">0</span>;<br>        &#125;<br>        return get<span class="hljs-constructor">Depth(<span class="hljs-params">root</span>)</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="104-二叉树的最大深度（使用迭代法，队列实现层次遍历）"><a href="#104-二叉树的最大深度（使用迭代法，队列实现层次遍历）" class="headerlink" title="104.二叉树的最大深度（使用迭代法，队列实现层次遍历）"></a>104.二叉树的最大深度（使用迭代法，队列实现层次遍历）</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> maxDepth(TreeNode root) &#123;<br>        <span class="hljs-comment">//迭代法求二叉树深度</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">int</span> maxResult = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//设置队列存储结点</span><br>        Queue&lt;TreeNode&gt; que = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>        que.offer(root);<br>        <span class="hljs-keyword">while</span>(!que.isEmpty())&#123;<br>            <span class="hljs-comment">//深度加1</span><br>            maxResult++;<br>            <span class="hljs-keyword">int</span> <span class="hljs-keyword">size</span> = que.<span class="hljs-keyword">size</span>();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-keyword">size</span>;i++)&#123;<br>                TreeNode node = que.peek();<br>                que.poll();<br>                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span>)&#123;<br>                    que.offer(node.left);<br>                &#125;<br>                <span class="hljs-keyword">if</span>(node.right != <span class="hljs-keyword">null</span>)&#123;<br>                    que.offer(node.right);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> maxResult;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="559-N-叉树的最大深度"><a href="#559-N-叉树的最大深度" class="headerlink" title="559.N 叉树的最大深度"></a>559.N 叉树的最大深度</h2><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs fsharp"><span class="hljs-operator">/*</span><br><span class="hljs-comment">// Definition for a Node.</span><br><span class="hljs-keyword">class</span> Node &#123;<br>    <span class="hljs-keyword">public</span> int <span class="hljs-keyword">val</span>;<br>    <span class="hljs-keyword">public</span> List<span class="hljs-operator">&lt;</span>Node<span class="hljs-operator">&gt;</span> children;<br><br>    <span class="hljs-keyword">public</span> Node() &#123;&#125;<br><br>    <span class="hljs-keyword">public</span> Node(int _val) &#123;<br>        <span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> _val;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> Node(int _val, List<span class="hljs-operator">&lt;</span>Node<span class="hljs-operator">&gt;</span> _children) &#123;<br>        <span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> _val;<br>        children <span class="hljs-operator">=</span> _children;<br>    &#125;<br>&#125;;<br><span class="hljs-operator">*/</span><br><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> int maxDepth(Node root) &#123;<br>        <span class="hljs-comment">//使用迭代法+队列实现层次遍历</span><br>        <span class="hljs-keyword">if</span>(root <span class="hljs-operator">==</span> <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        int result <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//定义队列</span><br>        Queue<span class="hljs-operator">&lt;</span>Node<span class="hljs-operator">&gt;</span> que <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> LinkedList<span class="hljs-operator">&lt;&gt;</span>();<br>        que.offer(root);<br>        <span class="hljs-keyword">while</span>(<span class="hljs-operator">!</span>que.isEmpty())&#123;<br>            result<span class="hljs-operator">++</span>;<br>            int len <span class="hljs-operator">=</span> que.size();<br>            <span class="hljs-keyword">for</span>(int i <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;i <span class="hljs-operator">&lt;</span> len;i<span class="hljs-operator">++</span>)&#123;<br>                Node node <span class="hljs-operator">=</span> que.peek();<br>                que.poll();<br><br>                <span class="hljs-keyword">for</span>(int j <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;j <span class="hljs-operator">&lt;</span> node.children.size();j<span class="hljs-operator">++</span>)&#123;<br>                    <span class="hljs-keyword">if</span>(node.children.<span class="hljs-built_in">get</span>(j) <span class="hljs-operator">!=</span> <span class="hljs-literal">null</span>)&#123;<br>                        que.offer(node.children.<span class="hljs-built_in">get</span>(j));<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="111-二叉树的最小深度（使用递归法）"><a href="#111-二叉树的最小深度（使用递归法）" class="headerlink" title="111.二叉树的最小深度（使用递归法）"></a>111.二叉树的最小深度（使用递归法）</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    public <span class="hljs-built_in">int</span> get<span class="hljs-constructor">Depth(TreeNode <span class="hljs-params">root</span>, <span class="hljs-params">int</span> <span class="hljs-params">minDepth</span>)</span>&#123;<br>        <span class="hljs-keyword">if</span>(root<span class="hljs-operator"> == </span>null)&#123;<br>            return <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-built_in">int</span> leftDepth = get<span class="hljs-constructor">Depth(<span class="hljs-params">root</span>.<span class="hljs-params">left</span>, <span class="hljs-params">minDepth</span>)</span>;<br>        <span class="hljs-built_in">int</span> rightDepth = get<span class="hljs-constructor">Depth(<span class="hljs-params">root</span>.<span class="hljs-params">right</span>, <span class="hljs-params">minDepth</span>)</span>;<br><br>        <span class="hljs-keyword">if</span>(root.left<span class="hljs-operator"> == </span>null<span class="hljs-operator"> || </span>root.right<span class="hljs-operator"> == </span>null)&#123;<br>            minDepth = <span class="hljs-number">1</span> + <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>max(leftDepth, rightDepth);<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            minDepth = <span class="hljs-number">1</span> + <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>min(leftDepth, rightDepth);<br>        &#125;<br>        return minDepth;<br>    &#125;<br><br>    public <span class="hljs-built_in">int</span> min<span class="hljs-constructor">Depth(TreeNode <span class="hljs-params">root</span>)</span> &#123;<br>        <span class="hljs-keyword">if</span>(root<span class="hljs-operator"> == </span>null)&#123;<br>            return <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-built_in">int</span> result = <span class="hljs-number">0</span>;<br>        return get<span class="hljs-constructor">Depth(<span class="hljs-params">root</span>, <span class="hljs-params">result</span>)</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="111-二叉树的最小深度（使用迭代法-队列实现层次遍历）"><a href="#111-二叉树的最小深度（使用迭代法-队列实现层次遍历）" class="headerlink" title="111.二叉树的最小深度（使用迭代法+队列实现层次遍历）"></a>111.二叉树的最小深度（使用迭代法+队列实现层次遍历）</h2><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs fsharp"><span class="hljs-operator">/**</span><br> <span class="hljs-operator">*</span> Definition <span class="hljs-keyword">for</span> a binary tree node.<br> <span class="hljs-operator">*</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> TreeNode &#123;<br> <span class="hljs-operator">*</span>     int <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>     TreeNode left;<br> <span class="hljs-operator">*</span>     TreeNode right;<br> <span class="hljs-operator">*</span>     TreeNode() &#123;&#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>) &#123; this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>; &#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>, TreeNode left, TreeNode right) &#123;<br> <span class="hljs-operator">*</span>         this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>         this.left <span class="hljs-operator">=</span> left;<br> <span class="hljs-operator">*</span>         this.right <span class="hljs-operator">=</span> right;<br> <span class="hljs-operator">*</span>     &#125;<br> <span class="hljs-operator">*</span> &#125;<br> <span class="hljs-operator">*/</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> int minDepth(TreeNode root) &#123;<br>        <span class="hljs-comment">//迭代法得到最小深度，使用队列实现</span><br>        <span class="hljs-keyword">if</span>(root <span class="hljs-operator">==</span> <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        Queue<span class="hljs-operator">&lt;</span>TreeNode<span class="hljs-operator">&gt;</span> que <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> LinkedList<span class="hljs-operator">&lt;&gt;</span>();<br>        que.offer(root);<br>        int result <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-operator">!</span>que.isEmpty())&#123;<br>            int len <span class="hljs-operator">=</span> que.size();<br>            result<span class="hljs-operator">++</span>;<br>            <span class="hljs-keyword">for</span>(int i <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;i <span class="hljs-operator">&lt;</span> len;i<span class="hljs-operator">++</span>)&#123;<br>                TreeNode node <span class="hljs-operator">=</span> que.peek();<br>                que.poll();<br>                <span class="hljs-keyword">if</span>(node.left <span class="hljs-operator">==</span> <span class="hljs-literal">null</span> <span class="hljs-operator">&amp;&amp;</span> node.right <span class="hljs-operator">==</span> <span class="hljs-literal">null</span>)&#123;<br>                    <span class="hljs-keyword">return</span> result;<br>                &#125;<br><br>                <span class="hljs-keyword">if</span>(node.left <span class="hljs-operator">!=</span> <span class="hljs-literal">null</span>)&#123;<br>                    que.offer(node.left);<br>                &#125;<br><br>                <span class="hljs-keyword">if</span>(node.right <span class="hljs-operator">!=</span> <span class="hljs-literal">null</span>)&#123;<br>                    que.offer(node.right);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="222-完全二叉树的节点个数（使用层次遍历实现）"><a href="#222-完全二叉树的节点个数（使用层次遍历实现）" class="headerlink" title="222.完全二叉树的节点个数（使用层次遍历实现）"></a>222.完全二叉树的节点个数（使用层次遍历实现）</h2><figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs fsharp"><span class="hljs-operator">/**</span><br> <span class="hljs-operator">*</span> Definition <span class="hljs-keyword">for</span> a binary tree node.<br> <span class="hljs-operator">*</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> TreeNode &#123;<br> <span class="hljs-operator">*</span>     int <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>     TreeNode left;<br> <span class="hljs-operator">*</span>     TreeNode right;<br> <span class="hljs-operator">*</span>     TreeNode() &#123;&#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>) &#123; this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>; &#125;<br> <span class="hljs-operator">*</span>     TreeNode(int <span class="hljs-keyword">val</span>, TreeNode left, TreeNode right) &#123;<br> <span class="hljs-operator">*</span>         this.<span class="hljs-keyword">val</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">val</span>;<br> <span class="hljs-operator">*</span>         this.left <span class="hljs-operator">=</span> left;<br> <span class="hljs-operator">*</span>         this.right <span class="hljs-operator">=</span> right;<br> <span class="hljs-operator">*</span>     &#125;<br> <span class="hljs-operator">*</span> &#125;<br> <span class="hljs-operator">*/</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> int countNodes(TreeNode root) &#123;<br>        <span class="hljs-keyword">if</span>(root <span class="hljs-operator">==</span> <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        int result <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        Queue<span class="hljs-operator">&lt;</span>TreeNode<span class="hljs-operator">&gt;</span> que <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> LinkedList<span class="hljs-operator">&lt;&gt;</span>();<br>        que.offer(root);<br>        result<span class="hljs-operator">++</span>;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-operator">!</span>que.isEmpty())&#123;<br>            int len <span class="hljs-operator">=</span> que.size();<br>            <span class="hljs-keyword">for</span>(int i <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i <span class="hljs-operator">&lt;</span> len;i<span class="hljs-operator">++</span>)&#123;<br>                TreeNode node <span class="hljs-operator">=</span> que.peek();<br>                que.poll();<br>                <span class="hljs-keyword">if</span>(node.left <span class="hljs-operator">!=</span> <span class="hljs-literal">null</span>)&#123;<br>                    result<span class="hljs-operator">++</span>;<br>                    que.offer(node.left);<br>                &#125;<br>                <span class="hljs-keyword">if</span>(node.right <span class="hljs-operator">!=</span> <span class="hljs-literal">null</span>)&#123;<br>                    result<span class="hljs-operator">++</span>;<br>                    que.offer(node.right);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="110-平衡二叉树（递归方法）"><a href="#110-平衡二叉树（递归方法）" class="headerlink" title="110.平衡二叉树（递归方法）"></a>110.平衡二叉树（递归方法）</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-comment">//使用递归方法</span><br>    public <span class="hljs-built_in">int</span> get<span class="hljs-constructor">Height(TreeNode <span class="hljs-params">root</span>)</span>&#123;<br>        <span class="hljs-keyword">if</span>(root<span class="hljs-operator"> == </span>null)&#123;<br>            return <span class="hljs-number">0</span>;<br>        &#125;<br>        <br>        <span class="hljs-built_in">int</span> leftHeight = get<span class="hljs-constructor">Height(<span class="hljs-params">root</span>.<span class="hljs-params">left</span>)</span>;<br>        <span class="hljs-keyword">if</span>(leftHeight<span class="hljs-operator"> == </span>-<span class="hljs-number">1</span>)&#123;<span class="hljs-comment">//表示不满足平衡二叉树</span><br>        return -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-built_in">int</span> rightHeight = get<span class="hljs-constructor">Height(<span class="hljs-params">root</span>.<span class="hljs-params">right</span>)</span>;<br>        <span class="hljs-keyword">if</span>(rightHeight<span class="hljs-operator"> == </span>-<span class="hljs-number">1</span>)&#123;<br>            return -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-built_in">int</span> result = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>abs(leftHeight - rightHeight) &gt; <span class="hljs-number">1</span> ? -<span class="hljs-number">1</span> : <span class="hljs-number">1</span> + <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Math</span>.</span></span>max(leftHeight, rightHeight);<br>        return result;<br>    &#125;<br>    public boolean is<span class="hljs-constructor">Balanced(TreeNode <span class="hljs-params">root</span>)</span> &#123;<br>        return get<span class="hljs-constructor">Height(<span class="hljs-params">root</span>)</span><span class="hljs-operator"> == </span>-<span class="hljs-number">1</span> ? <span class="hljs-literal">false</span>: <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="110-平衡二叉树（迭代法遍历得到以当前结点为根结点的最大高度，然后求每个结点的左右子树的高度差）"><a href="#110-平衡二叉树（迭代法遍历得到以当前结点为根结点的最大高度，然后求每个结点的左右子树的高度差）" class="headerlink" title="110.平衡二叉树（迭代法遍历得到以当前结点为根结点的最大高度，然后求每个结点的左右子树的高度差）"></a>110.平衡二叉树（迭代法遍历得到以当前结点为根结点的最大高度，然后求每个结点的左右子树的高度差）</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-comment">//定义求以root结点作为根节点的最大高度</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> getHeight(TreeNode root)&#123;<br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        Queue&lt;TreeNode&gt; que = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>        que.offer(root);<br>        <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(!que.isEmpty())&#123;<br>            <span class="hljs-keyword">int</span> len = que.<span class="hljs-keyword">size</span>();<br>            result++;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; len;i++)&#123;<br>                TreeNode node = que.peek();<br>                que.poll();<br>                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span>)&#123;<br>                    que.offer(node.left);<br>                &#125;<br>                <span class="hljs-keyword">if</span>(node.right != <span class="hljs-keyword">null</span>)&#123;<br>                    que.offer(node.right);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> isBalanced(TreeNode root) &#123;<br>        <span class="hljs-comment">//遍历的时候求当前左右节点的最大高度，然后求之间的差的绝对值，将该值和1比较</span><br>        <span class="hljs-comment">//外层使用二叉树的统一迭代遍历</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        Stack&lt;TreeNode&gt; st = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        st.<span class="hljs-keyword">push</span>(root);<br>        <span class="hljs-keyword">while</span>(!st.isEmpty())&#123;<br>            TreeNode node = st.peek();<br>            <span class="hljs-keyword">if</span>(node != <span class="hljs-keyword">null</span>)&#123;<br>                st.<span class="hljs-keyword">pop</span>();<br>                <span class="hljs-comment">//按照后序遍历方法</span><br>                st.<span class="hljs-keyword">push</span>(node);<span class="hljs-comment">//中</span><br>                st.<span class="hljs-keyword">push</span>(<span class="hljs-keyword">null</span>);<br>                <span class="hljs-comment">//添加进去之前需要判断是否为平衡树</span><br>                <span class="hljs-keyword">int</span> leftHeight = getHeight(node.left);<br>                <span class="hljs-keyword">int</span> rightHeight = getHeight(node.right);<br>                <span class="hljs-keyword">if</span>(Math.<span class="hljs-keyword">abs</span>(leftHeight - rightHeight) &gt; <span class="hljs-number">1</span>)&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                &#125;<br>                <span class="hljs-comment">//右子树</span><br>                <span class="hljs-keyword">if</span>(node.right != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(node.right);<br>                &#125;<br>                <span class="hljs-comment">//左子树</span><br>                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(node.left);<br>                &#125;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-comment">//首先弹出标记用的空结点</span><br>                st.<span class="hljs-keyword">pop</span>();<br>                node = st.peek();<br>                st.<span class="hljs-keyword">pop</span>();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="110-平衡二叉树（递归得到树的最大高度-遍历当前结点判断该结点的左右子树高度差是否大于1）"><a href="#110-平衡二叉树（递归得到树的最大高度-遍历当前结点判断该结点的左右子树高度差是否大于1）" class="headerlink" title="110.平衡二叉树（递归得到树的最大高度+遍历当前结点判断该结点的左右子树高度差是否大于1）"></a>110.平衡二叉树（递归得到树的最大高度+遍历当前结点判断该结点的左右子树高度差是否大于1）</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> getHeight(TreeNode root)&#123;<br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">int</span> leftHeight = getHeight(root.left);<br>        <span class="hljs-keyword">int</span> rightHeight = getHeight(root.right);<br>        <span class="hljs-keyword">int</span> maxDepth = <span class="hljs-number">1</span> + Math.max(leftHeight, rightHeight);<br>        <span class="hljs-keyword">return</span> maxDepth;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> isBalanced(TreeNode root) &#123;<br>        <span class="hljs-comment">//遍历的时候求当前左右节点的最大高度，然后求之间的差的绝对值，将该值和1比较</span><br>        <span class="hljs-comment">//外层使用二叉树的统一迭代遍历</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        Stack&lt;TreeNode&gt; st = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        st.<span class="hljs-keyword">push</span>(root);<br>        <span class="hljs-keyword">while</span>(!st.isEmpty())&#123;<br>            TreeNode node = st.peek();<br>            <span class="hljs-keyword">if</span>(node != <span class="hljs-keyword">null</span>)&#123;<br>                st.<span class="hljs-keyword">pop</span>();<br>                <span class="hljs-comment">//按照后序遍历方法</span><br>                st.<span class="hljs-keyword">push</span>(node);<span class="hljs-comment">//中</span><br>                st.<span class="hljs-keyword">push</span>(<span class="hljs-keyword">null</span>);<br>                <span class="hljs-comment">//添加进去之前需要判断是否为平衡树</span><br>                <span class="hljs-keyword">int</span> leftHeight = getHeight(node.left);<br>                <span class="hljs-keyword">int</span> rightHeight = getHeight(node.right);<br>                <span class="hljs-keyword">if</span>(Math.<span class="hljs-keyword">abs</span>(leftHeight - rightHeight) &gt; <span class="hljs-number">1</span>)&#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                &#125;<br>                <span class="hljs-comment">//右子树</span><br>                <span class="hljs-keyword">if</span>(node.right != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(node.right);<br>                &#125;<br>                <span class="hljs-comment">//左子树</span><br>                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(node.left);<br>                &#125;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-comment">//首先弹出标记用的空结点</span><br>                st.<span class="hljs-keyword">pop</span>();<br>                node = st.peek();<br>                st.<span class="hljs-keyword">pop</span>();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="257-二叉树的所有路径"><a href="#257-二叉树的所有路径" class="headerlink" title="257.二叉树的所有路径"></a>257.二叉树的所有路径</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    //使用递归调用实现<br>    //参数分别为传入的结点，本次的单条路径，所有路径结果数组<br>    <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> travelTreeAllPath(TreeNode root, List&lt;<span class="hljs-type">Integer</span>&gt; <span class="hljs-type">path</span>, List&lt;String&gt; result)&#123;<br>        //将中结点加入到<span class="hljs-type">path</span>中，这样才算遍历到了叶子结点<br>        <span class="hljs-type">path</span>.<span class="hljs-keyword">add</span>(root.val);<br>        //递归条件，到叶子节点结束递归<br>        <span class="hljs-keyword">if</span>(root.left == <span class="hljs-keyword">null</span> &amp;&amp; root.right == <span class="hljs-keyword">null</span>)&#123;<br>            //结束递归的时候将<span class="hljs-type">path</span>中对应的结果添加到result list中<br>            String path_str = &quot;&quot;;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>;i++)&#123;<br>                path_str += String.valueOf(<span class="hljs-type">path</span>.<span class="hljs-keyword">get</span>(i));<br>                path_str += &quot;-&gt;&quot;;<br>            &#125;<br>            path_str += <span class="hljs-type">path</span>.<span class="hljs-keyword">get</span>(<span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>);<br>            //将当前结果加入到result list中<br>            result.<span class="hljs-keyword">add</span>(path_str);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        //每次递归需要执行的代码<br>        //不是空结点才进行递归<br>        <span class="hljs-keyword">if</span>(root.left != <span class="hljs-keyword">null</span>)&#123;<br>            travelTreeAllPath(root.left, <span class="hljs-type">path</span>, result);<br>            <span class="hljs-type">path</span>.remove(<span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>);//回溯<br>        &#125;<br><br>        <span class="hljs-keyword">if</span>(root.right != <span class="hljs-keyword">null</span>)&#123;<br>            travelTreeAllPath(root.right, <span class="hljs-type">path</span>, result);<br>            <span class="hljs-type">path</span>.remove(<span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>);//回溯<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">public</span> List&lt;String&gt; binaryTreePaths(TreeNode root) &#123;<br>        List&lt;String&gt; result = <span class="hljs-built_in">new</span> ArrayList&lt;&gt;();<br>        List&lt;<span class="hljs-type">Integer</span>&gt; <span class="hljs-type">path</span> = <span class="hljs-built_in">new</span> ArrayList&lt;&gt;();<br>        travelTreeAllPath(root, <span class="hljs-type">path</span>, result);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br><br><br>//使用StringBuilder进行字符串的构造，效率提升很大<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    //使用递归调用实现<br>    //参数分别为传入的结点，本次的单条路径，所有路径结果数组<br>    <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> travelTreeAllPath(TreeNode root, List&lt;<span class="hljs-type">Integer</span>&gt; <span class="hljs-type">path</span>, List&lt;String&gt; result)&#123;<br>        //将中结点加入到<span class="hljs-type">path</span>中，这样才算遍历到了叶子结点<br>        <span class="hljs-type">path</span>.<span class="hljs-keyword">add</span>(root.val);<br>        //递归条件，到叶子节点结束递归<br>        <span class="hljs-keyword">if</span>(root.left == <span class="hljs-keyword">null</span> &amp;&amp; root.right == <span class="hljs-keyword">null</span>)&#123;<br>            //结束递归的时候将<span class="hljs-type">path</span>中对应的结果添加到result list中<br>            StringBuilder sb = <span class="hljs-built_in">new</span> StringBuilder();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;i &lt; <span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>;i++)&#123;<br>                sb.append(String.valueOf(<span class="hljs-type">path</span>.<span class="hljs-keyword">get</span>(i)));<br>                sb.append(&quot;-&gt;&quot;);<br>            &#125;<br>            sb.append(<span class="hljs-type">path</span>.<span class="hljs-keyword">get</span>(<span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>));<br>            //将当前结果加入到result list中<br>            result.<span class="hljs-keyword">add</span>(sb.toString());<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br><br>        //每次递归需要执行的代码<br>        //不是空结点才进行递归<br>        <span class="hljs-keyword">if</span>(root.left != <span class="hljs-keyword">null</span>)&#123;<br>            travelTreeAllPath(root.left, <span class="hljs-type">path</span>, result);<br>            <span class="hljs-type">path</span>.remove(<span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>);//回溯<br>        &#125;<br><br>        <span class="hljs-keyword">if</span>(root.right != <span class="hljs-keyword">null</span>)&#123;<br>            travelTreeAllPath(root.right, <span class="hljs-type">path</span>, result);<br>            <span class="hljs-type">path</span>.remove(<span class="hljs-type">path</span>.size() - <span class="hljs-number">1</span>);//回溯<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">public</span> List&lt;String&gt; binaryTreePaths(TreeNode root) &#123;<br>        List&lt;String&gt; result = <span class="hljs-built_in">new</span> ArrayList&lt;&gt;();<br>        List&lt;<span class="hljs-type">Integer</span>&gt; <span class="hljs-type">path</span> = <span class="hljs-built_in">new</span> ArrayList&lt;&gt;();<br>        travelTreeAllPath(root, <span class="hljs-type">path</span>, result);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="257-二叉树的所有路径（使用迭代方法实现）"><a href="#257-二叉树的所有路径（使用迭代方法实现）" class="headerlink" title="257.二叉树的所有路径（使用迭代方法实现）"></a>257.二叉树的所有路径（使用迭代方法实现）</h2><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    public List&lt;String&gt; binary<span class="hljs-constructor">TreePaths(TreeNode <span class="hljs-params">root</span>)</span> &#123;<br>        <span class="hljs-comment">//使用前序迭代法</span><br>        List&lt;String&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;<span class="hljs-literal">()</span>;<br>        <span class="hljs-keyword">if</span>(root<span class="hljs-operator"> == </span>null)&#123;<br>            return result;<br>        &#125;<br>        <span class="hljs-comment">//保存当前对应的tmp path</span><br>        Stack&lt;String&gt; path = <span class="hljs-keyword">new</span> Stack&lt;&gt;<span class="hljs-literal">()</span>;<br>        <span class="hljs-comment">//保存前序遍历时的树结点</span><br>        Stack&lt;TreeNode&gt; st = <span class="hljs-keyword">new</span> Stack&lt;&gt;<span class="hljs-literal">()</span>;<br>        st.push(root);<br>        path.push(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">String</span>.</span></span>value<span class="hljs-constructor">Of(<span class="hljs-params">root</span>.<span class="hljs-params">val</span>)</span>);<br>        <span class="hljs-keyword">while</span>(!st.is<span class="hljs-constructor">Empty()</span>)&#123;<br>            TreeNode node = st.peek<span class="hljs-literal">()</span>;<br>            st.pop<span class="hljs-literal">()</span>;<span class="hljs-comment">//弹出栈顶结点</span><br><br>            <span class="hljs-comment">//去除该节点对应的path</span><br>            String str = path.peek<span class="hljs-literal">()</span>;<br>            path.pop<span class="hljs-literal">()</span>;<br><br>            <span class="hljs-comment">//入栈之前先判断当前是否为叶子结点</span><br>            <span class="hljs-keyword">if</span>(node.left<span class="hljs-operator"> == </span>null<span class="hljs-operator"> &amp;&amp; </span>node.right<span class="hljs-operator"> == </span>null)&#123;<br>                <span class="hljs-comment">//将path放入到result数组中</span><br>                result.add(str);<br>            &#125;<br><br>            <span class="hljs-comment">//右左中顺序入栈</span><br>            <span class="hljs-keyword">if</span>(node.right != null)&#123;<br>                st.push(node.right);<br>                StringBuilder sb = <span class="hljs-keyword">new</span> <span class="hljs-constructor">StringBuilder(<span class="hljs-params">str</span>)</span>;<br>                sb.append(<span class="hljs-string">&quot;-&gt;&quot;</span>);<br>                sb.append(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">String</span>.</span></span>value<span class="hljs-constructor">Of(<span class="hljs-params">node</span>.<span class="hljs-params">right</span>.<span class="hljs-params">val</span>)</span>);<br>                path.push(sb.<span class="hljs-keyword">to</span><span class="hljs-constructor">String()</span>);<br>            &#125;<br>            <br>            <span class="hljs-keyword">if</span>(node.left != null)&#123;<br>                st.push(node.left);<br>                StringBuilder sb = <span class="hljs-keyword">new</span> <span class="hljs-constructor">StringBuilder(<span class="hljs-params">str</span>)</span>;<br>                sb.append(<span class="hljs-string">&quot;-&gt;&quot;</span>);<br>                sb.append(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">String</span>.</span></span>value<span class="hljs-constructor">Of(<span class="hljs-params">node</span>.<span class="hljs-params">left</span>.<span class="hljs-params">val</span>)</span>);<br>                path.push(sb.<span class="hljs-keyword">to</span><span class="hljs-constructor">String()</span>);<br>            &#125;<br>        &#125;<br>        return result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="404-左叶子之和（使用迭代法）"><a href="#404-左叶子之和（使用迭代法）" class="headerlink" title="404.左叶子之和（使用迭代法）"></a>404.左叶子之和（使用迭代法）</h2><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> Solution &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> sumOfLeftLeaves(TreeNode root) &#123;<br>        <span class="hljs-comment">//二叉树迭代遍历得到左右左叶子之和</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;<br>        Stack&lt;TreeNode&gt; st = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        st.<span class="hljs-keyword">push</span>(root);<br>        <span class="hljs-keyword">while</span>(!st.isEmpty())&#123;<br>            TreeNode node = st.peek();<br>            <span class="hljs-keyword">if</span>(node != <span class="hljs-keyword">null</span>)&#123;<br>                st.<span class="hljs-keyword">pop</span>();<br>                <span class="hljs-comment">//判断条件需要重新理解</span><br>                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span> &amp;&amp; node.left.left == <span class="hljs-keyword">null</span> &amp;&amp; node.left.right == <span class="hljs-keyword">null</span>)&#123;<br>                    result += node.left.val;<br>                &#125;<br>                <span class="hljs-comment">//按照右左中的顺序加入栈中</span><br>                <span class="hljs-keyword">if</span>(node.right != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(node.right);<br>                &#125;<br>                <span class="hljs-keyword">if</span>(node.left != <span class="hljs-keyword">null</span>)&#123;<br>                    st.<span class="hljs-keyword">push</span>(node.left);<br>                &#125;<br>                st.<span class="hljs-keyword">push</span>(node);<br>                st.<span class="hljs-keyword">push</span>(<span class="hljs-keyword">null</span>);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                st.<span class="hljs-keyword">pop</span>();<br>                node = st.peek();<br>                st.<span class="hljs-keyword">pop</span>();<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LeetCode-Logs/" class="category-chain-item">LeetCode Logs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/LeetCode/" class="print-no-link">#LeetCode</a>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+        <a href="/tags/alibaba/" class="print-no-link">#alibaba</a>
+      
+        <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="print-no-link">#二叉树</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>my-leetcode-logs-20230607</div>
+      <div>https://thewangyang.github.io/2023/06/07/leetcode-notes-20230607/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>wyy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>June 7, 2023</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>June 10, 2023</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/06/10/leetcode-notes-20230610/" title="my-leetcode-logs-20230610">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">my-leetcode-logs-20230610</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/05/leetcode-notes-20230605/" title="my-leetcode-logs-20230605">
+                        <span class="hidden-mobile">my-leetcode-logs-20230605</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
