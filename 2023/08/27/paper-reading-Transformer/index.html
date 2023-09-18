@@ -1,0 +1,793 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-tw,en,default" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/page_icon.jpg">
+  <link rel="icon" href="/img/page_icon.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wyy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Transformer(Attention Is All You Need)Attention Is All You Need 参考：跟李沐学AI-Transformer论文逐段精读【论文精读】 摘要（Abstract）首先摘要说明：目前，主流的序列转录（序列转录：给一个序列，转录为另外一个新的序列）模型都是基于RNN和CNN，且一般都是一个encoder和decoder的架构。在这些encode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="paper-reading-Transformer">
+<meta property="og:url" content="https://thewangyang.github.io/2023/08/27/paper-reading-Transformer/index.html">
+<meta property="og:site_name" content="wyy&#39;s homepage">
+<meta property="og:description" content="Transformer(Attention Is All You Need)Attention Is All You Need 参考：跟李沐学AI-Transformer论文逐段精读【论文精读】 摘要（Abstract）首先摘要说明：目前，主流的序列转录（序列转录：给一个序列，转录为另外一个新的序列）模型都是基于RNN和CNN，且一般都是一个encoder和decoder的架构。在这些encode">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Transformer-architecture.png">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/layer-norm-reason.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/attention-eqution.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/query-key-number-comparision.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Scaled-Dot-Product-Attention-and-Multi-Head-Attention.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Multi-Head-attention-eqution.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Transformer-architecture.png">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/FFN.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Transformer%E4%B8%8ERNN%E7%9A%84%E5%8C%BA%E5%88%AB.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/%E6%97%B6%E5%BA%8F%E4%BF%A1%E6%81%AF%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/multi-comparision-table.jpg">
+<meta property="og:image" content="https://thewangyang.github.io/images/Transformer/Transformer%E4%B8%AD%E8%B6%85%E5%8F%82%E6%95%B0%E7%9A%84%E6%AF%94%E8%BE%83.jpg">
+<meta property="article:published_time" content="2023-08-27T04:16:27.217Z">
+<meta property="article:modified_time" content="2023-08-28T07:51:12.202Z">
+<meta property="article:author" content="wyy">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="Object Detection">
+<meta property="article:tag" content="Paper Reading">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://thewangyang.github.io/images/Transformer/Transformer-architecture.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>paper-reading-Transformer - wyy&#39;s homepage</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"thewangyang.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":true,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wyy&#39;s homepage</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/ocean.gif') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="paper-reading-Transformer"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-27 12:16" pubdate>
+          2023年8月27日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">paper-reading-Transformer</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    Last updated on 2023年8月28日 下午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Transformer-Attention-Is-All-You-Need"><a href="#Transformer-Attention-Is-All-You-Need" class="headerlink" title="Transformer(Attention Is All You Need)"></a>Transformer(Attention Is All You Need)</h2><p><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf">Attention Is All You Need</a></p>
+<p>参考：跟李沐学AI-<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pu411o7BE/?vd_source=4f4d3466cdc2c5a2539504632c862ce7">Transformer论文逐段精读【论文精读】</a></p>
+<h3 id="摘要（Abstract）"><a href="#摘要（Abstract）" class="headerlink" title="摘要（Abstract）"></a>摘要（Abstract）</h3><p>首先摘要说明：目前，主流的序列转录（序列转录：给一个序列，转录为另外一个新的序列）模型都是基于RNN和CNN，且一般都是一个encoder和decoder的架构。在这些encoder和decoder中通常会使用注意力机制。然后，作者接着说，这篇文章提出了一个<strong>简单</strong>的只使用了注意力机制的模型架构-Transformer，而没有使用RNN或CNN等卷积操作。接着，作者将该架构在两个机器翻译任务上进行实验，可以实现更好的性能和更少的训练时间。</p>
+<h3 id="导言（Introduction）"><a href="#导言（Introduction）" class="headerlink" title="导言（Introduction）"></a>导言（Introduction）</h3><p>首先作者介绍了RNN、GRN等主流的sequence models，然后作者指出，这里面有两个比较主流的模型，一个叫做语言模型，海有一个是当输出结构化信息比较多的时候的encoder和decoder架构的模型。</p>
+<p>然后，作者讲了RNN的特点和缺点，在RNN中给一个序列，其做法是对序列从左往右一步一步往前做的。当前第t个词的状态$h_t$是由前一个词的状态$h_{t-1}$和当前词本身决定的。这样的话RNN就可以把前边学到的历史信息通过$h_{t-1}$放到当下，然后和当前词做一些计算，然后输出。RNN存在的问题比较难以并行。</p>
+<p>在第三段，作者指出，Attention机制已经在RNN中使用，主要是用在解决，如何将encoder的信息传递给decoder中。</p>
+<p>在导言的最后一段中，作者指出，本篇文章提出了一个叫做Transformer的模型，不再使用之前的RNN layers，而是纯注意力机制。</p>
+<h3 id="相关工作（Background）"><a href="#相关工作（Background）" class="headerlink" title="相关工作（Background）"></a>相关工作（Background）</h3><p>首先，作者指出如何使用卷积神经网络来替换掉RNN layers来减少时序计算。同时，又指出，使用CNN无法对比较长的序列进行建模。但是，如果使用Transformer的话，每次都能看到所有的像素。但是，CNN比较好的地方是可以做多个输出的channels，一个channel可以认为CNN去识别不一样的模式。为了实现和CNN一样的能够输出多个channel的功能，文中提出了一个叫做Multi-Head Attention机制（多头注意力机制）。</p>
+<p>接下来，作者提出了Self-Attention（自注意力机制）。然后最后，作者指出，Transformer是第一个只依赖于自注意力机制的encoder和decoder架构模型。</p>
+<h3 id="模型架构（Model-Architecture）"><a href="#模型架构（Model-Architecture）" class="headerlink" title="模型架构（Model Architecture）"></a>模型架构（Model Architecture）</h3><p>首先，作者说明大多数的序列转录模型中都具有encoder和decoder架构。然后，解释encoder是将一个序列表示为中间的向量表示形式，然后decoder是将中间的向量表示形式，表示为最后的输出。这里的输入和输出不一定具有同样的长度（例如：英文转为中文的话，长度不一定是一样的）。但是需要注意的是，在decoder解码的时候，结果输出是一个一个生成的，文中指出这种解码机制叫做自回归（auto-regressive模型，在这个模型中输入又是输出，即：过去时刻的输出又是当前时刻的输入）。</p>
+<p>Transformer模型架构是将self-attention、point-wise和FCN（全连接层）堆叠在一起的。整个Transformer模型架构如下图所示。</p>
+<p><img src="/../image/../images/Transformer/Transformer-architecture.png" srcset="/img/loading.gif" lazyload alt="Transformer模型架构"></p>
+<p>上图中，左边部分为Transformer的encoder架构，右边部分为decoder架构。其中，encoder的输入是序列（可以是图片序列、语句序列等），decoder的输入是上一个decoder的输出。</p>
+<p><em><strong>编码器encoder</strong></em></p>
+<p>首先，作者介绍了encoder：使用6个完全一样的上图中的encoder组成。作者将6个encoder中的每一个叫做layer，其中每个layer中有两个sub layer。第一个sub layer叫做“Multi-Head self-attention”机制，第二个sub layer叫做point wise FFN（其实就是一个MLP前向传播网络）。对每个子层使用一个残差连接。最后使用一个layer normalization（层级正则化）。其中，$LayerNorm(x+Sublayer(x))$表示，针对每个encoder层来说，输入x首先经过sublayer层然后和x进行相加，之后再通过一个Norm层。文中说，将每个encoder层的输出向量维度设置为512。（这里和CNN不一样，在基于CNN架构的模型中对向量的维度是长度方向上减少，而channel方向上增加，这里只是使用一个固定维度为512的向量，所以Transformer相对来说架构比较简单）</p>
+<p><em><strong>解释LayerNorm（以及为什么在Transformer的架构中不使用BatchNorm）</strong></em></p>
+<p><img src="/../images/Transformer/layer-norm-reason.jpg" srcset="/img/loading.gif" lazyload alt="为什么使用Layer Norm而不是Mini Batch Norm"></p>
+<p>上图中，解释了为什么Transformer中不使用Batch Norm而是使用Layer Norm。</p>
+<p><em><strong>解码器decoder</strong></em></p>
+<p>Transformer中decoder和encoder的架构很相似，数量也是N&#x3D;6个进行堆叠。不一样的地方在于decoder中加入了第三个sub layer，这个第三子层同样是一个多头注意力机制，其作用为防止decoder在做预测的时候，不能看到当前t时刻之后的输入（因为Transformer中使用了注意力机制，同一时刻理论上所有的输入都是可以看到的，但是这样在解码的时候不合理，所以使用了这个Masked Multi-Head Attention Encoder，即使用一个掩码机制来限制decoder去接受当前时刻t之后的输入，从而保证训练和预测的时候行为是一致的。）</p>
+<p><em><strong>注意力Attention</strong></em></p>
+<p>首先作者介绍了Attention Function的含义：attention function是一个将一个query和一系列key-value对映射为输出（output）的函数。这里的query、keys、values、output都是一些向量。output是values的加权和，所以output的维度和values的维度是一样的。对于每个value对应的权重是该value对应的key与query计算相似度之后得到的。（这里计算相似度的函数不一样就会导致不一样的注意力机制）</p>
+<p><em><strong>Scaled Dot-Product Attention</strong></em></p>
+<p><img src="/../image/../images/Transformer/attention-eqution.jpg" srcset="/img/loading.gif" lazyload alt="提出的Attention机制计算公式"></p>
+<p>文中提出的注意力机制中，query和key是等长的，都等于$d_k$，values为$d_v$。作者指出，将query和key做点积，结果作为相似度（如果两个等长向量的内积越大，即余弦值越大，那么两个向量的相似度越大）。将得到的结果除以$\sqrt{d_k}$，即向量的长度。query会和每一个key做内积，然后将得到的结果输入到softmax当中，得到N个非负的且加起来和等于1的权重。然后，将这些权重作用在N个key对应的N个value上面，这样就得到了最后的输出。</p>
+<p><em><strong>实际运算过程中对上述相似度计算过程的处理</strong></em></p>
+<p><img src="/../images/Transformer/query-key-number-comparision.jpg" srcset="/img/loading.gif" lazyload alt="query key-value矩阵形式对比"></p>
+<p>query可以写成一个矩阵$Q$（因为不止一个query），且需要注意的是上图中展示的Q（多个query组合得到的矩阵）中的query数量可以和key的数量不一致，但是每个query与key的长度一定是一致的，这样才能做内积。上图中的两个矩阵相乘之后，就可以得到一个$N\times M$的矩阵。然后，将该矩阵除以$\sqrt{d_k}$，之后对结果的每一行做softmax即可（行与行之间是独立的）。然后，将结果乘以values即可。最后就可以得到$N\times d_v$的矩阵。</p>
+<p>然后，作者指出了上述提出的注意力机制和传统的注意力机制的区别。一般来说有两种注意力机制：加型注意力（可以处理query和key不等长的情况）。另外一个叫做点积的注意力机制。本文提出的注意力机制基本上和点积注意力机制一样，只是本文的注意力机制中除了$\sqrt{d_k}$。</p>
+<p><em><strong>为什么本文提出的注意力机制需要除以一个$\sqrt{d_k}$</strong></em></p>
+<p>作者解释：当$d_k$不是那么大的时候，其实除与不除基本没有区别。但是对于较长的key和query来说，两者点积之后得到的矩阵，在通过softmax之后，会更加向1和0（两端）靠拢。这样的话，最后计算梯度的时候，梯度会比较小，那么在训练的时候就会出现模型跑不动（训练不起来）情况。</p>
+<p><img src="/../images/Transformer/Scaled-Dot-Product-Attention-and-Multi-Head-Attention.jpg" srcset="/img/loading.gif" lazyload alt="文中提出的点击缩放注意力计算函数和多头注意力机制"></p>
+<p>上图左子图中包含Masked Attention，具体来说，假设query和key是等长的，那么对t时刻，query与key计算时，应该只看$k_1-k_{t-1}$时刻，而不能看$k_t$及其之后的时刻。（因为$k_t$在t时刻还没有计算出来，但是对于注意力机制来说，实际上query可以看到所有key中内容，且query会与key中左右内容进行计算，计算是可以算的，但是在计算最后注意力机制输出的时候不要使用t时刻以及t时刻之后的key的内容即可，实际操作的时候，mask中将t以及t时刻之后的query与key计算的值换成非常大的负数，那么在通过softmax的时候，这些非常大的负数对应的权重就是0。）</p>
+<p><em><strong>Multi-Head Attention机制</strong></em></p>
+<p><img src="/../image/../images/Transformer/Multi-Head-attention-eqution.jpg" srcset="/img/loading.gif" lazyload alt="Multi-Head Attention"></p>
+<p>作者在文中说，通过将query&#x2F;key&#x2F;value投影到一个低维的向量中，投影h次，然后再做h次的注意力函数，然后将每个函数的输出并到一起，然后再投影得到最终的输出。为什么使用多头注意力机制，是因为本文提出的注意力机制实际上是没有可学习的参数，那么上图中的多头注意力机制中对于query&#x2F;key&#x2F;value输入首先通过的Linear线性层中的w和b是可以学习的。也就是说，给h次机会，希望这个多头注意力机制能够学习到不同的投影方法，使得在投影后的那个空间可以匹配得到不同模式需要的相似函数。（这个多头注意力机制与CNN中的多个输出通道有一种相似的感觉）</p>
+<p>在实际操作中，作者指出，由于注意力机制中残差连接的存在，输入和输出维度本来就是一样的，那么这个时候使用h个多头注意力机制，对应到每个注意力机制的输出就是原始的单注意力机制&#x2F;h（这里原始的输入输出维度为512，h&#x3D;8，那么多头注意力机制中每个头的输入输出维度为512&#x2F;8&#x3D;64）</p>
+<p><em><strong>在Transformer架构中使用注意力机制</strong></em></p>
+<p><img src="/../image/../images/Transformer/Transformer-architecture.png" srcset="/img/loading.gif" lazyload alt="Transformer模型架构"></p>
+<p>上图左子图为encdoer，其中首先将input输入复制三份，分别作为Multi-Head Attention中的key&#x2F;value&#x2F;query（这就叫做自注意力机制）。右子图中为decoder，其中首先为一个Masked Multi-Head Attention机制（前边已经解释过），然后是一个和encoder一样的Multi-Head Attention（该注意力层中，key&#x2F;value来自于encoder，而query来自于decoder的第一个Masked Multi-Head Attention）。</p>
+<p><em><strong>Point wise Feed Forward Networks</strong></em></p>
+<p><img src="/../image/../images/Transformer/FFN.jpg" srcset="/img/loading.gif" lazyload alt="FFN"></p>
+<p>其实，就是一个全连接前向传播网络，就是一个MLP（多层感知机）。但是，作者指出，和传统的FFN不一样的地方在于，其将序列中的每个点（可以理解为，加入输入是一段英文序列，那么一个点就表示一个单词）做一次FFN，即对每个词作用同样的一个MLP（共享权重）。其中，x表示一个512的向量。其中的$W_1$会将512投影成2048维的向量。然后，$W_2$会把2048维的向量又投影回512。</p>
+<p><em><strong>扩展：Transformer与CNN的区别</strong></em></p>
+<p><img src="/../images/Transformer/Transformer%E4%B8%8ERNN%E7%9A%84%E5%8C%BA%E5%88%AB.jpg" srcset="/img/loading.gif" lazyload alt="Transformer与CNN的区别"></p>
+<p>上图中左边为Transformer的注意力机制，右边为RNN（循环神经网络）。其中，RNN为了得到历史信息，其需要在t时刻使用t-1时刻的信息接入，这种就会造成一个问题，当前t时刻的信息会越来越大。而对于Transformer来说，其做到与RNN相同的获得历史全局信息的过程是使用多个注意力头。</p>
+<p><em><strong>embedding and softmax层</strong></em></p>
+<p>Transformer的输入是多个词源（token），那么在处理的时候需要将每个token映射为一个向量，那么embedding就是针对任何一个token，学习一个长为d的向量来表示。编码器和解码器都有一个embedding过程。最后在softmax之前的Linear线性层也需要一个embedding，这三个embedding层是同样的权重，这样训练起来会简单一些。还有一点，作者在文中说到，将权重乘了$\sqrt{d_{model}}$（原始论文中，$d_{model}$就是512）。因为，对于embedding层来说，当学习的向量维度变大之后，那么权重值就会变小，乘以$d_{model}$之后，再将embedding之后的token对应的向量与下边的positional encoding层进行相加，会使得两个向量在一个大概相同的scale进行。</p>
+<p><em><strong>positional encoding层</strong></em></p>
+<p>有这个层的原因是：attention层是不会有时序信息的。具体的公式如下：</p>
+<p><img src="/../images/Transformer/%E6%97%B6%E5%BA%8F%E4%BF%A1%E6%81%AF%E8%AE%A1%E7%AE%97%E5%85%AC%E5%BC%8F.jpg" srcset="/img/loading.gif" lazyload alt="Transformer中positional encoding是如何计算的"></p>
+<p>上式中，positional encoding是使用周期不一样的sin和cos计算出来的。</p>
+<p><em><strong>为什么使用自注意力机制</strong></em></p>
+<p><img src="/../images/Transformer/multi-comparision-table.jpg" srcset="/img/loading.gif" lazyload alt="不同类型层的最大路径长度、每层复杂性和最小顺序操作数（将Attention和受限Atten与RNN和CNN进行比较）"></p>
+<p>上表中，比较了四种不同类型的层的计算复杂度、顺序计算复杂度（就是说下一步计算需要等前边n步计算完成才能进行计算）、最大路径长度（一个信息从一个点走到另一个点需要走多远）。从表中可以看出，当序列的长度和整个模型宽度差不多的时候且深度都一样的话，实际上attention、rnn、cnn三个模型的复杂度基本上是差不多的。但是attention在信息的糅杂性上好一些。</p>
+<p>实际上，attention由于对模型做的假设很少，所以需要更多的数据和更大的模型才可以训练收敛。所以现在基于Transformer的模型都是特别大和特别贵。</p>
+<h3 id="训练设置（Training-Settings）"><a href="#训练设置（Training-Settings）" class="headerlink" title="训练设置（Training Settings）"></a>训练设置（Training Settings）</h3><p>文中指出，在训练的时候使用AdamW优化器对模型进行优化，同时使用drop out层对模型进行正则化操作，然后还使用Label Smoothing技术（最先出现在Inception V3中）。</p>
+<p>Label Smoothing解释：在使用softmax做最后的输出的时候，传统操作是如果输出接近于1，那么才认为是正确的，但是这里采用设置阈值为0.1（表示只要对一个词预测的置信度等于或超过0.1，那么就认为是正确的。）</p>
+<p>但是使用这种技术会导致最后的模型不确信度会增加。</p>
+<p><em><strong>Transformer中超参数的比较</strong></em></p>
+<p><img src="/../images/Transformer/Transformer%E4%B8%AD%E8%B6%85%E5%8F%82%E6%95%B0%E7%9A%84%E6%AF%94%E8%BE%83.jpg" srcset="/img/loading.gif" lazyload alt="Transformer中超参数的比较"></p>
+<p>虽然上表中看上去很多超参数，但是在实际训练的时候，其中能调节的：N、$d_{model}$、h（多头注意力中的头的数量h），其他的超参数都是计算得到的。</p>
+<h3 id="结论（Conclusion）"><a href="#结论（Conclusion）" class="headerlink" title="结论（Conclusion）"></a>结论（Conclusion）</h3><p>结论中首先说明，本文使用Transformer模型应用在机器翻译任务中，同时取代了之前使用较多的RNN layers，转而使用multi-headed slef-attention机制（这个也是Transformer模型的核心所在）。同时，结论又指出，在机器翻译任务上，Transformer相较于RNN或CNN架构的模型，具有更好性能和更快的训练收敛速度。然后，作者又说，对于Transformer这种纯注意力机制的模型感到激动（这在后边的爆发的基于Transformer的各种任务模型架构上得到了印证）。将Transformer模型架构用在输入形式不单纯为文本形式的其他形式，例如图片、视频等也是作者未来研究的方向。同时，使得生成不那么有序列也是未来的研究目标（个人举例：DETR中对N&#x3D;100个预测框的生成就是一次性得到的）。</p>
+<h3 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h3><p>这篇文章写作很简洁，一段话基本上就是在写一件事情。在写文章的时候可以将一些不重要的东西放到附录里面。</p>
+<p>Attention实际上只是做了整个序列信息的的聚合操作。后边的MLP等层是缺一不可的。如果缺少了这些Attention实际上是什么都学不到的。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Paper-Reading/" class="category-chain-item">Paper Reading</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+      
+        <a href="/tags/Object-Detection/" class="print-no-link">#Object Detection</a>
+      
+        <a href="/tags/Paper-Reading/" class="print-no-link">#Paper Reading</a>
+      
+        <a href="/tags/Transformer/" class="print-no-link">#Transformer</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>paper-reading-Transformer</div>
+      <div>https://thewangyang.github.io/2023/08/27/paper-reading-Transformer/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>wyy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>2023年8月27日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Updated on</div>
+          <div>2023年8月28日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/28/leetcode-notes-20230828/" title="my-leetcode-logs-20230828">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">my-leetcode-logs-20230828</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/26/paper-reading-Conditional-DETR/" title="paper-reading-Conditional-DETR">
+                        <span class="hidden-mobile">paper-reading-Conditional-DETR</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
