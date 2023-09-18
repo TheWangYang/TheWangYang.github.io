@@ -24,7 +24,7 @@
 <meta property="og:description" content="128. 最长连续序列（C++使用set实现）12345678910111213141516171819202122232425262728class Solution &amp;#123;public:    int longestConsecutive(vector&lt;int&gt;&amp; nums) &amp;#123;        &#x2F;&#x2F;使用set集合实现        unordered_set">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-17T00:41:40.212Z">
-<meta property="article:modified_time" content="2023-09-17T06:28:50.266Z">
+<meta property="article:modified_time" content="2023-09-18T02:49:56.443Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="leetcode hot 100">
 <meta property="article:tag" content="Alibaba">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k words
+          4.9k words
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          32 mins
+          41 mins
         
       </span>
     
@@ -324,7 +324,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2023年9月17日 下午
+                    Last updated on 2023年9月18日 上午
                   
                 
               </p>
@@ -352,7 +352,8 @@
 <h2 id="53-最大子数组和（C-贪心算法实现）"><a href="#53-最大子数组和（C-贪心算法实现）" class="headerlink" title="53. 最大子数组和（C++贪心算法实现）"></a>53. 最大子数组和（C++贪心算法实现）</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> maxSubArray(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-built_in">int</span> result = INT32_MIN;<br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt; nums.size();i++)&#123;<br>            <span class="hljs-keyword">count</span> += nums[i];<br>            <br>            <span class="hljs-keyword">if</span>(result &lt; <span class="hljs-keyword">count</span>)&#123;<br>                result = <span class="hljs-keyword">count</span>;<br>            &#125;<br><br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">count</span> &lt;= <span class="hljs-number">0</span>)&#123;<br>                <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;<span class="hljs-comment">//从i + 1开始</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">int</span> maxSubArray(vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-built_in">int</span> result = INT32_MIN;<br>        <span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">for</span>(auto&amp; it: nums)&#123;<br>            <span class="hljs-keyword">count</span> += it;<br>            result = max(result, <span class="hljs-keyword">count</span>);<br><br>            <span class="hljs-keyword">if</span>(<span class="hljs-keyword">count</span> &lt; <span class="hljs-number">0</span>)&#123;<br>                <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<h2 id="56-合并区间（C-使用贪心算法实现）"><a href="#56-合并区间（C-使用贪心算法实现）" class="headerlink" title="56. 合并区间（C++使用贪心算法实现）"></a>56. 合并区间（C++使用贪心算法实现）</h2><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">class</span> <span class="hljs-symbol">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//cmp()函数用于按照区间的左边进行排序</span><br>    static <span class="hljs-built_in">bool</span> cmp(<span class="hljs-keyword">const</span> vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; a, <span class="hljs-keyword">const</span> vector&lt;<span class="hljs-built_in">int</span>&gt;&amp; b)&#123;<br>        <span class="hljs-keyword">return</span> a[<span class="hljs-number">0</span>] &lt; b[<span class="hljs-number">0</span>];<span class="hljs-comment">//按照区间左边界升序排序</span><br>    &#125;<br><br>    vector&lt;vector&lt;<span class="hljs-built_in">int</span>&gt;&gt; merge(vector&lt;vector&lt;<span class="hljs-built_in">int</span>&gt;&gt;&amp; <span class="hljs-built_in">int</span>ervals) &#123;<br>        sort(<span class="hljs-built_in">int</span>ervals.begin(), <span class="hljs-built_in">int</span>ervals.end());<br><br>        vector&lt;vector&lt;<span class="hljs-built_in">int</span>&gt;&gt; result;<br><br>        <span class="hljs-comment">//记录开始区间的左边界和有边界</span><br>        <span class="hljs-built_in">int</span> left = <span class="hljs-built_in">int</span>ervals[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];<br>        <span class="hljs-built_in">int</span> right = <span class="hljs-built_in">int</span>ervals[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br><br>        <span class="hljs-comment">//将第一个区间放入到result中</span><br>        result.push_back(<span class="hljs-built_in">int</span>ervals[<span class="hljs-number">0</span>]);<br><br>        <span class="hljs-comment">//从index = 1开始遍历</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">1</span>;i &lt; <span class="hljs-built_in">int</span>ervals.size();i++)&#123;<br>            <span class="hljs-comment">//如果当前区间的左边界小于上一个区间的右边界</span><br>            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">int</span>ervals[i][<span class="hljs-number">0</span>] &lt;= right)&#123;<br>                <span class="hljs-comment">//定义tmp数组</span><br>                vector&lt;<span class="hljs-built_in">int</span>&gt; tmp;<br>                tmp.push_back(left);<br>                tmp.push_back(max(right, <span class="hljs-built_in">int</span>ervals[i][<span class="hljs-number">1</span>]));<br>                <span class="hljs-comment">//弹出上一个区间</span><br>                result.pop_back();<br>                <span class="hljs-comment">//将当前区间添加到result中</span><br>                result.push_back(tmp);<br><br>                <span class="hljs-comment">//更新right</span><br>                right = max(right, <span class="hljs-built_in">int</span>ervals[i][<span class="hljs-number">1</span>]);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">//表示当前区间与上一个区间没有交集，直接加入即可</span><br>                result.push_back(<span class="hljs-built_in">int</span>ervals[i]);<br>                <span class="hljs-comment">//更新left和right</span><br>                left = <span class="hljs-built_in">int</span>ervals[i][<span class="hljs-number">0</span>];<br>                right = <span class="hljs-built_in">int</span>ervals[i][<span class="hljs-number">1</span>];<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 
 
 
@@ -400,7 +401,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>2023年9月17日</div>
+          <div>2023年9月18日</div>
         </div>
       
       
