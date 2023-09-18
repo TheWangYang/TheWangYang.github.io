@@ -24,7 +24,7 @@
 <meta property="og:description" content="160. 相交链表（C++使用双指针实现）1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859&#x2F;** * Definition for singly-linked list. * struct ListNode &amp;#123; *">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-18T06:32:16.000Z">
-<meta property="article:modified_time" content="2023-09-18T09:10:55.079Z">
+<meta property="article:modified_time" content="2023-09-18T13:50:45.664Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="leetcode hot 100">
 <meta property="article:tag" content="Alibaba">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5k words
+          6.5k words
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          42 mins
+          54 mins
         
       </span>
     
@@ -324,7 +324,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2023年9月18日 下午
+                    Last updated on 2023年9月18日 晚上
                   
                 
               </p>
@@ -351,11 +351,11 @@
 
 
 
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<h2 id="2-两数相加（C-实现）"><a href="#2-两数相加（C-实现）" class="headerlink" title="2. 两数相加（C++实现）"></a>2. 两数相加（C++实现）</h2><figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * struct ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode *next;</span><br><span class="hljs-comment"> *     ListNode() : val(0), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;</span><br><span class="hljs-comment"> * &#125;;</span><br><span class="hljs-comment"> */</span><br>class Solution &#123;<br>public:<br>    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) &#123;<br>        <span class="hljs-comment">//思路：使用进位和当前位变量控制加法进行</span><br>        ListNode* h1 = l1;<br>        ListNode* h2 = l2;<br><br>        ListNode* newHead = new ListNode(<span class="hljs-number">0</span>);<br>        ListNode* resultNode = newHead;<br><br>        int jin = <span class="hljs-number">0</span>;<br>        int curr = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">while</span>(h1 != NULL &amp;&amp; h2 != NULL)&#123;<br>            <span class="hljs-comment">//当前位置应当保留的数值</span><br>            <span class="hljs-function"><span class="hljs-title">curr</span> = (h1-&gt;</span><span class="hljs-function"><span class="hljs-title">val</span> + h2-&gt;</span>val + jin) % <span class="hljs-number">10</span>;<br>            <span class="hljs-comment">//得到进位的数值</span><br>            <span class="hljs-function"><span class="hljs-title">jin</span> = (h1-&gt;</span><span class="hljs-function"><span class="hljs-title">val</span> + h2-&gt;</span>val + jin) / <span class="hljs-number">10</span>;<br>            ListNode* tmpNode = new ListNode(curr);<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> -&gt;</span> next = tmpNode;<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> = newHead -&gt;</span> next;<br><br>            <span class="hljs-function"><span class="hljs-title">h1</span> = h1 -&gt;</span> next;<br>            <span class="hljs-function"><span class="hljs-title">h2</span> = h2 -&gt;</span> next;<br>        &#125;<br><br>        <span class="hljs-comment">//如果head1不为NULL</span><br>        <span class="hljs-keyword">while</span>(h1 != NULL)&#123;<br>            <span class="hljs-comment">//当前位置应当保留的数值</span><br>            <span class="hljs-function"><span class="hljs-title">curr</span> = (h1-&gt;</span>val + jin) % <span class="hljs-number">10</span>;<br>            <span class="hljs-comment">//得到进位的数值</span><br>            <span class="hljs-function"><span class="hljs-title">jin</span> = (h1-&gt;</span>val + jin) / <span class="hljs-number">10</span>;<br>            ListNode* tmpNode = new ListNode(curr);<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> -&gt;</span> next = tmpNode;<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> = newHead -&gt;</span> next;<br><br>            <span class="hljs-function"><span class="hljs-title">h1</span> = h1 -&gt;</span> next;<br>        &#125;<br><br>        <span class="hljs-comment">//如果head2不为NULL</span><br>        <span class="hljs-keyword">while</span>(h2 != NULL)&#123;<br>            <span class="hljs-comment">//当前位置应当保留的数值</span><br>            <span class="hljs-function"><span class="hljs-title">curr</span> = (h2-&gt;</span>val + jin) % <span class="hljs-number">10</span>;<br>            <span class="hljs-comment">//得到进位的数值</span><br>            <span class="hljs-function"><span class="hljs-title">jin</span> = (h2-&gt;</span>val + jin) / <span class="hljs-number">10</span>;<br>            ListNode* tmpNode = new ListNode(curr);<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> -&gt;</span> next = tmpNode;<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> = newHead -&gt;</span> next;<br>            <span class="hljs-function"><span class="hljs-title">h2</span> = h2 -&gt;</span> next;<br>        &#125;<br><br>        <span class="hljs-comment">//判断最后jin数值是否为0，不为0，继续增加</span><br>        <span class="hljs-keyword">if</span>(jin != <span class="hljs-number">0</span>)&#123;<br>            ListNode* jinNode = new ListNode(jin);<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> -&gt;</span> next = jinNode;<br>            <span class="hljs-function"><span class="hljs-title">newHead</span> = newHead -&gt;</span> next;<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-title">return</span> resultNode -&gt;</span> next;<br>        <br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 
 
-
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
                 
               </div>
             
