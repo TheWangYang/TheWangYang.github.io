@@ -16,26 +16,25 @@
   <meta name="author" content="wyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="图像分类任务中，训练数据太少的问题 使用数据增强方法（旋转、缩放、平移、添加高斯噪声等变换） 特征层面上可以使用上采样等 微调（Fine-tuning）  模型的评估指标Accuracy（准确率）表示：分类正确的样本数量占总样本数量的比例，当不同类别的样本占比较大时，模型的分类能力会更多地取决于占比较大的样本类别，那么此时就可以使用每个样本下的准确率的平均值作为判定标准（叫做平均准确率）。 精确率">
+    <meta name="description" content="2. 两数相加（Java实现）1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&#x2F;** * Definition for singly-linked list. * public cl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="baimian-machine-learning-20230921">
-<meta property="og:url" content="https://thewangyang.github.io/2023/09/21/baimian-machine-learning-20230921/index.html">
+<meta property="og:title" content="leetcode-hot-100-20230922">
+<meta property="og:url" content="https://thewangyang.github.io/2023/09/22/leetcode-hot-100-20230922/index.html">
 <meta property="og:site_name" content="wyy&#39;s homepage">
-<meta property="og:description" content="图像分类任务中，训练数据太少的问题 使用数据增强方法（旋转、缩放、平移、添加高斯噪声等变换） 特征层面上可以使用上采样等 微调（Fine-tuning）  模型的评估指标Accuracy（准确率）表示：分类正确的样本数量占总样本数量的比例，当不同类别的样本占比较大时，模型的分类能力会更多地取决于占比较大的样本类别，那么此时就可以使用每个样本下的准确率的平均值作为判定标准（叫做平均准确率）。 精确率">
+<meta property="og:description" content="2. 两数相加（Java实现）1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&#x2F;** * Definition for singly-linked list. * public cl">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2023-09-21T07:29:35.107Z">
-<meta property="article:modified_time" content="2023-09-22T00:49:08.175Z">
+<meta property="article:published_time" content="2023-09-22T06:46:43.000Z">
+<meta property="article:modified_time" content="2023-09-22T07:01:06.768Z">
 <meta property="article:author" content="wyy">
-<meta property="article:tag" content="Deep Learning">
-<meta property="article:tag" content="Machine Learning">
-<meta property="article:tag" content="Computer Vision">
+<meta property="article:tag" content="leetcode hot 100">
+<meta property="article:tag" content="Alibaba">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>baimian-machine-learning-20230921 - wyy&#39;s homepage</title>
+  <title>leetcode-hot-100-20230922 - wyy&#39;s homepage</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="baimian-machine-learning-20230921"></span>
+            <span id="subtitle" data-typed-text="leetcode-hot-100-20230922"></span>
           
         </div>
 
@@ -239,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-21 15:29" pubdate>
-          2023年9月21日 下午
+        <time datetime="2023-09-22 14:46" pubdate>
+          2023年9月22日 下午
         </time>
       </span>
     
@@ -251,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k words
+          1.3k words
         
       </span>
     
@@ -262,7 +261,7 @@
         
         
         
-          13 mins
+          11 mins
         
       </span>
     
@@ -320,12 +319,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">baimian-machine-learning-20230921</h1>
+            <h1 id="seo-header">leetcode-hot-100-20230922</h1>
             
               <p class="note note-info">
                 
                   
-                    Last updated on 2023年9月22日 早上
+                    Last updated on 2023年9月22日 下午
                   
                 
               </p>
@@ -333,27 +332,10 @@
             
               <div class="markdown-body">
                 
-                <h2 id="图像分类任务中，训练数据太少的问题"><a href="#图像分类任务中，训练数据太少的问题" class="headerlink" title="图像分类任务中，训练数据太少的问题"></a>图像分类任务中，训练数据太少的问题</h2><ul>
-<li>使用数据增强方法（旋转、缩放、平移、添加高斯噪声等变换）</li>
-<li>特征层面上可以使用上采样等</li>
-<li>微调（Fine-tuning）</li>
-</ul>
-<h2 id="模型的评估指标"><a href="#模型的评估指标" class="headerlink" title="模型的评估指标"></a>模型的评估指标</h2><p>Accuracy（准确率）表示：分类正确的样本数量占总样本数量的比例，当不同类别的样本占比较大时，模型的分类能力会更多地取决于占比较大的样本类别，那么此时就可以使用每个样本下的准确率的平均值作为判定标准（叫做平均准确率）。</p>
-<p>精确率表示：分类正确的样本数占分类器判定为正样本的样本个数的比例。</p>
-<p>召回率表示：模型分类正确的正样本个数在数据中实际正样本个数中所占的比例。</p>
-<p>对模型性能的综合评估不仅需要看TopN的精确率和召回率，同时还需要关注P-R曲线。</p>
-<p>P-R曲线的横轴是召回率，纵轴是精确率，PR曲线上的一个点表示，在某个阈值下，模型将大于该阈值的分类结果化为正样本，小于该阈值的分类结果划分为负样本，此时返回结果对应的召回率和精确率。整个PR曲线是将阈值从大到小进行设置而生成的。</p>
-<p>F1 score是精确率和召回率的调和平均值：<br>$$F1_score &#x3D; \frac{2 \times precision \times recall}{precision \times recall}$$</p>
-<p>RMSE指标存在的问题：如果存在极少数的样本预测值与实际的样本值之间存在很大的差距，那么即便模型预测能力很好，也会存在RMSE值很高的情况。应对RMSE值很高的情况的方法：1.去除这些离群点（去噪）；2.将离群点作为正常的模型训练阶段的输入，让模型适应这些离群点；3.寻找更加合适的指标来评估模型（例如：平均绝对百分比误差MAPE，相较于RMSE来说，MAPE对每个离群点进行了归一化）；</p>
-<h2 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h2><p>ROC曲线是评估二分类器性能的最重要指标之一。</p>
-<p>ROC叫做受试者工作特征曲线。</p>
-<p>ROC的横坐标称为假阳性率FPR，纵坐标为真阳性率TPR，其中FPR和TPR的计算公式分别为：<br>$$FPR&#x3D;\frac{FP}{N}$$<br>$$TPR&#x3D;\frac{TP}{P}$$<br>上式中，P为真实的正样本数量，N为真实的负样本数量，TP是P个正样本中被分类器预测为正样本的个数，FP是N个负样本中被分类器预测为正样本的个数。</p>
-<p>实际上，ROC曲线是通过不断移动分类器的“截断点”来生成曲线上的一组关键点的。所谓的“截断点”实际上就是区分模型预测输出的结果是正样本还是负样本的阈值。</p>
-<h2 id="AUC面积如何计算"><a href="#AUC面积如何计算" class="headerlink" title="AUC面积如何计算"></a>AUC面积如何计算</h2><p>AUC是ROC曲线下面积，计算的时候只需要对ROC曲线沿着横轴进行积分即可。实际上，一般来说ROC曲线的点都在y&#x3D;x这条线的上方，也就是说计算出来的分类器的AUC一般在0.5-1之间，且计算出来的AUC面积越接近1，说明模型的分类性能越好。</p>
-<h2 id="ROC曲线相对于PR曲线有什么特点？"><a href="#ROC曲线相对于PR曲线有什么特点？" class="headerlink" title="ROC曲线相对于PR曲线有什么特点？"></a>ROC曲线相对于PR曲线有什么特点？</h2><p>ROC曲线在正负样本发生变化时，曲线基本不变，但是PR曲线会发生剧烈的变化。这个特点可以使ROC曲线能够尽量降低测试集变化所带来的干扰，更加客观地衡量模型本身的性能。</p>
-<h2 id="余弦距离的应用"><a href="#余弦距离的应用" class="headerlink" title="余弦距离的应用"></a>余弦距离的应用</h2><p>相同的两个向量之间的余弦相似度为1，余弦距离为0。</p>
-<p>为什么使用余弦相似度计算两个向量之间的距离而不是使用欧式距离？<br>回答：余弦相似度重点关注的是两个向量之间的夹角角度问题，其取值范围为[-1,1]。举个例子，当两个向量意思相近但长度相差较大时，如果使用词频或词向量作为特征，来计算欧式距离会很大。而使用余弦相似度的话，它们之间的夹角可能很小，很相近。同时，在高维特征下，余弦相似度仍然能够保持相近的向量的余弦相似度值接近1，正交的向量的余弦相似度值为0，相反的向量得到的值接近-1。而欧式距离受向量维度的影响，范围不固定且含义模糊。</p>
+                <h2 id="2-两数相加（Java实现）"><a href="#2-两数相加（Java实现）" class="headerlink" title="2. 两数相加（Java实现）"></a>2. 两数相加（Java实现）</h2><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> ListNode addTwoNumbers(ListNode l1, ListNode l2) &#123;<br>        ListNode p1 = l1;<br>        ListNode p2 = l2;<br>        ListNode <span class="hljs-keyword">new</span><span class="hljs-type">Head</span> = <span class="hljs-keyword">new</span> <span class="hljs-type">ListNode</span>(<span class="hljs-number">0</span>);<br>        ListNode resultHead = <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>;<br><br>        <span class="hljs-comment">//保存当前位的数字</span><br>        int curr = <span class="hljs-number">0</span>;<br>        <span class="hljs-comment">//保存进位的数字</span><br>        int jin = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-comment">//当两个节点均不等于空的时候进入循环</span><br>        <span class="hljs-keyword">while</span>(p1 != <span class="hljs-literal">null</span> &amp;&amp; p2 != <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-comment">//得到当前位置的数字</span><br>            curr = (p1.val + p2.val + jin) % <span class="hljs-number">10</span>;<br>            <span class="hljs-comment">//将当前位置添加到结果链表中</span><br>            ListNode tmp = <span class="hljs-keyword">new</span> <span class="hljs-type">ListNode</span>(curr);<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next = tmp;<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span> = <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next;<br><br>            <span class="hljs-comment">//得到进位的数字</span><br>            jin = (p1.val + p2.val + jin) / <span class="hljs-number">10</span>;<br><br>            <span class="hljs-comment">//到下一个结点</span><br>            p1 = p1.next;<br>            p2 = p2.next;<br>        &#125;<br><br>        <span class="hljs-comment">//如果l1还有剩余</span><br>        <span class="hljs-keyword">while</span>(p1 != <span class="hljs-literal">null</span>)&#123;<br>            curr = (p1.val + jin) % <span class="hljs-number">10</span>;<br>            jin = (p1.val + jin) / <span class="hljs-number">10</span>;<br>            ListNode tmp = <span class="hljs-keyword">new</span> <span class="hljs-type">ListNode</span>(curr);<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next = tmp;<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span> = <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next;<br><br>            p1 = p1.next;<br>        &#125;<br><br>        <span class="hljs-comment">//如果l2还有剩余</span><br>        <span class="hljs-keyword">while</span>(p2 != <span class="hljs-literal">null</span>)&#123;<br>            curr = (p2.val + jin) % <span class="hljs-number">10</span>;<br>            jin = (p2.val + jin) / <span class="hljs-number">10</span>;<br><br>            ListNode tmp = <span class="hljs-keyword">new</span> <span class="hljs-type">ListNode</span>(curr);<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next = tmp;<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span> = <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next;<br><br>            p2 = p2.next;<br>        &#125;<br><br>        <span class="hljs-keyword">if</span>(jin != <span class="hljs-number">0</span>)&#123;<br>            ListNode tmp = <span class="hljs-keyword">new</span> <span class="hljs-type">ListNode</span>(jin);<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next = tmp;<br>            <span class="hljs-keyword">new</span><span class="hljs-type">Head</span> = <span class="hljs-keyword">new</span><span class="hljs-type">Head</span>.next;<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> resultHead.next;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -361,36 +343,13 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/baimian-machine-learning/" class="category-chain-item">baimian-machine-learning</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
+        <a href="/tags/leetcode-hot-100/" class="print-no-link">#leetcode hot 100</a>
       
-        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
-      
-        <a href="/tags/Computer-Vision/" class="print-no-link">#Computer Vision</a>
+        <a href="/tags/Alibaba/" class="print-no-link">#Alibaba</a>
       
     </div>
   
@@ -402,8 +361,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>baimian-machine-learning-20230921</div>
-      <div>https://thewangyang.github.io/2023/09/21/baimian-machine-learning-20230921/</div>
+      <div>leetcode-hot-100-20230922</div>
+      <div>https://thewangyang.github.io/2023/09/22/leetcode-hot-100-20230922/</div>
     </div>
     <div class="license-meta">
       
@@ -415,7 +374,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>2023年9月21日</div>
+          <div>2023年9月22日</div>
         </div>
       
       
@@ -452,18 +411,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/22/leetcode-hot-100-20230922/" title="leetcode-hot-100-20230922">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode-hot-100-20230922</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/18/leetcode-hot-100-20230918/" title="leetcode-hot-100-20230918">
-                        <span class="hidden-mobile">leetcode-hot-100-20230918</span>
+                      <a href="/2023/09/21/baimian-machine-learning-20230921/" title="baimian-machine-learning-20230921">
+                        <span class="hidden-mobile">baimian-machine-learning-20230921</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
