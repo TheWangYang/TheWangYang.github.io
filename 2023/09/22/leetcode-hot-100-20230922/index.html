@@ -24,7 +24,7 @@
 <meta property="og:description" content="2. 两数相加（Java实现）1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071&#x2F;** * Definition for singly-linked list. * public cl">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-22T06:46:43.000Z">
-<meta property="article:modified_time" content="2023-09-22T07:31:09.770Z">
+<meta property="article:modified_time" content="2023-09-23T02:02:25.285Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="leetcode hot 100">
 <meta property="article:tag" content="Alibaba">
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          2.7k words
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          16 mins
+          23 mins
         
       </span>
     
@@ -324,7 +324,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2023年9月22日 下午
+                    Last updated on 2023年9月23日 上午
                   
                 
               </p>
@@ -338,8 +338,10 @@
 <h2 id="19-删除链表的倒数第-N-个结点（Java实现）"><a href="#19-删除链表的倒数第-N-个结点（Java实现）" class="headerlink" title="19. 删除链表的倒数第 N 个结点（Java实现）"></a>19. 删除链表的倒数第 N 个结点（Java实现）</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> ListNode removeNthFromEnd(ListNode head, <span class="hljs-built_in">int</span> n) &#123;<br>        ListNode dummy = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);<br>        dummy.<span class="hljs-keyword">next</span> = head;<br><br>        ListNode slow = dummy;<br>        ListNode fast = dummy;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>;i &lt;= n;i++)&#123;<br>            fast = fast.<span class="hljs-keyword">next</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">while</span>(fast != <span class="hljs-literal">null</span>)&#123;<br>            slow = slow.<span class="hljs-keyword">next</span>;<br>            fast = fast.<span class="hljs-keyword">next</span>;<br>        &#125;<br><br>        slow.<span class="hljs-keyword">next</span> = slow.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span>;<br><br>        <span class="hljs-keyword">return</span> dummy.<span class="hljs-keyword">next</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<h2 id="24-两两交换链表中的节点（Java实现）"><a href="#24-两两交换链表中的节点（Java实现）" class="headerlink" title="24. 两两交换链表中的节点（Java实现）"></a>24. 两两交换链表中的节点（Java实现）</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs axapta"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> ListNode swapPairs(ListNode head) &#123;<br>        ListNode resultNode = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);<br>        resultNode.<span class="hljs-keyword">next</span> = head;<br>        ListNode curr = resultNode;<br><br>        <span class="hljs-keyword">while</span>(curr.<span class="hljs-keyword">next</span> != <span class="hljs-literal">null</span> &amp;&amp; curr.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span> != <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-comment">//记录slow结点</span><br>            ListNode slowTmp = curr.<span class="hljs-keyword">next</span>;<br>            <span class="hljs-comment">//记录fastNode.next结点</span><br>            ListNode fastTmp = curr.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span>;<br><br>            <span class="hljs-comment">//交换头结点指向头节点的下一个结点</span><br>            curr.<span class="hljs-keyword">next</span> = curr.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span>;<br>            <span class="hljs-comment">//更新curr.next.next为slowTmp</span><br>            curr.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span> = slowTmp;<br>            <span class="hljs-comment">//更新curr为fastTmp</span><br>            curr.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span> = fastTmp;<br><br>            <span class="hljs-comment">//更新curr</span><br>            curr = curr.<span class="hljs-keyword">next</span>.<span class="hljs-keyword">next</span>;<br><br>        &#125;<br><br>        <span class="hljs-keyword">return</span> resultNode.<span class="hljs-keyword">next</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
                 
               </div>
             
@@ -384,7 +386,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>2023年9月22日</div>
+          <div>2023年9月23日</div>
         </div>
       
       
