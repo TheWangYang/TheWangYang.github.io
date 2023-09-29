@@ -24,7 +24,7 @@
 <meta property="og:description" content="101. 对称二叉树（Java递归实现）12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849&#x2F;** * Definition for a binary tree node. * public class TreeNode &amp;#123; *     int val; *">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2023-09-28T00:41:38.000Z">
-<meta property="article:modified_time" content="2023-09-28T14:04:14.958Z">
+<meta property="article:modified_time" content="2023-09-29T02:18:06.226Z">
 <meta property="article:author" content="wyy">
 <meta property="article:tag" content="leetcode hot 100">
 <meta property="article:tag" content="Alibaba">
@@ -324,7 +324,7 @@
               <p class="note note-info">
                 
                   
-                    Last updated on 2023年9月28日 晚上
+                    Last updated on 2023年9月29日 上午
                   
                 
               </p>
@@ -339,6 +339,8 @@
 
 
 <h2 id="543-二叉树的直径（Java实现）"><a href="#543-二叉树的直径（Java实现）" class="headerlink" title="543. 二叉树的直径（Java实现）"></a>543. 二叉树的直径（Java实现）</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;<br><br>    <span class="hljs-built_in">int</span> result = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">digui</span>(<span class="hljs-params">TreeNode root</span>)</span>&#123;<br>        <span class="hljs-comment">//思路：左边到最深处的叶子结点，右边到最深处的叶子结点</span><br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-built_in">int</span> leftDepth = digui(root.left);<br>        <span class="hljs-built_in">int</span> rightDepth = digui(root.right);<br><br>        result = Math.max(result, leftDepth + rightDepth + <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> Math.max(leftDepth, rightDepth) + <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">diameterOfBinaryTree</span>(<span class="hljs-params">TreeNode root</span>)</span> &#123;<br>        result = <span class="hljs-number">1</span>;<br><br>        digui(root);<br><br>        <span class="hljs-keyword">return</span> result - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 
 
                 
@@ -385,7 +387,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Updated on</div>
-          <div>2023年9月28日</div>
+          <div>2023年9月29日</div>
         </div>
       
       
@@ -415,6 +417,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/09/29/leetcode-hot-100-20230929/" title="leetcode-hot-100-20230928">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode-hot-100-20230928</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
