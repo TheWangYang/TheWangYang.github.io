@@ -33,7 +33,7 @@ In my life, I read, travel, rap, and play basketball.
 # Selected work
 
 - **Computer-Using Agent (CUA)** <br>
-  OpenAI (core contributor) <br>
+  OpenAI <br>
   A universal agent/interface to interact with the digital world. <br>
     [product](https://operator.chatgpt.com) |
     [blogpost](https://openai.com/index/computer-using-agent/) |
@@ -43,7 +43,7 @@ In my life, I read, travel, rap, and play basketball.
 
 
 - **Deep Research** <br>
-  OpenAI (core contributor) <br>
+  OpenAI <br>
   An agent that navigates and reasons over the Internet to research for you. <br>
     [product](https://chatgpt.com) |
     [blogpost](https://openai.com/index/introducing-deep-research/) 
