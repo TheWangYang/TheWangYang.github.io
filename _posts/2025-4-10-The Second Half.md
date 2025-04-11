@@ -1,7 +1,6 @@
-
 ---
 layout: post
-title: Ungrounded Meaning
+title: The Second Half
 ---
 
 The Second Half
