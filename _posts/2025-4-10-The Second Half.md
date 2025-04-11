@@ -3,20 +3,20 @@ layout: post
 title: The Second Half
 ---
 
-The Second Half
+tldr: We’re at AI’s halftime.
 
-tldr: We’re at AI’s halftime. 
+For decades, AI has largely been about developing new training methods and models. And it worked: from beating world champions at chess and Go, surpassing most humans on the SAT and bar exams, to earning IMO and IOI gold medals. Behind these milestones in the history book — DeepBlue, AlphaGo, GPT-4, and the o-series — are fundamental innovations in AI methods: search, deep RL, scaling, and reasoning. 
 
-For decades, AI has largely been about developing new methods, models, and algorithms that could show improvements in major benchmarks. And it worked: from beating world champions at chess and Go, surpassing most humans on the SAT and bar exams, to earning IMO and IOI gold medals. Behind these historic milestones—DeepBlue, AlphaGo, GPT-4, and the o-series—are fundamental innovations in AI methods: search, deep RL, scaling, and reasoning. 
+So what’s different now? In three words: **RL finally works**. More precisely: **RL finally generalizes**. After several major detours, we’ve landed on a working recipe to solve a wide range of RL tasks using language and reasoning. Even a year ago, if you told most AI researchers that a single recipe could tackle software engineering, creative writing, IMO-level math, mouse-and-keyboard manipulation, and long-form question answering — they’d laugh at your hallucinations. Each of these tasks is incredibly difficult and many researchers spend their entire PhDs focused on just one narrow slice. 
 
-What’s different now? In three words: RL finally works. More precisely: RL finally generalizes. After several major detours, we’ve landed on a working recipe to solve a wide range of RL tasks using language and reasoning. Even a year ago, if you told most AI researchers that a single recipe could tackle software engineering, creative writing, IMO-level math, mouse-and-keyboard manipulation, and long-form question answering — they’d laugh at your hallucinations. Each of these tasks is incredibly difficult and many researchers spend their entire PhDs focused on just one narrow slice. Yet it happened.
+Yet it happened.
 
-So what comes next? The second half of AI—starting now—will shift focus from solving well-defined problems to defining the right problems. In this new era, evaluation takes center stage. Instead of just asking, “Can we train a model to solve X?”, we’re asking, “What should we be training AI to do, and how do we measure real progress?” To thrive in this second half, we’ll need a timely shift in mindset and skill set, ones perhaps closer to a product manager than to a scientist or hacker.
+So what comes next? The second half of AI — starting now — will shift focus from solving problems to defining problems. In this new era, evaluation becomes more important than training. Instead of just asking, “Can we train a model to solve X?”, we’re asking, “What should we be training AI to do, and how do we measure real progress?” To thrive in this second half, we’ll need a timely shift in mindset and skill set, ones perhaps closer to a product manager.
 
 
 ## The first half 
 
-To make sense of the first half, let’s make sense of its winners. What do you consider to be the most impactful AI papers so far?
+To make sense of the first half, look at its winners. What do you consider to be the most impactful AI papers so far?
 
 I tried the quiz in Stanford 224N, and the answers were not surprising: Transformer, AlexNet, GPT-3, etc. What’s common about these papers? They propose some fundamental breakthroughs to train better models. But also, they managed to publish their papers by showing some (significant) improvements on some benchmarks.
 
@@ -49,6 +49,16 @@ Only after GPT-2 or GPT-3, it turned out that the missing piece is priors. You n
 
 
 Language pre-training created a good priors for chatting, but not for everything. For playing a game with drastically different 
+
+## The second half
+
+
+
+## Acknowledgements
+
+This blogpost is based on my talk given at Stanford 224N and Columbia.
+
+I asked OpenAI deep research to read my slides and write a draft. Thanks for its help.
 
 
 
