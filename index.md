@@ -193,4 +193,4 @@ In my life, I read, travel, rap, and play basketball.
 * Antoni Gaudí（dosde）
 * 西方语言学史 （姚小平） -->
 
-(last updated: 1 2026)
+last updated: 1 2026
