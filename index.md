@@ -30,7 +30,7 @@ In my life, I read, travel, rap, and play basketball.
 - Jul 2023: I wrote a [blog post](https://princeton-nlp.github.io/language-agent-impact/) with Karthik about opportunities and risks of language agents! Comment [here](https://twitter.com/ShunyuYao12/status/1683827766104408066).
 <!---- Apr 2023: I attended LangChain's Agent [webinar](https://www.youtube.com/watch?v=1gRlCjy18m4). Summary [here](https://twitter.com/jh_damm/status/1646233627661828109).   -->
 
-# Educational background
+# Education
 
 - **Xi'an Jiaotong University** <br>
   **Master's degree**, AI, 2022.9 - 2025.6<br>
@@ -40,7 +40,7 @@ In my life, I read, travel, rap, and play basketball.
   **Bachelor's degree**, Software Engineering, 2018.9 - 2022.6 <br>
   Four-year GPA: 3.5/4 (Major ranking: 9/184, top 4.89%) CET-6: 501  CET-4: 545  IELTS: 6.5 (Overall score)
 
-# Work Experience
+# Experience
 - **Kuaishou Technology Co., Ltd.**
   Recommendation Algorithm Engineer, June 2025 - Present
 
