@@ -6,11 +6,11 @@ permalink: /index.html
 
 <img style="float:right; padding-left:10px" src="images/self.jpeg" width="220" height="220">
 
-I am a researcher at OpenAI. 
+I am a recommendation algorithm engineer at KuaiShou.
 
 <!--Previously, I obtained my PhD from Princeton University advised by [Karthik Narasimhan](https://www.cs.princeton.edu/~karthikn/), and my bachelor's from Yao Class at Tsinghua University.
 -->
-I study agents.
+I study LLM4Rec and recommendation algorithms.
 
 <!--
 In my work, I study agents.
