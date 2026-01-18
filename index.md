@@ -170,31 +170,28 @@ In my life, I read, travel, rap, and play basketball.
 - Familiar with the end-to-end workflow of single-column short video recommendation algorithms (recall/coarse ranking/fine ranking/mixed ranking), and possesses rich experience in strategy optimization and iteration (audience-based optimization/coarse and fine ranking volume guarantee/fine ranking multi-queue scoring distribution shaping/negative feedback user retention LT optimization/model sample flow construction from exposure to positive user behavior, etc.).  Has a deep understanding of commonly used MTL models for fine ranking, including: PLE, MOE/MMOE, PEPNet, etc.; and a deep understanding of sequence modeling, including: SIM/DIEN/DIN, etc.
 - Familiar with LLM4Rec and Scaling Law related models, and has experience in reproducing some of them, including: HSTU, OneRec, RankMixer, OneTrans, WuKong, RQVAE, RQ-Kmeans, Sparse MoE, etc.
 
-
 # Recent readings
-* The Double Helix (James Watson)
-* Lectures on General Relativity (David Tong)
-* What Babies Know (Elizabeth Spelke)
+
 * The Art of Doing Science and Engineering (Richard Hamming)
-
-
-<!--   
 * Advice for a Young Investigator (Santiago Cajal)
 * The Worlds I See (Fei-fei Li)
+* Team of Rivals (Doris Goodwin)
+* A Simpler Life (The School of Life)
+* Elon Musk (Walter Isaacson)
+
+<!-- * The Double Helix (James Watson)
+* Lectures on General Relativity (David Tong)
+* What Babies Know (Elizabeth Spelke)
 * Einstein: His Life and Universe (Walter Isaacson)
 * Set Theory (John Burgess)
 * The Computer and the Brain (John von Neumann)
 * Automata Studies (Editted by C.E. Shannon and J. McCarthy)
-* Team of Rivals (Doris Goodwin)
 * The Linguistics Wars (Randy Harris)
- -->
-<!-- * A Simpler Life (The School of Life)
-* Elon Musk (Walter Isaacson)
-* The Search (John Battelle) -->
-<!-- * Leadership: In Turbulent Times (Doris Kearns Goodwin) -->
-<!-- * 置身事内 （兰小欢） -->
-<!-- * The Linguistics Wars (Randy Allen Harris) -->
-<!-- * Antoni Gaudí（dosde）-->
-<!-- * 西方语言学史 （姚小平）-->
+* The Search (John Battelle)
+* Leadership: In Turbulent Times (Doris Kearns Goodwin)
+* 置身事内 （兰小欢）
+* The Linguistics Wars (Randy Allen Harris)
+* Antoni Gaudí（dosde）
+* 西方语言学史 （姚小平） -->
 
 (last updated: 1 2026)
