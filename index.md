@@ -28,9 +28,13 @@ In my life, I read, travel, rap, and play basketball.
 - Aug 2023: I gave a [talk](https://www.bilibili.com/video/BV1ju4y1e7Em) in Chinese about ReAct, Reflexion, ToT, WebShop, InterCode, Collie. Slides [here](https://ysymyth.github.io/papers/from_language_models_to_language_agents.pdf).
 - Jul 2023: I enjoyed teaching at [Princeton AI4ALL](https://ai4all.princeton.edu)! Coverage [here](https://www.today.com/video/how-the-summer-program-ai4all-is-helping-reshape-the-future-189707845651).
 - Jul 2023: I wrote a [blog post](https://princeton-nlp.github.io/language-agent-impact/) with Karthik about opportunities and risks of language agents! Comment [here](https://twitter.com/ShunyuYao12/status/1683827766104408066).
-<!---- Apr 2023: I attended LangChain's Agent [webinar](https://www.youtube.com/watch?v=1gRlCjy18m4). Summary [here](https://twitter.com/jh_damm/status/1646233627661828109).   --> 
+<!---- Apr 2023: I attended LangChain's Agent [webinar](https://www.youtube.com/watch?v=1gRlCjy18m4). Summary [here](https://twitter.com/jh_damm/status/1646233627661828109).   -->
 
-# Selected work
+# Educational background
+
+- **Xi'an Jiaotong University** <br>
+  AI
+  During both my first and second years of graduate studies, I received the top scholarship (awarded to the top 2%) at Xi'an Jiaotong University.
 
 - **Computer-Using Agent (CUA)** <br>
   OpenAI <br>
