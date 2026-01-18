@@ -57,20 +57,20 @@ In my life, I read, travel, rap, and play basketball.
 
 - **Beyond Single-Modal Boundary: Cross-Modal Anomaly Detection through Visual Prototype and Harmonization** <br>
   Kai Mao, *Ping Wei, Yiyang Lian, Yangyang Wang, Nanning Zheng <br>
-  CVPR 2025 <br>
+  **CVPR 2025** <br>
   Anomaly detection is a significant task for its application and research value. While existing methods have made impressive progress within the same modality, cross-modal anomaly detection remains an open and challenging prob lem. In this paper, we propose a cross-modal anomaly detection model that is trained using data from a variety of existing modalities and can be generalized well to unseen modalities. The model consists of three major components: 1) the Transferable Visual Prototype directly learns nor mal/abnormal semantics in visual space; 2) the Prototype Harmonization strategy adaptively utilizes the Transferable Visual Prototypes from various modalities for inference on the unknown modality; 3) the Visual Discrepancy Inference under the few-shot setting enhances performance. <br>
     [paper](https://openaccess.thecvf.com/content/CVPR2025/papers/Mao_Beyond_Single-Modal_Boundary_Cross-Modal_Anomaly_Detection_through_Visual_Prototype_and_CVPR_2025_paper.pdf)
 
 
 - **Unveiling Multi-View Anomaly Detection: Intra-view Decoupling and Inter-view Fusion** <br>
   Kai Mao, Yiyang Lian, Yangyang Wang, Meiqin Liu, Nanning Zheng, *Ping Wei <br>
-  AAAI 2025 <br>
+  **AAAI 2025** <br>
   Anomaly detection has garnered significant attention for its extensive industrial application value. Most existing methods focus on single-view scenarios and fail to detect anomalies hidden in blind spots, leaving a gap in addressing the demands of multi-view detection in practical applications. Ensemble of multiple single-view models is a typical way to tackle the multi-view situation, but it overlooks the correlations between different views. In this paper, we propose a novel multi-view anomaly detection framework, Intra-view Decoupling and Inter-view Fusion (IDIF), to explore correlations among views. Our method contains three key components: 1) a proposed Consistency Bottleneck module extracting the common features of different views through information compression and mutual information maximization; 2) an Implicit Voxel Construction module fusing features of different views with prior knowledge represented in the form of voxels; and 3) a View-wise Dropout training strategy enabling the model to learn how to cope with missing views during test. The proposed IDIF achieves state-of-the-art performance on three datasets. Extensive ablation studies also demonstrate the superiority of our methods. <br>
     [paper](https://ojs.aaai.org/index.php/AAAI/article/download/33349/35504)
 
 - **CSDD: A Benchmark Dataset for Casting Surface Defect Detection and Segmentation** <br>
   Kai Mao, Yiyang Lian, Yangyang Wang, Meiqin Liu, Nanning Zheng, *Ping Wei <br>
-  JAS 2025, SCI Q1, IF 19.2 <br>
+  **JAS 2025**, SCI Q1, IF 19.2 <br>
   Automatic surface defect detection is a critical technique for ensuring product quality in industrial casting production. While general object detection techniques have made remarkable progress over the past decade, casting surface defect detection still has considerable room for improvement. Lack of sufficient and high-quality data has become one of the most challenging problems for casting surface defect detection. In this paper, we construct a new casting surface defect dataset (CSDD) containing 2100 high-resolution images of casting surface defects and 56 356 defects in total. The class and defect region for each defect are manually labeled. We conduct a series of experiments on this dataset using multiple state-of-the-art object detection methods, establishing a comprehensive set of baselines. We also propose a defect detection method based on YOLOv5 with the global attention mechanism and partial convolution. Our proposed method achieves superior performance compared to other object detection methods. Additionally, we also conduct a series of experiments with multiple state-of-the-art semantic segmentation methods, providing extensive baselines for defect segmentation. To the best of our knowledge, the CSDD has the largest number of defects for casting surface defect detection and segmentation. It would benefit both the industrial vision research and manufacturing applications. <br>
     [paper](https://ieeexplore.ieee.org/abstract/document/11005751/)
 
@@ -171,7 +171,6 @@ In my life, I read, travel, rap, and play basketball.
 - Familiar with LLM4Rec and Scaling Law related models, and has experience in reproducing some of them, including: HSTU, OneRec, RankMixer, OneTrans, WuKong, RQVAE, RQ-Kmeans, Sparse MoE, etc.
 
 # Recent readings
-
 * The Art of Doing Science and Engineering (Richard Hamming)
 * Advice for a Young Investigator (Santiago Cajal)
 * The Worlds I See (Fei-fei Li)
