@@ -41,16 +41,16 @@ In my life, I read, travel, rap, and play basketball.
   Four-year GPA: 3.5/4 (Major ranking: 9/184, top 4.89%) CET-6: 501  CET-4: 545  IELTS: 6.5 (Overall score)
 
 # Experience
-- **Kuaishou Technology Co., Ltd.**
+- **Kuaishou Technology Co., Ltd.** <br>
   Recommendation Algorithm Engineer, June 2025 - Present
 
-- **Tencent Technology Co., Ltd.** (Internship)
+- **Tencent Technology Co., Ltd.** (Internship) <br>
   Recommendation Algorithm Engineer, May 2024 - August 2024
 
-- **Momenta Technology Co., Ltd.** (Internship)
+- **Momenta Technology Co., Ltd.** (Internship) <br>
   System Architecture and Integration Engineer, February 2024 - May 2024
 
-- **vivo Mobile Communication Co., Ltd.** (Internship)
+- **vivo Mobile Communication Co., Ltd.** (Internship) <br>
   Image Algorithm Engineer, November 2023 - January 2024
 
 # Papers
