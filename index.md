@@ -70,7 +70,7 @@ In my life, I read, travel, rap, and play basketball.
 
 - **CSDD: A Benchmark Dataset for Casting Surface Defect Detection and Segmentation** <br>
   Kai Mao, Yiyang Lian, Yangyang Wang, Meiqin Liu, Nanning Zheng, *Ping Wei <br>
-  JAS, SCI Q1, IF 19.2 <br>
+  JAS 2025, SCI Q1, IF 19.2 <br>
   Automatic surface defect detection is a critical technique for ensuring product quality in industrial casting production. While general object detection techniques have made remarkable progress over the past decade, casting surface defect detection still has considerable room for improvement. Lack of sufficient and high-quality data has become one of the most challenging problems for casting surface defect detection. In this paper, we construct a new casting surface defect dataset (CSDD) containing 2100 high-resolution images of casting surface defects and 56 356 defects in total. The class and defect region for each defect are manually labeled. We conduct a series of experiments on this dataset using multiple state-of-the-art object detection methods, establishing a comprehensive set of baselines. We also propose a defect detection method based on YOLOv5 with the global attention mechanism and partial convolution. Our proposed method achieves superior performance compared to other object detection methods. Additionally, we also conduct a series of experiments with multiple state-of-the-art semantic segmentation methods, providing extensive baselines for defect segmentation. To the best of our knowledge, the CSDD has the largest number of defects for casting surface defect detection and segmentation. It would benefit both the industrial vision research and manufacturing applications. <br>
     [paper](https://ieeexplore.ieee.org/abstract/document/11005751/)
 
